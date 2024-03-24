@@ -109,7 +109,7 @@ function api_login() {
     $result = $query->fetch_assoc();
     if(!password_verify($password, $result['password']))
         res(0);
-    if(!$result['email_verifed'])
+    if($result['email_verfied'] == 0 || $result['email_verfied'] == '0')
         res(102, $result['email_send_token']);
 
     $id = $result['id'];
