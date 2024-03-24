@@ -161,11 +161,13 @@ function api_register() {
         res(6);
 
     $passwordHash = $db->real_escape_string(password_hash($password, PASSWORD_DEFAULT));
-    $emailHash = $db->real_escape_string(RandomString(20));
+    $emailVerifyHash = $db->real_escape_string(RandomString(20));
+    $emailSendHash = $db->real_escape_string(RandomString(20));
+    $time = $db->real_escape_string(time());
     if(!empty($patronymic))
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `email_verfied`, `email_token`, `2fa_secret`, `lastname`, `surname`, `patronymic`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, '$emailHash', NULL, '$lastname', '$surname', '$patronymic')");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `email_verfied`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', '$patronymic', '$time')");
     else
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `email_verfied`, `email_token`, `2fa_secret`, `lastname`, `surname`, `patronymic`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, '$emailHash', NULL, '$lastname', '$surname', NULL)");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `email_verfied`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', NULL, '$time')");
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
     if ($query->num_rows !== 1)
         res(7);
@@ -175,7 +177,15 @@ function api_register() {
 function api_email_resend($args) {
     global $system, $system_user_id, $_user;
     $token = $args['token'];
-    echo $token;
+    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+    $resend = $system->send_email_verification($token);
+    if(resend == 0)
+        echo 'Прошла ошибка при переотправке письма. Обратитесь к <a href="'+$settings['link_to_admin']+'">администратору</a>.'
+    else if(resend == 1)
+        echo 'Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href="'+$settings['link_to_admin']+'">администратору</a>.';
+    else if(resend == 2)
+        echo 'Прежде чем, попробовать снова, подождите 5 минут. Если после нескольких попыток переотправки письмо не приходит, обратитесь к <a href="'+$settings['link_to_admin']+'">администратору</a>.';
+    exit();
 }
 
 function logout() {
