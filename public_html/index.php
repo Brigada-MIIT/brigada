@@ -1,5 +1,4 @@
 <?php
-echo 'TESTTESTTEST';
 define('TIMEZONE', 'Europe/Moscow');
 date_default_timezone_set(TIMEZONE);
 header('Content-Type: text/html; charset=utf-8');
