@@ -156,7 +156,9 @@ function api_register() {
     if ($query->num_rows !== 0)
         res(6);
 
-    res(7);
+    
+
+    res(1);
 }
 
 function logout() {
