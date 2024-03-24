@@ -23,6 +23,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/api/login/get', 'api_login');
     $r->addRoute('POST', '/api/register', 'api_register');
     $r->addRoute('GET', '/email/resend/{token}', 'api_email_resend');
+    $r->addRoute('GET', '/email/verify/{token}', 'api_email_verify');
     $r->addRoute('GET', '/logout', 'logout');
     $r->addRoute('POST', '/api/users/add', 'api_users_add');
     $r->addRoute('POST', '/api/user/edit', 'api_users_edit');

@@ -193,6 +193,19 @@ function api_email_resend($args) {
     }
 }
 
+function api_email_verify($args) {
+    global $system;
+    $token = $args['token'];
+    $link = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc()['link_to_admin'];
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `users` WHERE `email_token`='$token'");
+    if($query->num_rows !== 1)
+        exit("Токен не найден. Если считаете, что произошла ошибка, обратитесь к <a href='".$link."'>администратору<a>.")
+    $db->query("UPDATE `email_verification` SET 1 WHERE `email_token`='$token'");
+    $db->query("UPDATE `email_token` SET NULL WHERE `email_token`='$token'");
+    exit("Ваш аккаунт успешно подтверждён! Теперь вы можете <a href='/app/auth'>авторизироваться</a>.");
+}
+
 function logout() {
     global $system, $system_user_id, $_user;
     if (!$system->auth())
