@@ -171,6 +171,7 @@ function api_register() {
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
     if ($query->num_rows !== 1)
         res(7);
+    $system->send_email_verification($emailSendHash);
     res(1);
 }
 
