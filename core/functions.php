@@ -119,7 +119,7 @@ class System {
         if (!$token) return false;
         $db = $this->db();
         $query = $db->query("SELECT * FROM `users` WHERE `email_send_token`='$token'");
-        return $query;
+        return $query->fetch_assoc();
         if($query->num_rows !== 1)
             return '0';
         $result = $query->fetch_assoc();
