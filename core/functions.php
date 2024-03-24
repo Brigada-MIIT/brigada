@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class System {
     function db() {
         return new mysqli(db_host, db_user, db_password, db_basename);
@@ -123,13 +127,35 @@ class System {
             return 0;
         $result = $query->fetch_assoc();
         $time = time();
+
+        /* Генерация письма */
+        $mail = new PHPMailer;
+        $mail->setFrom('noreply@brigada-miit.ru', 'Файлообменник «Бригада»');
+        $mail->addAddress($result['email'], '');
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject ='Файлообменник «Бригада». Подтверждение регистрации';
+        $mail->IsHTML(true);
+        $mail->msgHTML('
+            Добро пожаловать, ' . $result["surname"] . '! Мы ради вас приветствовать на нашем файлообменнике!<br>
+            Прежде чем начать пользоваться файлообменником, пожалуйста, подтвердите аккаунт.<br><br>
+            <strong><a href="https://brigada-miit.ru/email/verify/' . $result["email_token"] . '">ПОДТВЕРДИТЬ АККАУНТ</a></strong><br><br>
+            <strong>ВНИМАНИЕ!Если вы не регистрировались на нашем сервисе, пожалуйста, <b>ПРОИГНОРИРУЙТЕ ЭТО ПИСЬМО И НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ ПОДТВЕРЖДЕНИЯ!</strong><br><br>
+            С уважением, администрация файлообменника «Бригада» <a href="https://brigada-miit.ru">brigada-miit.ru</a>
+        ');
+
+        $mail->DKIM_domain = 'brigada-miit.ru';
+        $mail->DKIM_private = 'vendor/dkim_private.pem';
+        $mail->DKIM_selector = 'mail';
+        $mail->DKIM_identity = $mail->From;
+        /*******************/
+
         if(!isset($result['email_send_timestamp'])) {
-            // отправка письма
+            if(!$mail->send()) return 0;
             $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';");
             return 1;
         }
         else if((time() - intval($result['email_send_timestamp'])) > 300) {
-            // отправка письма
+            if(!$mail->send()) return 0;
             $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';");
             return 1;
         }
