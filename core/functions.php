@@ -128,7 +128,7 @@ class System {
             $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';");
             return '1';
         }
-        if((time() - intval($result['email_send_timestamp'])) > 300) {
+        else if((time() - intval($result['email_send_timestamp'])) > 300) {
             // отправка письма
             $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';");
             return '1';
