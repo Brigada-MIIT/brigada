@@ -179,6 +179,16 @@ function api_email_resend($args) {
     $token = $args['token'];
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     print_r($system->send_email_verification($token));
+    switch($system->send_email_verification($token)):
+        case 1:
+            echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
+            break;
+        case 2:
+            echo "Прежде чем, попробовать снова, подождите 5 минут. Если после нескольких попыток переотправки письмо не приходит, обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
+            break;
+        default:
+            echo "Произошла ошибка при переотправке письма. Обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
+            break;
     /*if($system->send_email_verification($token) == 0)
         echo "Произошла ошибка при переотправке письма. Обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
     else if($system->send_email_verification($token) == 1)
