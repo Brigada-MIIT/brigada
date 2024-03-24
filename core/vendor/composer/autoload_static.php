@@ -15,6 +15,10 @@ class ComposerStaticInit9ab1c1d0e3e477574892677cf903ab70
         array (
             'Sonata\\GoogleAuthenticator\\' => 27,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
         'G' => 
         array (
             'Google\\Authenticator\\' => 21,
@@ -29,6 +33,10 @@ class ComposerStaticInit9ab1c1d0e3e477574892677cf903ab70
         'Sonata\\GoogleAuthenticator\\' => 
         array (
             0 => __DIR__ . '/..' . '/sonata-project/google-authenticator/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Google\\Authenticator\\' => 
         array (
