@@ -118,7 +118,7 @@ class System {
     function send_email_verification($token) {
         $db = $this->db();
         $query = $db->query("SELECT * FROM `users` WHERE `email_send_token`='$token'");
-        if($query->num_rows != 1)
+        if($query->num_rows !== 1)
             return 0;
         $result = $query->fetch_assoc();
         $time = time();
