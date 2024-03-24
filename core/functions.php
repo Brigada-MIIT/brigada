@@ -124,12 +124,12 @@ class System {
         $time = time();
         if(!isset($result['email_send_timestamp'])) {
             // отправка письма
-            $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';")
+            $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';");
             return 1;
         }
         if((time() - intval($result['email_send_timestamp'])) > 300) {
             // отправка письма
-            $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';")
+            $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';");
             return 1;
         }
         else return 2; // если не прошло 5 минут с момента последней отправки
