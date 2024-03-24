@@ -132,7 +132,7 @@ function api_login() {
 }
 
 function api_register() {
-    global $system, $system_user_id, $_user;
+    global $system;
     if ($system->auth()) {
         Location("/");
         res(0);
@@ -175,11 +175,12 @@ function api_register() {
 }
 
 function api_email_resend($args) {
-    global $system, $system_user_id, $_user;
+    global $system;
     $token = $args['token'];
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+    exit(print_r($system->send_email_verification($token)));
     if($system->send_email_verification($token) == '0')
-        echo "Прошла ошибка при переотправке письма. Обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
+        echo "Произошла ошибка при переотправке письма. Обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
     else if($system->send_email_verification($token) == '1')
         echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
     else if($system->send_email_verification($token) == '2')
