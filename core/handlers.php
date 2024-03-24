@@ -179,11 +179,12 @@ function api_email_resend($args) {
     $token = $args['token'];
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     if($system->send_email_verification($token) == '0')
-        exit('Прошла ошибка при переотправке письма. Обратитесь к <a href="'+$settings['link_to_admin']+'">администратору</a>.');
+        echo "Прошла ошибка при переотправке письма. Обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
     else if($system->send_email_verification($token) == '1')
-        exit('Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href="'+$settings['link_to_admin']+'">администратору</a>.');
+        echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
     else if($system->send_email_verification($token) == '2')
-        exit('Прежде чем, попробовать снова, подождите 5 минут. Если после нескольких попыток переотправки письмо не приходит, обратитесь к <a href="'+$settings['link_to_admin']+'">администратору</a>.');
+        echo "Прежде чем, попробовать снова, подождите 5 минут. Если после нескольких попыток переотправки письмо не приходит, обратитесь к <a href='"+$settings['link_to_admin']+"'>администратору</a>.";
+    exit();
 }
 
 function logout() {
