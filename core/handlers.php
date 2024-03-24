@@ -182,7 +182,7 @@ function api_email_resend($args) {
     $verification = $system->send_email_verification($token);
     switch($verification) {
         case 1:
-            echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href='".$link."'>администратору</a>.";
+            echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href='".$link."'>администратору</a>.<br><b>Не забудьте проверить папку спама!<b>";
             break;
         case 2:
             echo "Прежде чем попробовать снова, подождите 5 минут. Если после нескольких попыток переотправки письмо так и не приходит, обратитесь к <a href='".$link."'>администратору</a>. <br><b>Не забудьте проверить папку спама!<b>";
@@ -202,7 +202,7 @@ function api_email_verify($args) {
     if($query->num_rows !== 1)
         exit("Токен не найден. Если считаете, что произошла ошибка, обратитесь к <a href='".$link."'>администратору<a>.");
     $db->query("UPDATE `users` SET `email_verfied` = '1' WHERE `users`.`email_token` = '$token';");
-    $db->query("UPDATE `users` SET `email_resend_token` = NULL WHERE `users`.`email_token`='$token'");
+    $db->query("UPDATE `users` SET `email_send_token` = NULL WHERE `users`.`email_token`='$token'");
     $db->query("UPDATE `users` SET `email_token` = NULL WHERE `users`.`email_token`='$token'");
     exit("Ваш аккаунт успешно подтверждён! Теперь вы можете <a href='/app/auth'>авторизироваться</a>.");
 }
