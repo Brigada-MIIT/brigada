@@ -1,7 +1,9 @@
 name: Deploy
 
 on:
-  workflow_dispatch
+  pull_request:
+    branches:
+      - master
 
 env:
   SERVER_HOST: 199.83.103.213
