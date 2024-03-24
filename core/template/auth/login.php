@@ -80,7 +80,8 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Ваш аккаунт заблокирован!',
-                        text: 'Обратитесь к администратору.'
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
                     });
                 } else if (res.result == 100) {
                     const { value: user_code } = await Swal.fire({
@@ -98,13 +99,22 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Неверный код 2FA!',
-                        text: 'Обратитесь к администратору.'
+                        text: 'Попробуйте снова или обратитесь к администратору.',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    });
+                } else if (res.result == 102) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Не подтверждён Email-адрес',
+                        text: 'Вы не подтвердили Email-адрес. Если вы не получили письмо, нажмите снизу "Переотправить письмо"',
+                        footer: '<a>Переотправить письмо</a> | <a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
                     });
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Произошла неизвестная ошибка!',
-                        text: 'Обратитесь к администратору.'
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
                     });
                 }
             }
