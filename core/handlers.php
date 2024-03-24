@@ -179,7 +179,7 @@ function api_email_resend($args) {
     $token = $args['token'];
     $link = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc()['link_to_admin'];
     $verification = $system->send_email_verification($token);
-    print_r($settings);
+    print_r($link);
     switch($verification) {
         case 1:
             echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a>администратору</a>.";
