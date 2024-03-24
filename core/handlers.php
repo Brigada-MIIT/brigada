@@ -104,6 +104,8 @@ function api_login() {
     $email = $db->real_escape_string($_REQUEST['email']);
     $password = $db->real_escape_string($_REQUEST['password']);
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
+    if($query->num_rows == 0)
+        res(0);
     $result = $query->fetch_assoc();
     if(!password_verify($password, $result['password']))
         res(0);
