@@ -115,6 +115,25 @@ class System {
             return 1;
         return 0;
     }
+    function send_email_verification($token) {
+        $db = $this->db();
+        $query = $db->query("SELECT * FROM `users` WHERE `email_send_token`='$token'");
+        if($query->num_rows != 1)
+            return 0;
+        $result = $query->fetch_assoc();
+        $time = time();
+        if(!isset($result['email_send_timestamp'])) {
+            // отправка письма
+            $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';")
+            return 1;
+        }
+        if((time() - intval($result['email_send_timestamp'])) > 300) {
+            // отправка письма
+            $query = $db->query("UPDATE `users` SET `email_send_timestamp` = '$time' WHERE `users`.`email_send_token` = '$token';")
+            return 1;
+        }
+        else return 2; // если не прошло 5 минут с момента последней отправки
+    }
 }
 
 function res($code, $text = false) {

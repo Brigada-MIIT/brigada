@@ -110,7 +110,7 @@ function api_login() {
     if(!password_verify($password, $result['password']))
         res(0);
     if($result['email_verifed'] == 0)
-        res(102, $result['id']);
+        res(102, $result['email_send_token']);
 
     $id = $result['id'];
     $solt = bin2hex(openssl_random_pseudo_bytes(20, $cstrong));
@@ -170,6 +170,12 @@ function api_register() {
     if ($query->num_rows !== 1)
         res(7);
     res(1);
+}
+
+function api_email_resend($args) {
+    global $system, $system_user_id, $_user;
+    $token = $args['token'];
+    echo $token;
 }
 
 function logout() {
