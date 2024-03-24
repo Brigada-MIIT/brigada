@@ -177,7 +177,7 @@ function api_register() {
 function api_email_resend($args) {
     global $system;
     $token = $args['token'];
-    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+    $link = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc()['link_to_admin'];
     $verification = $system->send_email_verification($token);
     print_r($settings);
     switch($verification) {
