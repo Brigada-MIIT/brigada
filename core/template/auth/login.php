@@ -107,7 +107,7 @@
                         icon: 'error',
                         title: 'Не подтверждён Email-адрес',
                         text: 'Вы не подтвердили Email-адрес. Если вы не получили письмо, нажмите снизу "Переотправить письмо"',
-                        footer: '<a>Переотправить письмо</a>&nbsp;|&nbsp;<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a href="/email/resend/' + res.text + '">Переотправить письмо</a>&nbsp;|&nbsp;<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
                     });
                 } else {
                     Swal.fire({

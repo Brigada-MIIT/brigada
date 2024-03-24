@@ -108,7 +108,7 @@ function api_login() {
     if(!password_verify($password, $result['password']))
         res(0);
     if($result['email_verifed'] == 0)
-        res(102);
+        res(102, $result['id']);
 
     $id = $result['id'];
     $solt = bin2hex(openssl_random_pseudo_bytes(20, $cstrong));
