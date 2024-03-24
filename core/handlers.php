@@ -156,8 +156,15 @@ function api_register() {
     if ($query->num_rows !== 0)
         res(6);
 
-    
-
+    $passwordHash = $db->real_escape_string(password_hash($password, PASSWORD_DEFAULT));
+    $emailHash = $db->real_escape_string(RandomString(20));
+    if(!empty($patronymic))
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `email_verfied`, `email_token`, `2fa_secret`, `lastname`, `surname`, `patronymic`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, '$emailHash', NULL, '$lastname', '$surname', '$patronymic')");
+    else
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `email_verfied`, `email_token`, `2fa_secret`, `lastname`, `surname`, `patronymic`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, '$emailHash', NULL, '$lastname', '$surname', NULL)");
+    $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
+    if ($query->num_rows !== 1)
+        res(7);
     res(1);
 }
 
