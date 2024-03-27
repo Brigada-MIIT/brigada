@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Регистрация</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-blend-mode: multiply;
+    background-image: url(D:/logo.jpg);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 59.3% 100%;
+    background-color: #f2e9d5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    display: inline-block;
+    height: 936px;
+    padding: 10%;
+    background-color: white;
+    margin-left: 60%;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 3px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+
+.registerbtn {
+    background-color: black;
+    color: white;
+    padding: 16px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+
+a {
+    color: black;
+}
+
+p {
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<form action="{% url 'registration' %}" method="post">
+    <div class="container">
+    <h1>Регистрация</h1>
+    <p>Пожалуйста, заполните форму, чтобы создать аккаунт.</p>
+    <hr>
+
+    <label for="name"><b>Username</b></label>
+    <input type="text" placeholder="Enter your username" name="first_name" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter your password" name="password" required>
+
+    <label for="psw-repeat"><b>Repeat password</b></label>
+    <input type="password" placeholder="Reenter your password" name="password_check" required>
+    <hr>
+    <button type="submit" class="registerbtn">Зарегистрироваться</button>
+    <p>Уже есть аккаунт? <a href="/landing/Final_login_1.html">Войти</a>.</p>
+  </div>    
+</form>
+</body>
+</html>
