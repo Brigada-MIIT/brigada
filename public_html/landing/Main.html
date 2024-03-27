@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Профиль</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2e9d5;
+    background-size: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    margin: 1% 0 2% 0px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 2px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+h3 {
+    margin-left: 33.5%;
+}
+
+.createbtn {
+    border-radius: 5em;
+    background-color: black;
+    color: white;   
+    padding: 16px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.7;
+    margin-left: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createbtn:hover {
+    opacity: 1;
+}
+
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+h2 {
+    margin-left: 43.5%;
+}
+
+.otpr {
+    margin-left: 40.5%;
+}
+
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.spisok {
+    counter-reset: li; 
+    list-style: none; 
+    font: 14px "Trebuchet MS", "Lucida Sans";
+    padding: 0;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    width: 78%;
+    text-align: center;
+    margin-left: 1%;
+}
+.spisok a {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    margin: .5em 0 .5em 2.5em;
+    background: #D3D4DA;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
+}
+.spisok a:hover {background: #DCDDE1;}       
+.spisok a:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #9097A2;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+.spisok a:after {
+    position: absolute;
+    content: "";
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+}
+.spisok a:hover:after {
+    left: -.5em;
+    border-left-color: #9097A2;
+}
+
+.Files {
+    margin-left:24%;
+    display:inline-block;
+}
+
+input[type=text] {
+    margin-left: 33.35%;
+    width: 30%;
+    padding: 15px;
+    border: none;
+    background: #f1f1f1;
+    text-align: left;
+}
+
+.top {
+    display: flex;
+    width: 100%;
+    padding: 10px 35%;
+    text-align: center;
+}
+
+.logout {
+    border-radius: 5em;
+    background-color: black;
+    color: white;
+    padding: 6px 10px;
+    margin-left: 23%;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    opacity: 0.7;
+    margin-left: 41.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+</head>
+<body>
+
+<form action="/action_page.php">
+  <div class="container">
+    <div class="top">
+        <img src="D:/logo.jpg" width="100" height="90"/>
+        <h1><em>Ваш мини-профиль</em></h1>
+    </div>
+
+    <hr>
+
+    <h2><b>Username</b></h2>
+
+    <button type="submit" class="logout"> <a href="Final_login_1.html"> Выйти из аккаунта </a></button>
+
+    <br>
+
+    <div class = "Files">
+        <b>Полученные вами файлы:</b>
+        <ol class="spisok">
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+        </ol>
+    </div>
+
+    <div class = "Files">
+        <b>Отправленные вами файлы:</b>
+        <ol class="spisok">
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+            <li><a href="#">Элемент списка</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h1 class="otpr"><b>Отправка файлов</b></h1>
+
+    <hr>
+
+    <h3><b> Введите имя пользователя кому вы хотите отправить файл </b></h3>
+    <input type="text" placeholder="Username" name="username" required>
+
+    <button type="submit" class="createbtn">Отправить файл</button>
+  </div>
+  
+</form>
+
+</body>
+</html>
