@@ -123,7 +123,7 @@
         
         document.addEventListener('keypress', function(event) {
             if(arguments[0].code == "Enter" || arguments[0].code == "NumpadEnter") {
-                login();
+                if(!Swal.isVisible()) login();
             }
         });
 
