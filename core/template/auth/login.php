@@ -60,6 +60,7 @@
             if(code) {
                 a_code = '&auth_code='+code
             }
+            Swal.close();
             $.ajax({
               type: 'POST',
               url: '/api/login',
@@ -122,6 +123,7 @@
         }
 
         function resendEmail(token) {
+            Swal.close();
             $.ajax({
               type: 'POST',
               url: '/email/resend',
