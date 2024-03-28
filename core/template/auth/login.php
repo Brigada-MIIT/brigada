@@ -107,7 +107,7 @@
                         icon: 'error',
                         title: 'Не подтверждён Email-адрес',
                         text: 'Если вы не получили письмо, нажмите снизу "Переотправить письмо"',
-                        footer: '<a target="_blank" href="/email/resend/' + res.text + '">Переотправить письмо</a>&nbsp;|&nbsp;<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a target="_blank" onclick="restorePassword(res.text)" hreff="/email/resend/' + res.text + '">Переотправить письмо</a>&nbsp;|&nbsp;<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
                     });
                 } else {
                     Swal.fire({
@@ -119,6 +119,10 @@
                 }
             }
             });
+        }
+
+        function restorePassword(token) {
+            alert(token);
         }
         
         document.addEventListener('keypress', function(event) {
