@@ -128,7 +128,7 @@
               type: 'POST',
               url: '/email/resend/'+token,
               success: async function(data) {
-                console.log(data);
+                console.log('/email/resend/'+token);
                 var res = $.parseJSON(data);
                 if (res.result == 0) {
                     Swal.fire({
