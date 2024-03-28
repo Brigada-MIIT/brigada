@@ -129,6 +129,7 @@
               url: '/email/resend',
               data: 'token='+token,
               success: async function(data) {
+                console.log(data);
                 var res = $.parseJSON(data);
                 if (res.result == 0) {
                     Swal.fire({
