@@ -126,8 +126,7 @@
             Swal.close();
             $.ajax({
               type: 'POST',
-              url: '/email/resend',
-              data: 'token='+token,
+              url: '/email/resend/'+token,
               success: async function(data) {
                 console.log(data);
                 var res = $.parseJSON(data);
