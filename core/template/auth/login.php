@@ -107,7 +107,7 @@
                         icon: 'error',
                         title: 'Не подтверждён Email-адрес',
                         text: 'Если вы не получили письмо, нажмите снизу "Переотправить письмо"',
-                        footer: '<a onclick="resendEmail(' + res.text + ');" href="#" hreff="/email/resend/' + res.text + '">Переотправить письмо</a>&nbsp;|&nbsp;<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a onclick="resendEmail(' + res.text + ');" href="#">Переотправить письмо</a>&nbsp;|&nbsp;<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
                     });
                 } else {
                     Swal.fire({
@@ -122,7 +122,43 @@
         }
 
         function resendEmail(token) {
-            alert(token);
+            $.ajax({
+              type: 'POST',
+              url: '/email/resend',
+              data: 'token='+token,
+              success: async function(data) {
+                var res = $.parseJSON(data);
+                if (res.result == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ошибка',
+                        text: 'При отправке письма произошла неизвестная ошибка. Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    });
+                } else if (res.result == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Письмо успешно оптравлено',
+                        text: 'На указанный Email-адрес было отправлено письмо с ссылкой для подтверждения вашего аккаунта',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    });
+                } else if (res.result == 2) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Письмо не было отправлено',
+                        text: 'Переотправка письма возможна 1 раз в 5 минут. Попробуйте переотправить письмо чуть позже снова.',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    });
+                }
+            }
+            });
         }
         
         document.addEventListener('keypress', function(event) {

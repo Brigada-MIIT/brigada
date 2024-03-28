@@ -180,7 +180,7 @@ function api_email_resend($args) {
     $token = $args['token'];
     $link = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc()['link_to_admin'];
     $verification = $system->send_email_verification($token);
-    switch($verification) {
+    /* switch($verification) {
         case 1:
             echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href='".$link."'>администратору</a>.<br><b>Не забудьте проверить папку спама!<b>";
             break;
@@ -190,7 +190,8 @@ function api_email_resend($args) {
         default:
             echo "Произошла ошибка при отправке письма. Обратитесь к <a href='".$link."'>администратору</a>.";
             break;
-    }
+    } */
+    res($verification);
 }
 
 function api_email_verify($args) {
