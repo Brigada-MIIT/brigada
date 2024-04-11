@@ -18,6 +18,10 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/settings', 'settings');
     $r->addRoute('GET', '/profile/password', 'profile_password');
     $r->addRoute('GET', '/profile/avatar', 'profile_avatar');
+    $r->addRoute('GET', '/files/upload', 'files_upload');
+    $r->addRoute('GET', '/files/view/{id:\d+}', 'files_view');
+    $r->addRoute('GET', '/files/edit/{id:\d+}', 'files_edit');
+    $r->addRoute('GET', '/files/delete/{id:\d+}', 'files_delete');
     //*** API ***\\
     $r->addRoute('POST', '/api/login', 'api_login');
     $r->addRoute('GET', '/api/login/get', 'api_login');
@@ -30,6 +34,10 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/users/delete', 'api_users_delete');
     $r->addRoute('POST', '/api/user/permissions', 'api_user_permissions');
     $r->addRoute('POST', '/api/settings/update', 'api_settings_update');
+    $r->addRoute('GET', '/api/files/upload', 'files_upload');
+    $r->addRoute('GET', '/api/files/view/{id:\d+}', 'api_files_view');
+    $r->addRoute('GET', '/api/files/edit/{id:\d+}', 'api_files_edit');
+    $r->addRoute('GET', '/api/files/delete/{id:\d+}', 'api_files_delete');
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
