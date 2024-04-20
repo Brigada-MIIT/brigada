@@ -108,7 +108,7 @@ function files_view($args) {
     if($query->num_rows == 0)
         $system->printError(404);
     $result = $query->fetch_assoc();
-    $check = $result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_FILES"); // владелец или админ?
+    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_FILES")); // владелец или админ?
     if($result['status'] == 0 || $result['status'] == -1) {
         if($check)
             $system->printError(404);
@@ -121,9 +121,10 @@ function files_view($args) {
     echo "Имя файла: " . $result['name'];
     echo "<br>Описание файла: " . $result['description'];
     echo "<br>Автор файла: " . $result_author['lastname'] ? : "Пользователь удалён";
+    setlocale(LC_ALL, 'rus_RUS');
     echo "<br>Дата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
     if($result['updated']) echo "<br>Дата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
-    if($check) echo "<br>Статус: " . $result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт";
+    if(!$check) echo "<br>Статус: " . $result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт";
     echo "<br>Категория: " . $result_category['name']; 
     $content = '../core/template/files/view.php';
     //include '../core/template/default.php';
