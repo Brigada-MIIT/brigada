@@ -2,7 +2,7 @@
 
 function main() {
     global $system, $system_user_id, $_user;
-    if ($system->userinfo()['user_type'] < 1 || !$system->haveUserPermission($system_user_id, "DASHBOARD"))
+    if ($system->userinfo()['user_type'] < 1 || !$system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/app/auth");
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/dashboard.php';
@@ -11,7 +11,7 @@ function main() {
 
 function auth() {
     global $system, $system_user_id, $_user;
-    if ($system->auth() && $system->haveUserPermission($system_user_id, "DASHBOARD"))
+    if ($system->auth() && $system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/");
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     include '../core/template/auth/login.php';
@@ -19,7 +19,7 @@ function auth() {
 
 function register() {
     global $system, $system_user_id, $_user;
-    if ($system->auth() && $system->haveUserPermission($system_user_id, "DASHBOARD"))
+    if ($system->auth() && $system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/");
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     include '../core/template/auth/register.php';
