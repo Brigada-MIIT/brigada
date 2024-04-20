@@ -108,7 +108,7 @@ function files_view($args) {
     if($query->num_rows == 0)
         $system->printError(404);
     $result = $query->fetch_assoc();
-    print_r($result);
+    print_r($result['name']);
     $content = '../core/template/files/view.php';
     //include '../core/template/default.php';
 }
