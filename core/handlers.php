@@ -119,12 +119,12 @@ function files_view($args) {
     $result_category = $query_category->fetch_assoc();
     print_r($result);
     echo "Имя файла: " . $result['name'];
-    echo "Описание файла: " . $result['description'];
-    echo "Автор файла: " . $result_author['lastname'] ? : "Пользователь удалён";
-    echo "Дата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
-    echo "Дата изменения: " . $result['updated'] ? : "Не изменялся";
-    if($check) echo "Статус: " . $result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт";
-    echo "Категория: " . $result_category['name']; 
+    echo "\nОписание файла: " . $result['description'];
+    echo "\nАвтор файла: " . $result_author['lastname'] ? : "Пользователь удалён";
+    echo "\nДата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
+    if($result['updated']) echo "\nДата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
+    if($check) echo "\nСтатус: " . $result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт";
+    echo "\nКатегория: " . $result_category['name']; 
     $content = '../core/template/files/view.php';
     //include '../core/template/default.php';
 }
