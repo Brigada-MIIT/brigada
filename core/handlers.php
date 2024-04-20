@@ -109,7 +109,7 @@ function files_view($args) {
         $system->printError(404);
     $result = $query->fetch_assoc();
     if($result['status'] == 0 || $result['status'] == -1) {
-        if($result['author'] != $system_user_id || !$system->haveUserPermission($system_user_id, "EDIT_ALL_FILES"))
+        if($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_FILES"))
             $system->printError(404);
     }
     print_r($result);
