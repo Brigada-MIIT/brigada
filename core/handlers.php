@@ -112,6 +112,7 @@ function files_view($args) {
         if($result['author'] != $system_user_id)
             $system->printError(404);
     }
+    print_r($result);
     $content = '../core/template/files/view.php';
     //include '../core/template/default.php';
 }
