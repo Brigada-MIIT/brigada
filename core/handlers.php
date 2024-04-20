@@ -92,6 +92,43 @@ function profile_avatar() {
     include '../core/template/default.php';
 }
 
+function files_upload() {
+    global $system, $system_user_id, $_user;
+    if (!$system->haveUserPermission($system_user_id, "CREATE_FILES"))
+        $system->printError(403);
+    $content = '../core/template/files/upload.php';
+    //include '../core/template/default.php';
+}
+
+function files_view($args) {
+    global $system, $system_user_id, $_user;
+    if (!$system->haveUserPermission($system_user_id, "VIEW_FILES"))
+        $system->printError(403);
+    $query = $system->db()->query('SELECT * FROM `files` WHERE `id` = "'.$args["id"].'"');
+    if($query->num_rows == 0)
+        $system->printError(404);
+    $result = $query->fetch_assoc();
+    print_r($result);
+    $content = '../core/template/files/view.php';
+    //include '../core/template/default.php';
+}
+
+function files_edit($args) {
+    global $system, $system_user_id, $_user;
+    if (!$system->haveUserPermission($system_user_id, "EDIT_FILES"))
+        $system->printError(403);
+    $content = '../core/template/files/edit.php';
+    //include '../core/template/default.php';
+}
+
+function files_delete($args) {
+    global $system, $system_user_id, $_user;
+    if (!$system->haveUserPermission($system_user_id, "DELETE_FILES"))
+        $system->printError(403);
+    $content = '../core/template/files/delete.php';
+    //include '../core/template/default.php';
+}
+
 // ================ API ================ \\
 
 function api_login() {
