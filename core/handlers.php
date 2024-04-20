@@ -117,7 +117,7 @@ function files_view($args) {
     $result_author = $query_author->fetch_assoc();
     $query_category = $system->db()->query('SELECT * FROM `categories` WHERE `id` = "'.$result['category'].'"');
     $result_category = $query_category->fetch_assoc();
-    print_r($result);
+    //print_r($result);
     echo "Имя файла: " . $result['name'];
     echo "\nОписание файла: " . $result['description'];
     echo "\nАвтор файла: " . $result_author['lastname'] ? : "Пользователь удалён";
