@@ -130,6 +130,7 @@
               success: async function(data) {
                 console.log('/email/resend/'+token);
                 var res = $.parseJSON(data);
+                console.log(res);
                 if (res.result == 0) {
                     Swal.fire({
                         icon: 'error',
