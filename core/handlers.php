@@ -120,7 +120,7 @@ function files_view($args) {
     //print_r($result);
     echo "Имя файла: " . $result['name'];
     echo "<br>Описание файла: " . $result['description'];
-    echo "<br>Автор файла: " . (!empty($result_author['lastname'])) ? $result_author['lastname'] : "Пользователь удалён";
+    echo "<br>Автор файла: " . empty($result_author['lastname']) ? "Пользователь удалён" : $result_author['lastname'];
     setlocale(LC_ALL, 'rus_RUS');
     echo "<br>Дата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
     if($result['updated']) echo "<br>Дата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
