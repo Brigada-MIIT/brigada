@@ -108,11 +108,23 @@ function files_view($args) {
     if($query->num_rows == 0)
         $system->printError(404);
     $result = $query->fetch_assoc();
+    $check = $result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_FILES"); // владелец или админ?
     if($result['status'] == 0 || $result['status'] == -1) {
-        if($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_FILES"))
+        if($check)
             $system->printError(404);
     }
+    $query_author = $system->db()->query('SELECT * FROM `users` WHERE `id` = "'.$result["author"].'"');
+    $result_author = $query_author->fetch_assoc();
+    $query_category = $system->db()->query('SELECT * FROM `categories` WHERE `id` = "'.$result['category'].'"');
+    $result_category = $query_category->fetch_assoc();
     print_r($result);
+    echo "Имя файла: " . $result['name'];
+    echo "Описание файла: " . $result['description'];
+    echo "Автор файла: " . $result_author['lastname'] ? : "Пользователь удалён";
+    echo "Дата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
+    echo "Дата изменения: " . $result['updated'] ? : "Не изменялся";
+    if($check) echo "Статус: " . $result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт";
+    echo "Категория: " . $result_category['name']; 
     $content = '../core/template/files/view.php';
     //include '../core/template/default.php';
 }
