@@ -1,5 +1,6 @@
 <html>
 <header>
+    <script src="/assets/js/jquery.min.js"></script>
     <style>
         .file-drop {
             background:#fff;
