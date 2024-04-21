@@ -112,16 +112,16 @@ body {
 	</form>
 	<script type="text/javascript">
 		<?php $timestamp = time();?>
-		$(function() {
-			$('#file_upload').uploadifive({
+		$(async function() {
+			await $('#file_upload').uploadifive({
 				'auto'             : false,
 				'checkScript'      : '/api/files/upload/check',
 				'fileType'         : '.jpg,.jpeg,.gif,.png',
 				'formData'         : {
 									   'timestamp'  : '<?php echo $timestamp;?>',
 									   'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
-                                       'name'       : $("#name").val(),
-                                       'description': $("#description").val(),
+                                       'name'       : await $("#name").val(),
+                                       'description': await $("#description").val(),
 				                     },
 				'queueID'          : 'queue',
 				'uploadScript'     : '/api/files/upload',
