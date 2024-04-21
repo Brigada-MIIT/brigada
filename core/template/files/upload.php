@@ -108,28 +108,32 @@ body {
         <label for="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
-		<a style="position: relative; top: 8px;" href="javascript:upload();$('#file_upload').uploadifive('upload')">Upload Files</a>
+		<a style="position: relative; top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')">Upload Files</a>
 	</form>
 	<script type="text/javascript">
 		<?php $timestamp = time();?>
-        function upload() {
+        function setForm() {
             $(function() {
                 $('#file_upload').uploadifive({
-                    'auto'             : false,
-                    'checkScript'      : '/api/files/upload/check',
-                    'fileType'         : '.jpg,.jpeg,.gif,.png',
                     'formData'         : {
                                         'timestamp'  : '<?php echo $timestamp;?>',
                                         'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
                                         },
-                    'queueID'          : 'queue',
-                    'uploadScript'     : '/api/files/upload',
-                    'onUploadComplete' : function(file, data) { console.log(data); }
                 });
             });
         }
+		$(function() {
+			$('#file_upload').uploadifive({
+				'auto'             : false,
+				'checkScript'      : '/api/files/upload/check',
+				'fileType'         : '.jpg,.jpeg,.gif,.png',
+				'queueID'          : 'queue',
+				'uploadScript'     : '/api/files/upload',
+				'onUploadComplete' : function(file, data) { console.log(data); }
+			});
+		});
 	</script>
 </body>
 </html>
