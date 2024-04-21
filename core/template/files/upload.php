@@ -101,13 +101,13 @@ body {
 <body>
 	<h1>Загрузка файлов</h1>
 	<form>
-        <label for="name">Название загрузки</label>  
+        <label id="name">Название загрузки</label>  
         <input id="name" type="text" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
-        <label for="description">Описание загрузки</label>
+        <label id="description">Описание загрузки</label>
         <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
         <label for="queue" style="">Загружаемые файлы:</label>
-		<div id="queue" style="display: block;"></div>
-		<div id="uploadifive-file_upload" class="uploadifive-button" style="display: block; height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Select Files<input id="file_upload" name="file_upload" type="file" multiple="true" style="display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple" accept=".jpg,.jpeg,.gif,.png"></div>
+		<div id="queue"></div>
+		<div id="uploadifive-file_upload" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Select Files<input id="file_upload" name="file_upload" type="file" multiple="true" style="display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple" accept=".jpg,.jpeg,.gif,.png"></div>
 		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
 	</form>
 
