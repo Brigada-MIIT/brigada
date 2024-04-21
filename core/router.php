@@ -18,7 +18,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/settings', 'settings');
     $r->addRoute('GET', '/profile/password', 'profile_password');
     $r->addRoute('GET', '/profile/avatar', 'profile_avatar');
-    $r->addRoute('GET', '/files/upload', 'files_upload');
+    $r->addRoute(['GET', 'POST'], '/files/upload', 'files_upload');
     $r->addRoute('GET', '/files/view/{id:\d+}', 'files_view');
     $r->addRoute('GET', '/files/edit/{id:\d+}', 'files_edit');
     $r->addRoute('GET', '/files/delete/{id:\d+}', 'files_delete');
