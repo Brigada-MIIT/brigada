@@ -105,7 +105,7 @@ body {
         <input id="name" type="text" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
         <label id="description">Описание загрузки</label>
         <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
-        <label for="queue" style="">Загружаемые файлы:</label>
+        <label id="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<div id="uploadifive-file_upload" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Select Files<input id="file_upload" name="file_upload" type="file" multiple="true" style="display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple" accept=".jpg,.jpeg,.gif,.png"></div>
 		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
@@ -120,9 +120,7 @@ body {
 				'fileType'         : '.jpg,.jpeg,.gif,.png',
 				'formData'         : {
 									   'timestamp'  : '<?php echo $timestamp;?>',
-									   'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
-                                       'name'       : document.getElementById('name').value,
-                                       'description': document.getElementById('description').value
+									   'token'      : '<?php echo md5('unique_salt' . $timestamp);?>'
 				                     },
 				'queueID'          : 'queue',
 				'uploadScript'     : '/api/files/upload',
