@@ -26,6 +26,7 @@ if($_FILES) {
         print_r($_FILES);
     }*/
     print_r($_FILES);
+    echo "Count files: " . count($_FILES["uploads"]["name"]);
 }
 ?>
 <h2>Загрузка файла</h2>
