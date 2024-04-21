@@ -108,7 +108,7 @@ body {
         <label for="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
-		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload');let name=document.getElementById('name').value;let description=document.getElementById('description').value">Upload Files</a>
+		<a style="position: relative; top: 8px;" href="javascript:let name=document.getElementById('name').value;let description=document.getElementById('description').value;$('#file_upload').uploadifive('upload')">Upload Files</a>
 	</form>
 
 	<script type="text/javascript">
