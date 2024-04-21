@@ -78,7 +78,7 @@
         }
         showMessage(); //Показываем сообщение, что загрузка началась
         $.ajax({
-            url: "/file.php", //Ссылка на обработчик
+            url: "/api/files/upload", //Ссылка на обработчик
             type: 'POST', //Метод передачи
             data: data, //Массив с файлами
             cache: false, //Обязательно указать false
@@ -96,35 +96,3 @@
     fileDrop.addEventListener('change',uploadFile); //Отправляем файлы сразу после того, как они будут выбраны
 </script>
 </html>
-
-<?php
-    if(isset($_FILES)) {
-        $allowedTypes = array('image/jpeg','image/png','image/gif');
-        $uploadDir = "../../brigada-miit-storage/"; //Директория загрузки. Если она не существует, обработчик не сможет загрузить файлы и выдаст ошибку
-        for($i = 0; $i < count($_FILES); $i++) {
-            $uploadFile[$i] = $uploadDir . basename($_FILES[$i]['name']);
-            $fileChecked[$i] = false;
-            echo $_FILES[$i]['name']." | ".$_FILES[$i]['type']." — ";
-            for($j = 0; $j < count($allowedTypes); $j++) {
-                if($_FILES[$i]['type'] == $allowedTypes[$j]) {
-                    $fileChecked[$i] = true;
-                    break;
-                }
-            }
-            if($fileChecked[$i]) {
-                if(move_uploaded_file($_FILES[$i]['tmp_name'], $uploadFile[$i])) {
-                    echo "Успешно загружен <br>";
-                } 
-                else {
-                    echo "Ошибка ".$_FILES[$i]['error']."<br>";
-                }
-            } 
-            else {
-                echo "Недопустимый формат <br>";
-            }
-        }
-    } 
-    else {
-        echo "Вы не прислали файл!";
-    }
-?>
