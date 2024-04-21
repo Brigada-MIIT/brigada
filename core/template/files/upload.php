@@ -101,6 +101,8 @@ body {
 <body>
 	<h1>UploadiFive Demo</h1>
 	<form>
+        <input id="name" type="text" placeholder="Введите название загрузке...">
+        <textarea id="description" placehoulder="Введите описание загрузке..."></textarea>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
 		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
