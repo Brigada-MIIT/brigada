@@ -477,6 +477,7 @@ function api_files_upload() {
         if (in_array(strtolower($fileParts['extension']), $fileTypes)) {
             move_uploaded_file($tempFile, $targetFile);
             echo 1;
+            echo $_POST;
         } 
         else
             echo 'Invalid file type.';
