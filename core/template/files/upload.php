@@ -108,11 +108,10 @@ body {
         <label for="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
-		<a style="position: relative; top: 8px;" onclick="update();" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
+		<a style="position: relative; top: 8px;" onclick="update();" href="javascript:update();$('#file_upload').uploadifive('upload')">Upload Files</a>
 	</form>
     <script>
         let name, description;
-        name = "test";
         function update() {
             name = document.getElementById('name').value;
             description = document.getElementById('description').value;
