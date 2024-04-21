@@ -101,7 +101,9 @@ body {
 <body>
 	<h1>UploadiFive Demo</h1>
 	<form>
+        <label for="name">Название загрузки</label>
         <input id="name" type="text" placeholder="Введите название загрузке...">
+        <label for="description">Описание загрузки</label>
         <textarea id="description" placehoulder="Введите описание загрузке..."></textarea>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
