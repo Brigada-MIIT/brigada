@@ -101,11 +101,11 @@ body {
 <body>
 	<h1>Загрузка файлов</h1>
 	<form>
-        <label id="name">Название загрузки</label>  
+        <label for="name">Название загрузки</label>  
         <input id="name" type="text" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
-        <label id="description">Описание загрузки</label>
+        <label for="description">Описание загрузки</label>
         <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
-        <label style="">Загружаемые файлы:</label>
+        <label for="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
 		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
