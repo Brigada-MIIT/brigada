@@ -8,7 +8,7 @@
 <?php
 if($_FILES) {
     foreach ($_FILES["uploads"]["error"] as $key => $error) {
-        if(count($_FILES["uploads"]) > 10) {
+        if(count($_FILES["uploads"]["name"]) > 10) {
             echo "Количество файлов не должно превышать 10.";
             exit(-1);
         }
