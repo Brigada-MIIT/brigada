@@ -19,8 +19,7 @@ if($_FILES) {
 ?>
 <h2>Загрузка файла</h2>
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="uploads[]" /><br />
-    <input type="file" name="uploads[]" /><br />
+    <input type="file" multiple="multiple" name="uploads[]" /><br />
     <input type="file" name="uploads[]" /><br />
     <input type="submit" value="Загрузить" />
 </form>
