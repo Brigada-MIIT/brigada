@@ -9,8 +9,7 @@
 if($_FILES) {
     foreach ($_FILES["uploads"]["error"] as $key => $error) {
         if(count($_FILES["uploads"]["name"]) > 10) {
-            echo "Количество файлов не должно превышать 10.";
-            exit(-1);
+            exit("Количество файлов не должно превышать 10.");
         }
         if ($error == UPLOAD_ERR_OK) {
             $tmp_name = $_FILES["uploads"]["tmp_name"][$key];
