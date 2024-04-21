@@ -7,7 +7,7 @@
 <body>
 <?php
 if($_FILES) {
-    if(count($_FILES["uploads"]["name"]) > 10) {
+    /*if(count($_FILES["uploads"]["name"]) > 10) {
         echo "Количество файлов не должно превышать 10.";
     }
     else {
@@ -24,7 +24,8 @@ if($_FILES) {
         }
         echo "Файлы загружены";
         print_r($_FILES);
-    }
+    }*/
+    print_r($_FILES);
 }
 ?>
 <h2>Загрузка файла</h2>
