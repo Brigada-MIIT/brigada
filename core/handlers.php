@@ -96,8 +96,9 @@ function files_upload() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CREATE_FILES"))
         $system->printError(403);
-    $content = '../core/template/files/upload.php';
+    //$content = '../core/template/files/upload.php';
     //include '../core/template/default.php';
+    include '../core/template/files/upload.php';
 }
 
 function files_view($args) {
