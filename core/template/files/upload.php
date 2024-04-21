@@ -99,7 +99,7 @@ body {
 </head>
 
 <body>
-	<h1>UploadiFive Demo</h1>
+	<h1>Загрузка файлов</h1>
 	<form>
         <label for="name">Название загрузки</label>  
         <input id="name" type="text" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
@@ -119,8 +119,10 @@ body {
 				'checkScript'      : '/api/files/upload/check',
 				'fileType'         : '.jpg,.jpeg,.gif,.png',
 				'formData'         : {
-									   'timestamp' : '<?php echo $timestamp;?>',
-									   'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+									   'timestamp'  : '<?php echo $timestamp;?>',
+									   'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
+                                       'name'       : document.getElementById('name').value,
+                                       'description': document.getElementById('description').value
 				                     },
 				'queueID'          : 'queue',
 				'uploadScript'     : '/api/files/upload',
