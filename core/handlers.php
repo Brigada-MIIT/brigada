@@ -471,7 +471,7 @@ function api_files_upload() {
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
     if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
         $tempFile   = $_FILES['Filedata']['tmp_name'];
-        $uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
+        //$uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
         $targetFile = $uploadDir . $_FILES['Filedata']['name'];
         $fileParts = pathinfo($_FILES['Filedata']['name']);
         if (in_array(strtolower($fileParts['extension']), $fileTypes)) {
@@ -485,7 +485,7 @@ function api_files_upload() {
 
 function api_files_upload_check() {
     $targetFolder = '../../brigada-miit-storage';
-    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $targetFolder . '/' . $_POST['filename']))
+    if (file_exists(/*$_SERVER['DOCUMENT_ROOT'] . */$targetFolder . '/' . $_POST['filename']))
         echo 1;
     else
         echo 0;
