@@ -18,7 +18,7 @@ if($_FILES) {
 }
 ?>
 <h2>Загрузка файла</h2>
-<form method="post" action="/api/files/upload" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     <input type="file" name="uploads[]" /><br />
     <input type="file" name="uploads[]" /><br />
     <input type="file" name="uploads[]" /><br />
