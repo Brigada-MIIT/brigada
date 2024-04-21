@@ -453,33 +453,14 @@ function download_moderation_tool() {
 }
 
 function api_files_upload() {
-    if(isset($_FILES)) {
-        $allowedTypes = array('image/jpeg','image/png','image/gif');
-        $uploadDir = "../../brigada-miit-storage/"; //Директория загрузки. Если она не существует, обработчик не сможет загрузить файлы и выдаст ошибку
-        for($i = 0; $i < count($_FILES); $i++) {
-            $uploadFile[$i] = $uploadDir . basename($_FILES[$i]['name']);
-            $fileChecked[$i] = false;
-            echo $_FILES[$i]['name']." | ".$_FILES[$i]['type']." — ";
-            for($j = 0; $j < count($allowedTypes); $j++) {
-                if($_FILES[$i]['type'] == $allowedTypes[$j]) {
-                    $fileChecked[$i] = true;
-                    break;
-                }
-            }
-            if($fileChecked[$i]) {
-                if(move_uploaded_file($_FILES[$i]['tmp_name'], $uploadFile[$i])) {
-                    echo "Успешно загружен <br>";
-                } 
-                else {
-                    echo "Ошибка ".$_FILES[$i]['error']."<br>";
-                }
-            } 
-            else {
-                echo "Недопустимый формат <br>";
+    if($_FILES) {
+        foreach ($_FILES["uploads"]["error"] as $key => $error) {
+            if ($error == UPLOAD_ERR_OK) {
+                $tmp_name = $_FILES["uploads"]["tmp_name"][$key];
+                $name = $_FILES["uploads"]["name"][$key];
+                move_uploaded_file($tmp_name, "../../brigada-miit-storage/".$name);
             }
         }
-    } 
-    else {
-        echo "Вы не прислали файл!";
+        echo "Файлы загружены";
     }
 }
