@@ -112,6 +112,7 @@ body {
 	</form>
     <script>
         let name, description;
+        name = "test";
         function update() {
             name = document.getElementById('name').value;
             description = document.getElementById('description').value;
