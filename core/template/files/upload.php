@@ -108,15 +108,8 @@ body {
         <label for="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
-		<a style="position: relative; top: 8px;" onclick="update();" href="javascript:update();$('#file_upload').uploadifive('upload')">Upload Files</a>
+		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
 	</form>
-    <script>
-        let name, description;
-        function update() {
-            name = document.getElementById('name').value;
-            description = document.getElementById('description').value;
-        }
-    </script>
 	<script type="text/javascript">
 		<?php $timestamp = time();?>
 		$(function() {
@@ -127,8 +120,8 @@ body {
 				'formData'         : {
 									   'timestamp'  : '<?php echo $timestamp;?>',
 									   'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
-                                       'name'       : name,
-                                       'description': description,
+                                       'name'       : $("#name").val(),
+                                       'description': $("#description").val(),
 				                     },
 				'queueID'          : 'queue',
 				'uploadScript'     : '/api/files/upload',
