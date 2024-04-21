@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>UploadiFive Test</title>
 <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
-<script src="/assets/jquery.uploadifive.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.uploadifive.min.js" type="text/javascript"></script>
 <style>
     .uploadifive-button {
         background-color: #505050;
