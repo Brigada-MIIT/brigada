@@ -452,7 +452,7 @@ function download_moderation_tool() {
     }
 }
 
-function api_files_upload() {
+/*function api_files_upload() {
     if($_FILES) {
         foreach ($_FILES["uploads"]["error"] as $key => $error) {
             if ($error == UPLOAD_ERR_OK) {
@@ -463,4 +463,30 @@ function api_files_upload() {
         }
         echo "Файлы загружены";
     }
+}*/
+
+function api_files_upload() {
+    $uploadDir = '../../brigada-miit-storage/';
+    $fileTypes = array('jpg', 'jpeg', 'gif', 'png');
+    $verifyToken = md5('unique_salt' . $_POST['timestamp']);
+    if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
+        $tempFile   = $_FILES['Filedata']['tmp_name'];
+        $uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
+        $targetFile = $uploadDir . $_FILES['Filedata']['name'];
+        $fileParts = pathinfo($_FILES['Filedata']['name']);
+        if (in_array(strtolower($fileParts['extension']), $fileTypes)) {
+            move_uploaded_file($tempFile, $targetFile);
+            echo 1;
+        } 
+        else
+            echo 'Invalid file type.';
+    }
+}
+
+function api_files_upload_check() {
+    $targetFolder = '../../brigada-miit-storage';
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $targetFolder . '/' . $_POST['filename']))
+        echo 1;
+    else
+        echo 0;
 }

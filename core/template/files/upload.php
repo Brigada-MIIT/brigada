@@ -1,38 +1,54 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<title>METANIT.COM</title>
-<meta charset="utf-8" />
-</head>
-<body>
-<?php
-if($_FILES) {
-    /*if(count($_FILES["uploads"]["name"]) > 10) {
-        echo "Количество файлов не должно превышать 10.";
-    }
-    else {
-        foreach ($_FILES["uploads"]["error"] as $key => $error) {
-            if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["uploads"]["tmp_name"][$key];
-                $name = $_FILES["uploads"]["name"][$key];
-                if($_FILES["uploads"]["size"][$key] > 52428800) {
-                    echo "Ошибка! Вес файла ". $_FILES["uploads"]["name"][$key] ." не должен превышать 50 МБ";
-                    continue;
-                }
-                move_uploaded_file($tmp_name, "../../brigada-miit-storage/".$name);
-            }
-        }
-        echo "Файлы загружены";
-        print_r($_FILES);
-    }*/
-    print_r($_FILES);
-    echo "Count files: " . count($_FILES["uploads"]["name"]);
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>UploadiFive Test</title>
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/jquery.uploadifive.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="uploadifive.css">
+<style type="text/css">
+body {
+	font: 13px Arial, Helvetica, Sans-serif;
 }
-?>
-<h2>Загрузка файла</h2>
-<form method="post" enctype="multipart/form-data">
-    <input type="file" multiple="multiple" name="uploads[]" /><br />
-    <input type="submit" value="Загрузить" />
-</form>
+.uploadifive-button {
+	float: left;
+	margin-right: 10px;
+}
+#queue {
+	border: 1px solid #E5E5E5;
+	height: 177px;
+	overflow: auto;
+	margin-bottom: 10px;
+	padding: 0 3px 3px;
+	width: 300px;
+}
+</style>
+</head>
+
+<body>
+	<h1>UploadiFive Demo</h1>
+	<form>
+		<div id="queue"></div>
+		<input id="file_upload" name="file_upload" type="file" multiple="true">
+		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
+	</form>
+
+	<script type="text/javascript">
+		<?php $timestamp = time();?>
+		$(function() {
+			$('#file_upload').uploadifive({
+				'auto'             : false,
+				'checkScript'      : '/api/files/upload/check',
+				'fileType'         : '.jpg,.jpeg,.gif,.png',
+				'formData'         : {
+									   'timestamp' : '<?php echo $timestamp;?>',
+									   'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+				                     },
+				'queueID'          : 'queue',
+				'uploadScript'     : '/api/files/upload',
+				'onUploadComplete' : function(file, data) { console.log(data); }
+			});
+		});
+	</script>
 </body>
 </html>
