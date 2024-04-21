@@ -121,8 +121,8 @@ body {
 				'formData'         : {
 									   'timestamp'  : '<?php echo $timestamp;?>',
 									   'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
-                                       'name'       : `${document.getElementById("name").value}`,
-                                       'description': `${document.getElementById("description").value}`,
+                                       'name'       : $('#name').text(),
+                                       'description': $('#description').text(),
 				                     },
 				'queueID'          : 'queue',
 				'uploadScript'     : '/api/files/upload',
