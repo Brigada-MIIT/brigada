@@ -113,27 +113,37 @@ body {
 	<script type="text/javascript">
 		<?php $timestamp = time();?>
         function setForm() {
-            $(function() {
-                $('#file_upload').uploadifive({
-                    'formData'         : {
+            $('#file_upload').uploadifive({
+				'auto'             : false,
+				'checkScript'      : '/api/files/upload/check',
+				'fileType'         : '.jpg,.jpeg,.gif,.png',
+				'queueID'          : 'queue',
+                'formData'         : {
                                         'timestamp'  : '<?php echo $timestamp;?>',
                                         'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
-                                        },
-                });
-            });
+                                    },
+				'uploadScript'     : '/api/files/upload',
+				'onUploadComplete' : function(file, data) { console.log(data); }
+			});
         }
-		$(function() {
+		/*$(function() {
 			$('#file_upload').uploadifive({
 				'auto'             : false,
 				'checkScript'      : '/api/files/upload/check',
 				'fileType'         : '.jpg,.jpeg,.gif,.png',
 				'queueID'          : 'queue',
+                'formData'         : {
+                                        'timestamp'  : '<?php echo $timestamp;?>',
+                                        'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
+                                        'name'       : $("#name").val(),
+                                        'description': $("#description").val(),
+                                    },
 				'uploadScript'     : '/api/files/upload',
 				'onUploadComplete' : function(file, data) { console.log(data); }
 			});
-		});
+		});*/
 	</script>
 </body>
 </html>
