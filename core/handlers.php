@@ -471,6 +471,8 @@ function api_files_upload() {
     $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
     if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
+        if(count($_FILES) > 10)
+            exit('Count of files cannot be > 10');
         $tempFile   = $_FILES['Filedata']['tmp_name'];
         //$uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
         $targetFile = $uploadDir . $_FILES['Filedata']['name'] . '_' . $_POST['name'];
@@ -486,13 +488,25 @@ function api_files_upload() {
         else
             exit('Invalid file type');
     }
-}
+} // /files/download/<upload id>/<file id>
 
 function api_test() {
     global $system, $system_user_id, $_user;
     $db = $system->db();
     $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '1', 'test', 'test', '1', '1', '{}', '1000', '2000')");
-    print_r($query);
+    if(!$query) exit('MySQL error');
+    $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
+    $result = $query->fetch_assoc();
+    $upload_id = $result['id'];
+    $files_id = array();
+    for($i; $i < rand(1,10); $i++) {
+        $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`) VALUES (NULL, '$upload_id', 'test', 'test', '40960000')");
+        $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
+        $result = $query->fetch_assoc();
+        push_array($result['id']);
+    }
+    $json_files = json_encode($files_id);
+    $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $files_id;");
 }
 
 function api_files_upload_check() {
