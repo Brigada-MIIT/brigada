@@ -493,8 +493,8 @@ function api_test() {
     $db = $system->db();
     $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '1', 'test', 'test', '1', '1', '{}', '1000', '2000')");
     $result = $query->fetch_assoc();
-    print_r("Query: " . $query . "\n");
-    print_r("Result: " . $result);
+    print_r($query);
+    print_r($result);
 }
 
 function api_files_upload_check() {
