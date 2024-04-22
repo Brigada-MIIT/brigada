@@ -108,12 +108,12 @@ body {
         <label for="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">
-		<a style="position: relative; top: 8px;" href="javascript:await setForm();$('#file_upload').uploadifive('upload')">Upload Files</a>
+		<a style="position: relative; top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')">Upload Files</a>
 	</form>
 	<script type="text/javascript">
 		<?php $timestamp = time();?>
         async function setForm() {
-            $('#file_upload').uploadifive({
+            await $('#file_upload').uploadifive({
 				'auto'             : false,
 				'checkScript'      : '/api/files/upload/check',
 				'fileType'         : '.jpg,.jpeg,.gif,.png',
