@@ -494,8 +494,8 @@ function api_files_upload() {
         $targetFile = $uploadDir . $upload_id . "/" . $_FILES['Filedata']['name'];
 
         $files_id = array();
-        for($i = 0; $i < rand(1,10); $i++) {
-            $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`) VALUES (NULL, '$upload_id', '".$_POST['filename']."', '$targetFile', '".$$_FILES['Filedata']['size']."')");
+        for($i = 0; $i < rand(1,4); $i++) {
+            $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_POST['filename']."', '$targetFile', '".$$_FILES['Filedata']['size']."', '".$_POST['token']."')");
             $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
             $result = $query->fetch_assoc();
             array_push($files_id, $result['id']);
@@ -509,8 +509,8 @@ function api_files_upload() {
         }
         if(in_array(strtolower($fileParts['extension']), $fileTypes)) {
             move_uploaded_file($tempFile, $targetFile);
+            echo 1;
             echo ' ' . print_r($_POST); // УБРАТЬ 
-            res(1);
         } 
         else
             res(0, "Invalid file type");
@@ -539,8 +539,16 @@ function api_test() {
 }
 
 function api_files_upload_check() {
+    global $system, $system_user_id, $_user;
+    if(!$_POST['token'])
+        res(0, "Error: where is token?");
+    $db = $system->db();
+    $query = $db->query("SELECT `path` FROM `files` WHERE `token`='".$_POST['token']."';");
+    if($query->num_rows == 0)
+        res(0, "Error: file not found in database");
+    $path = $query->fetch_assoc()['path'];
     $targetFolder = '../../brigada-miit-storage';
-    if (file_exists(/*$_SERVER['DOCUMENT_ROOT'] . */$targetFolder . '/' . $_POST['filename']))
+    if (file_exists($path))
         echo 1;
     else
         echo 0;
