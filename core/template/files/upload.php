@@ -112,6 +112,12 @@ body {
 	</form>
 	<script type="text/javascript">
 		<?php $timestamp = time();?>
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
         setForm();
         async function setForm() {
             await $('#file_upload').uploadifive({
@@ -127,6 +133,9 @@ body {
                                         'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
+                                        'session'    : getCookie('usid'),
+                                        'status'     : 1,
+                                        'category'   : 1,
                                     },
 				'uploadScript'     : '/api/files/upload',
 				'onUploadComplete' : function(file, data) { console.log(data); }

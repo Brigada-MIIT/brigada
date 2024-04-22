@@ -473,6 +473,9 @@ function api_files_upload() {
     if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
         if(count($_FILES) > 10)
             exit('Count of files cannot be > 10');
+
+        // не довставил
+
         $tempFile   = $_FILES['Filedata']['tmp_name'];
         //$uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
         $targetFile = $uploadDir . $_FILES['Filedata']['name'] . '_' . $_POST['name'];
