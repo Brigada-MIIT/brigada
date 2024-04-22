@@ -39,6 +39,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/api/files/view/{id:\d+}', 'api_files_view');
     $r->addRoute('GET', '/api/files/edit/{id:\d+}', 'api_files_edit');
     $r->addRoute('GET', '/api/files/delete/{id:\d+}', 'api_files_delete');
+    $r->addRoute('GET', '/api/test', 'api_test'); // TEST УДАЛИТЬ
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
