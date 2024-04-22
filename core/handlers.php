@@ -499,7 +499,7 @@ function api_test() {
     $result = $query->fetch_assoc();
     $upload_id = $result['id'];
     $files_id = array();
-    for($i; $i < rand(1,10); $i++) {
+    for($i = 0; $i < rand(1,10); $i++) {
         $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`) VALUES (NULL, '$upload_id', 'test', 'test', '40960000')");
         $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
         $result = $query->fetch_assoc();
