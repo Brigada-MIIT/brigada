@@ -466,22 +466,35 @@ function download_moderation_tool() {
 }*/
 
 function api_files_upload() {
+    global $system, $system_user_id, $_user;
     $uploadDir = '../../brigada-miit-storage/';
-    $fileTypes = array('jpg', 'jpeg', 'gif', 'png');
+    $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
     if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
         $tempFile   = $_FILES['Filedata']['tmp_name'];
         //$uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
         $targetFile = $uploadDir . $_FILES['Filedata']['name'] . '_' . $_POST['name'];
         $fileParts = pathinfo($_FILES['Filedata']['name']);
-        if (in_array(strtolower($fileParts['extension']), $fileTypes)) {
+        if($_FILES['Filedata']['size'] > 524288000) {
+            exit('Size cannot be > 50 MB');
+        }
+        if(in_array(strtolower($fileParts['extension']), $fileTypes)) {
             move_uploaded_file($tempFile, $targetFile);
             echo 1;
             echo ' ' . print_r($_POST);
         } 
         else
-            echo 'Invalid file type.';
+            exit('Invalid file type');
     }
+}
+
+function api_test() {
+    global $system, $system_user_id, $_user;
+    $db = $system->db();
+    $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '1', 'test', 'test', '1', '1', '{}', '1000', '2000')");
+    $result = $query->fetch_assoc();
+    print_r("Query: " . $query . "\n");
+    print_r("Result: " . $result);
 }
 
 function api_files_upload_check() {

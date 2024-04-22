@@ -117,8 +117,11 @@ body {
             await $('#file_upload').uploadifive({
 				'auto'             : false,
 				'checkScript'      : '/api/files/upload/check',
-				'fileType'         : '.jpg,.jpeg,.gif,.png',
+				'fileType'         : '.jpg,.jpeg,.gif,.png,.docx,.doc,.txt,.xls,.xlsx,.ppt,.pptx,.zip,.pdf',
 				'queueID'          : 'queue',
+                'buttonText'       : 'Выбрать файлы',
+                'fileSizeLimit'    : 524288000,
+                'simUploadLimit'   : 10,
                 'formData'         : {
                                         'timestamp'  : '<?php echo $timestamp;?>',
                                         'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
@@ -129,22 +132,6 @@ body {
 				'onUploadComplete' : function(file, data) { console.log(data); }
 			});
         }
-		/*$(function() {
-			$('#file_upload').uploadifive({
-				'auto'             : false,
-				'checkScript'      : '/api/files/upload/check',
-				'fileType'         : '.jpg,.jpeg,.gif,.png',
-				'queueID'          : 'queue',
-                'formData'         : {
-                                        'timestamp'  : '<?php //echo $timestamp;?>',
-                                        'token'      : '<?php //echo md5('unique_salt' . $timestamp);?>',
-                                        'name'       : $("#name").val(),
-                                        'description': $("#description").val(),
-                                    },
-				'uploadScript'     : '/api/files/upload',
-				'onUploadComplete' : function(file, data) { console.log(data); }
-			});
-		});*/
 	</script>
 </body>
 </html>
