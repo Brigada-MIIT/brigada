@@ -476,7 +476,7 @@ function api_files_upload() {
         
         $category = $_POST['category']; // потом разобраться с проверкой на категорию
         $status = $_POST['status'];
-        if(intval($status) != 0 || intval($status) != 1)
+        if($status != '0' && $status != '1')
             res(0, "Invalid status type");
 
         $timestamp = time();

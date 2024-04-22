@@ -133,8 +133,8 @@ body {
                                         'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
-                                        'status'     : 1,
-                                        'category'   : 1,
+                                        'status'     : '1',
+                                        'category'   : '1',
                                     },
 				'uploadScript'     : '/api/files/upload',
 				'onUploadComplete' : function(file, data) { console.log(data); }
