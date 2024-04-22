@@ -472,24 +472,48 @@ function api_files_upload() {
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
     if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
         if(count($_FILES) > 10)
-            exit('Count of files cannot be > 10');
+            res(0, "Count of files cannot be > 10");
+        
+        $category = $_POST['category']; // потом разобраться с проверкой на категорию
+        $status = $_POST['status'];
+        if(intval($status) != 0 || intval($status) != 1)
+            res(0, "Invalid status type");
 
-        // не довставил
+        $timestamp = time();
+        $db = $system->db();
+        $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description'].", '$category', '$status', '{}', '$timestamp', '0')");
+        if(!$query) exit('MySQL error');
+        $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
+        $result = $query->fetch_assoc();
+        $upload_id = $result['id'];
 
+        // составляем путь к файлу
+        if (!mkdir($uploadDir . $upload_id, 0777, true))
+            res(0, "Error: New directory wasn't created");
         $tempFile   = $_FILES['Filedata']['tmp_name'];
-        //$uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
-        $targetFile = $uploadDir . $_FILES['Filedata']['name'] . '_' . $_POST['name'];
+        $targetFile = $uploadDir . $upload_id . "/" . $_FILES['Filedata']['name'];
+
+        $files_id = array();
+        for($i = 0; $i < rand(1,10); $i++) {
+            $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`) VALUES (NULL, '$upload_id', '".$_POST['filename']."', '$targetFile', '".$$_FILES['Filedata']['size']."')");
+            $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
+            $result = $query->fetch_assoc();
+            array_push($files_id, $result['id']);
+        }
+        $json_files = json_encode($files_id);
+        $query = $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $upload_id;");
+        
         $fileParts = pathinfo($_FILES['Filedata']['name']);
         if($_FILES['Filedata']['size'] > 524288000) {
-            exit('Size cannot be > 50 MB');
+            res(0, "Size cannot be > 50 MB");
         }
         if(in_array(strtolower($fileParts['extension']), $fileTypes)) {
             move_uploaded_file($tempFile, $targetFile);
-            echo 1;
-            echo ' ' . print_r($_POST);
+            echo ' ' . print_r($_POST); // УБРАТЬ 
+            res(1);
         } 
         else
-            exit('Invalid file type');
+            res(0, "Invalid file type");
     }
 } // /files/download/<upload id>/<file id>
 

@@ -133,7 +133,6 @@ body {
                                         'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
-                                        'session'    : getCookie('usid'),
                                         'status'     : 1,
                                         'category'   : 1,
                                     },
