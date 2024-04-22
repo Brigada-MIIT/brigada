@@ -112,6 +112,7 @@ body {
 	</form>
 	<script type="text/javascript">
 		<?php $timestamp = time();?>
+        setForm();
         async function setForm() {
             await $('#file_upload').uploadifive({
 				'auto'             : false,
