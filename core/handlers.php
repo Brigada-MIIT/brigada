@@ -506,7 +506,9 @@ function api_test() {
         array_push($files_id, $result['id']);
     }
     $json_files = json_encode($files_id);
-    $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $files_id;");
+    print_r($json_files);
+    $query = $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $files_id;");
+    print_r($query);
 }
 
 function api_files_upload_check() {
