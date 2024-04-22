@@ -503,7 +503,7 @@ function api_test() {
         $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`) VALUES (NULL, '$upload_id', 'test', 'test', '40960000')");
         $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
         $result = $query->fetch_assoc();
-        push_array($files_id, $result['id']);
+        array_push($files_id, $result['id']);
     }
     $json_files = json_encode($files_id);
     $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $files_id;");
