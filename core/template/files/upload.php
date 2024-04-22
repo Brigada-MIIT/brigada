@@ -135,8 +135,8 @@ body {
 				'fileType'         : '.jpg,.jpeg,.gif,.png',
 				'queueID'          : 'queue',
                 'formData'         : {
-                                        'timestamp'  : '<?php echo $timestamp;?>',
-                                        'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
+                                        'timestamp'  : '<?php //echo $timestamp;?>',
+                                        'token'      : '<?php //echo md5('unique_salt' . $timestamp);?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
                                     },
