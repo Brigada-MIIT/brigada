@@ -36,7 +36,7 @@ body {
 
         function submit() {
             if(!document.getElementById('name').value || !document.getElementById('description').value);
-                Toast.fire({
+                return Toast.fire({
                     icon: 'error',
                     title: 'Не заполнены поля',
                     text: 'Заполните, пожалуйста, все поля'
