@@ -26,8 +26,25 @@ body {
 	<script>
         let action = true;
 
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: true,
+            timer: 5000,
+            timerProgressBar: true
+        });
+
         function submit() {
-            if(!document.getElementById('name').value || !document.getElementById('description').value) return;
+            if(!document.getElementById('name').value || !document.getElementById('description').value);
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Не заполнены поля',
+                    text: 'Заполните, пожалуйста, все поля'
+                });/*.then((result) => {
+                        if (result.isConfirmed) {
+                           return location.replace("/promocodes"); 
+                        }
+                    });*/
             if (!action) return;
             action = false;
             $.ajax({

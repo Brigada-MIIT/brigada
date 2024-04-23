@@ -482,7 +482,7 @@ function api_uploads_create() {
     $category = $_POST['category']; // потом сделать проверку на категории через БД
     $timestamp = time();
     $db = $system->db();
-    $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '{}', '$timestamp', '0')");
+    $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `uploaded`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '{}', '$timestamp', '0', '0')");
     if(!$query) res(0, 'MySQL error');
     $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
     $result = $query->fetch_assoc();
