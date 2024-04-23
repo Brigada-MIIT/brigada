@@ -35,7 +35,7 @@ body {
         });
 
         function submit() {
-            if(!document.getElementById('name').value || !document.getElementById('description').value);
+            if(!document.getElementById('name').value || !document.getElementById('description').value)
                 return Toast.fire({
                     icon: 'error',
                     title: 'Заполните, пожалуйста, все поля'
