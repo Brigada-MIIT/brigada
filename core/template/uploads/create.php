@@ -37,6 +37,7 @@ body {
               data: 'name='+$("#name").val()+'&description='+$("#description").val()+'&category='+$("#category").val(),
               success: async function(data) {
                 var res = $.parseJSON(data);
+                console.log(res);
                 if (res.result == 1) {
                     location.replace("/uploads/files/"+res.text);
                 } else {
@@ -48,8 +49,7 @@ body {
                     });
                     action = true;
                 }
-            }
-            });
+            }});
         }
 	</script>
 </body>
