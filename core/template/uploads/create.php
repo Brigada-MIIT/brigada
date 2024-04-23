@@ -29,6 +29,7 @@ body {
         let action = true;
 
         function submit() {
+            if(!$("#name").val() || !("#description").val()) return;
             if (!action) return;
             action = false;
             $.ajax({
