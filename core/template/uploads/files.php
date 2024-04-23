@@ -102,9 +102,14 @@ body {
 	<h1>Загрузка файлов</h1>
 	<form>
         <label for="name">Название загрузки</label>  
-        <input id="name" type="text" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
+        <input id="name" type="text" value="<?php echo $result['name'] ?>" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
         <label for="description">Описание загрузки</label>
-        <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
+        <textarea id="description" value="<?php echo $result['description'] ?>" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
+        <label for="category">Категория загрузки</label>
+        <select id="category" value="<?php echo $result['category'] ?>">
+            <option value="0" label="-Zero-">
+            <option value="1" label="Test">
+        </select><br>
         <label for="queue" style="">Загружаемые файлы:</label>
 		<div id="queue"></div>
 		<input id="file_upload" name="file_upload" type="file" multiple="true">

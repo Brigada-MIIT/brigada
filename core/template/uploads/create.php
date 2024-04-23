@@ -18,9 +18,9 @@ body {
     <input id="name" type="text" required placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
     <label for="description">Описание загрузки</label>
     <textarea id="description" required placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
-    <label for="description">Категория загрузки</label>
+    <label for="category">Категория загрузки</label>
     <select id="category">
-        <option value="1" label="Test" >
+        <option value="1" label="Test">
     </select><br>
     <button onclick="submit();">Создать</button>
 	<script>
