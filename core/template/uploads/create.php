@@ -34,7 +34,7 @@ body {
             $.ajax({
               type: 'POST',
               url: '/api/uploads/create',
-              data: 'name='+$("#name").val()+'&description='+$("#description").val()+'&category='+$("#category").val()
+              data: 'name='+$("#name").val()+'&description='+$("#description").val()+'&category='+$("#category").val(),
               success: async function(data) {
                 var res = $.parseJSON(data);
                 if (res.result == 1) {
