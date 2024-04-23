@@ -18,10 +18,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/settings', 'settings');
     $r->addRoute('GET', '/profile/password', 'profile_password');
     $r->addRoute('GET', '/profile/avatar', 'profile_avatar');
-    $r->addRoute(['GET', 'POST'], '/files/upload', 'files_upload');
-    $r->addRoute('GET', '/files/view/{id:\d+}', 'files_view');
-    $r->addRoute('GET', '/files/edit/{id:\d+}', 'files_edit');
-    $r->addRoute('GET', '/files/delete/{id:\d+}', 'files_delete');
+    $r->addRoute(['GET', 'POST'], '/uploads/create', 'uploads_create');
+    $r->addRoute('GET', '/uploads/files/{id:\d+}', 'uploads_files');
+    $r->addRoute('GET', '/uploads/{id:\d+}', 'uploads_view');
+    $r->addRoute('GET', '/uploads/edit/{id:\d+}', 'uploads_edit');
+    $r->addRoute('GET', '/uploads/delete/{id:\d+}', 'uploads_delete');
     //*** API ***\\
     $r->addRoute('POST', '/api/login', 'api_login');
     $r->addRoute('GET', '/api/login/get', 'api_login');
@@ -34,11 +35,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/users/delete', 'api_users_delete');
     $r->addRoute('POST', '/api/user/permissions', 'api_user_permissions');
     $r->addRoute('POST', '/api/settings/update', 'api_settings_update');
+    $r->addRoute('POST', '/api/uploads/create', 'api_uploads_create');
+    $r->addRoute('POST', '/api/uploads/edit/{id:\d+}', 'api_uploads_edit');
+    $r->addRoute('POST', '/api/uploads/delete/{id:\d+}', 'api_uploads_delete');
     $r->addRoute('POST', '/api/files/upload', 'api_files_upload');
     $r->addRoute('POST', '/api/files/upload/check', 'api_files_upload_check');
-    $r->addRoute('GET', '/api/files/view/{id:\d+}', 'api_files_view');
-    $r->addRoute('GET', '/api/files/edit/{id:\d+}', 'api_files_edit');
-    $r->addRoute('GET', '/api/files/delete/{id:\d+}', 'api_files_delete');
     $r->addRoute('GET', '/api/test', 'api_test'); // TEST УДАЛИТЬ
 });
 

@@ -92,13 +92,22 @@ function profile_avatar() {
     include '../core/template/default.php';
 }
 
-function files_upload() {
+function uploads_create() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CREATE_FILES"))
         $system->printError(403);
     //$content = '../core/template/files/upload.php';
     //include '../core/template/default.php';
-    include '../core/template/files/upload.php';
+    include '../core/template/uploads/create.php';
+}
+
+function uploads_files($args) {
+    global $system, $system_user_id, $_user;
+    if (!$system->haveUserPermission($system_user_id, "CREATE_FILES"))
+        $system->printError(403);
+    //$content = '../core/template/files/upload.php';
+    //include '../core/template/default.php';
+    include '../core/template/uploads/files.php';
 }
 
 function files_view($args) {
@@ -464,6 +473,11 @@ function download_moderation_tool() {
         echo "Файлы загружены";
     }
 }*/
+
+function api_uploads_create() {
+    global $system, $system_user_id, $_user;
+
+}
 
 function api_files_upload() {
     global $system, $system_user_id, $_user;
