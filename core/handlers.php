@@ -476,7 +476,18 @@ function download_moderation_tool() {
 
 function api_uploads_create() {
     global $system, $system_user_id, $_user;
-
+    if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']))
+        res(0, "Invalid request");
+    $status = 0; // 0 - неопубликован, так как ещё не приложены файлы
+    $category = $_POST['category']; // потом сделать проверку на категории через БД
+    $timestamp = time();
+    $db = $system->db();
+    $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description'].", '$category', '$status', '{}', '$timestamp', '0')");
+    if(!$query) exit('MySQL error');
+    $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
+    $result = $query->fetch_assoc();
+    $upload_id = $result['id'];
+    res(1, $upload_id);
 }
 
 function api_files_upload() {

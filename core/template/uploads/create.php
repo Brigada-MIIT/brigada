@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>UploadiFive Test</title>
 <script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/sweetalert2.js" type="text/javascript"></script>
 <style type="text/css">
 body {
 	font: 13px Arial, Helvetica, Sans-serif;
@@ -19,12 +20,37 @@ body {
         <label for="description">Описание загрузки</label>
         <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
         <label for="description">Категория загрузки</label>
-        <select id="description">
+        <select id="category">
 			<option value="1" label="Test" >
-		</select>
+		</select><br>
         <button onclick="submit();">Создать</button>
 	</form>
 	<script>
+        let action = true;
+
+        function submit() {
+            if (!action) return;
+            action = false;
+            $.ajax({
+              type: 'POST',
+              url: '/api/uploads/create',
+              data: 'name='+$("#name").val()+'&description='+$("#description").val()+'&category='+$("#category").val()
+              success: async function(data) {
+                var res = $.parseJSON(data);
+                if (res.result == 1) {
+                    location.replace("/uploads/files/"+res.text);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    });
+                    action = true;
+                }
+            }
+            });
+        }
 	</script>
 </body>
 </html>
