@@ -94,7 +94,7 @@ function profile_avatar() {
 
 function uploads_create() {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "CREATE_FILES"))
+    if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
     //$content = '../core/template/files/upload.php';
     //include '../core/template/default.php';
@@ -103,22 +103,31 @@ function uploads_create() {
 
 function uploads_files($args) {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "CREATE_FILES"))
+    if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."';");
+    if($query->num_rows == 0)
+        $system->printError(404);
+    $result = $query->fetch_assoc();
+    if($result['author'] != $system_user_id)
+        $system->printError(403);
+    if($result['files'] != "{}")
+        exit("Загрузка файлов запрещена");
     //$content = '../core/template/files/upload.php';
     //include '../core/template/default.php';
     include '../core/template/uploads/files.php';
 }
 
-function files_view($args) {
+function uploads_view($args) {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "VIEW_FILES"))
+    if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
-    $query = $system->db()->query('SELECT * FROM `files` WHERE `id` = "'.$args["id"].'"');
+    $query = $system->db()->query('SELECT * FROM `uploads` WHERE `id` = "'.$args["id"].'"');
     if($query->num_rows == 0)
         $system->printError(404);
     $result = $query->fetch_assoc();
-    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_FILES")); // владелец или админ?
+    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")); // владелец или админ?
     if($result['status'] == 0 || $result['status'] == -1) {
         if($check)
             $system->printError(404);
@@ -136,23 +145,23 @@ function files_view($args) {
     if($result['updated']) echo "<br>Дата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
     if(!$check) echo "<br>Статус: " . ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт");
     echo "<br>Категория: " . $result_category['name']; 
-    $content = '../core/template/files/view.php';
+    $content = '../core/template/uploads/view.php';
     //include '../core/template/default.php';
 }
 
-function files_edit($args) {
+function uploads_edit($args) {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "EDIT_FILES"))
+    if (!$system->haveUserPermission($system_user_id, "EDIT_UPLOADS"))
         $system->printError(403);
-    $content = '../core/template/files/edit.php';
+    $content = '../core/template/uploads/edit.php';
     //include '../core/template/default.php';
 }
 
-function files_delete($args) {
+function uploads_delete($args) {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "DELETE_FILES"))
+    if (!$system->haveUserPermission($system_user_id, "DELETE_UPLOADS"))
         $system->printError(403);
-    $content = '../core/template/files/delete.php';
+    $content = '../core/template/uploads/delete.php';
     //include '../core/template/default.php';
 }
 
