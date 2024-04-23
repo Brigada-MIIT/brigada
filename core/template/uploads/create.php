@@ -29,13 +29,13 @@ body {
         let action = true;
 
         function submit() {
-            if(!$("#name").val() || !("#description").val()) return;
+            if(!document.getElementById('name').value || !document.getElementById('description').value) return;
             if (!action) return;
             action = false;
             $.ajax({
               type: 'POST',
               url: '/api/uploads/create',
-              data: 'name='+$("#name").val()+'&description='+$("#description").val()+'&category='+$("#category").val(),
+              data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value,
               success: async function(data) {
                 var res = $.parseJSON(data);
                 console.log(res);
