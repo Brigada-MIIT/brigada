@@ -12,12 +12,17 @@ body {
 </head>
 <body>
 	<h1>Создание новой страницы</h1>
-    <h2>После создания страницы вам будет предложено загрузить файлы</h2>
+    <h2>После создания страницы вам будет предложено загрузить файлы<br>ВНИМАНИЕ! Файлы можно загрузить только один раз. После загрузки изменять можно будет только: название, описание, категорию.</h2>
 	<form>
         <label for="name">Название загрузки</label>  
         <input id="name" type="text" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
         <label for="description">Описание загрузки</label>
         <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
+        <label for="description">Категория загрузки</label>
+        <select id="description">
+			<option value="1" label="Test" >
+		</select>
+        <button onclick="submit();">Создать</button>
 	</form>
 	<script>
 	</script>
