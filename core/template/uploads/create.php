@@ -38,8 +38,7 @@ body {
             if(!document.getElementById('name').value || !document.getElementById('description').value);
                 return Toast.fire({
                     icon: 'error',
-                    title: 'Не заполнены поля',
-                    text: 'Заполните, пожалуйста, все поля'
+                    title: 'Заполните, пожалуйста, все поля'
                 });/*.then((result) => {
                         if (result.isConfirmed) {
                            return location.replace("/promocodes"); 
