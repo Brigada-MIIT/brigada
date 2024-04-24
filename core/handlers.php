@@ -144,7 +144,9 @@ function uploads_files_download($args) {
     }
     
     $file = "../../brigada-miit-storage/".$upload_id."/".$args['id'].".".$extension;
-    if (file_exists($file)) {
+    echo $file;
+    echo $filename;
+    /*if (file_exists($file)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="'.$name.'"');
@@ -154,7 +156,7 @@ function uploads_files_download($args) {
         header('Content-Length: ' . filesize($file));
         readfile($file);
         exit;
-    }
+    }*/
 }
 
 function uploads_view($args) {
