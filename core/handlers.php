@@ -120,6 +120,8 @@ function uploads_files($args) {
 }
 
 function uploads_view($args) {
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
@@ -506,8 +508,6 @@ function api_uploads_create() {
 }
 
 function api_files_upload() {
-    error_reporting(-1);
-    ini_set('display_errors', 'On');
     global $system, $system_user_id, $_user;
     $uploadDir = '../../brigada-miit-storage/';
     $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
