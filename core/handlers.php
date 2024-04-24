@@ -150,7 +150,7 @@ function uploads_view($args) {
     echo "<br>Категория: " . $result_category['name'];
     echo "<br><br><b>ФАЙЛЫ:</b>";
     $files = json_decode($result['files']);
-    $count = ($files ? count($files) : 0);
+    $count = (!empty($files) ? count($files) : 0);
     for($i = 0; $i < count($files); $i++) {
         echo "<a href='/uploads/files/download/".$files[$i]["id"]."'>".$files[$i]["name"]."</a>";
     }
