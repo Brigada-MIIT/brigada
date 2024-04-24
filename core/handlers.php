@@ -145,10 +145,11 @@ function uploads_view($args) {
     echo "<br>Дата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
     if($result['updated']) echo "<br>Дата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
     if(!$check) echo "<br>Статус: " . ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт");
-    echo "<br>Категория: " . $result_category['name']; 
+    echo "<br>Категория: " . $result_category['name'];
+    echo "<br><br><b>ФАЙЛЫ:</b>";
     $files = json_decode($result['files']);
     for($i = 0; $i < count($files); $i++) {
-        
+        echo "<a href='/uploads/files/download/".$files[$i]["id"]."'>".$files[$i]["name"]."</a>";
     }
     $content = '../core/template/uploads/view.php';
     //include '../core/template/default.php';
@@ -544,7 +545,7 @@ function api_files_upload() {
         $result = $query->fetch_assoc();
         $file_id = $result['id'];
         
-        array_push($files, array("id" => $file_id, "file_name" => $_FILES['Filedata']['name']));
+        array_push($files, array("id" => $file_id, "name" => $_FILES['Filedata']['name']));
         $files = json_encode($files);
         $query = $db->query("UPDATE `uploads` SET `files` = '$files' WHERE `uploads`.`id` = $upload_id;");
         if(!$query)
