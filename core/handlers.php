@@ -129,7 +129,7 @@ function uploads_files_download($args) {
         $system->printError(404);
     $result = $query->fetch_assoc();
     $upload_id = $result['upload_id'];
-    $extension = $result['extenstion'];
+    $extension = $result['extension'];
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '$upload_id'");
     if($query->num_rows !== 1)
         die("Error: upload not found");
@@ -575,9 +575,9 @@ function api_files_upload() {
                 res(0, "Error: New directory wasn't created");
         }
 
-        $extenstion = substr($_FILES['Filedata']['name'],strripos($_FILES['Filedata']['name'],'.')+1);
+        $extension = substr($_FILES['Filedata']['name'],strripos($_FILES['Filedata']['name'],'.')+1);
 
-        $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `extenstion`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_FILES['Filedata']['name']."', '$extension', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
+        $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `extension`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_FILES['Filedata']['name']."', '$extension', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
         if(!$query) exit('MySQL error');
         $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
         $result = $query->fetch_assoc();
@@ -590,7 +590,7 @@ function api_files_upload() {
             res(0, "MySQL error (query updating upload)");
 
         $tempFile   = $_FILES['Filedata']['tmp_name'];
-        $targetFile = $uploadDir . '/' . $file_id . '.' . $extenstion;
+        $targetFile = $uploadDir . '/' . $file_id . '.' . $extension;
         $fileParts = pathinfo($_FILES['Filedata']['name']);
         if($_FILES['Filedata']['size'] > 524288000) {
             res(0, "Size cannot be > 50 MB");
