@@ -148,11 +148,11 @@ function uploads_view($args) {
     if($result['updated']) echo "<br>Дата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
     if(!$check) echo "<br>Статус: " . ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт");
     echo "<br>Категория: " . $result_category['name'];
-    echo "<br><br><b>ФАЙЛЫ:</b>";
+    echo "<br><br><b>ФАЙЛЫ:</b><br>";
     $files = json_decode($result['files']);
     $count = (!empty($files) ? count($files) : 0);
     for($i = 0; $i < count($files); $i++) {
-        echo "<a href='/uploads/files/download/".$files[$i]->id."'>".$files[$i]->name."</a>";
+        echo "<br><a href='/uploads/files/download/".$files[$i]->id."'>".$files[$i]->name."</a>";
     }
     $content = '../core/template/uploads/view.php';
     //include '../core/template/default.php';
