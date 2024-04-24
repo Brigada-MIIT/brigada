@@ -137,7 +137,7 @@ function uploads_files_download($args) {
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")); // владелец или админ?
     if($result['status'] == 0 || $result['status'] == -1) {
         if($check)
-            $system->printError(404);
+            $system->printError(403);
     }
     
     $file = "../../brigada-miit/storage/".$upload_id."/".$args['id'].".".$extension;
@@ -168,7 +168,7 @@ function uploads_view($args) {
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")); // владелец или админ?
     if($result['status'] == 0 || $result['status'] == -1) {
         if($check)
-            $system->printError(404);
+            $system->printError(403);
     }
     $query_author = $system->db()->query('SELECT * FROM `users` WHERE `id` = "'.$result["author"].'"');
     $result_author = $query_author->fetch_assoc();
