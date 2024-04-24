@@ -513,7 +513,7 @@ function api_files_upload() {
         if($query->num_rows !== 1)
             res(0, "Upload not found");
         $result = $query->fetch_assoc();
-        if($result['id'] != $system_user_id)
+        if($result['author'] != $system_user_id)
             $system->printError(403);
         if($result['status'] != 0)
             res(0, "Upload is forbidden");
