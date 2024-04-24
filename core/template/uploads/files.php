@@ -138,7 +138,7 @@ body {
                                         'id'         : '<?php echo $result['id'] ?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
-                                        'status'     : '1',
+                                        'status'     : '0',
                                         'category'   : $("#category").val(),
                                     },
 				'uploadScript'     : '/api/files/upload',
