@@ -151,10 +151,9 @@ function uploads_view($args) {
     echo "<br><br><b>ФАЙЛЫ:</b>";
     $files = json_decode($result['files']);
     $count = (!empty($files) ? count($files) : 0);
-    /*for($i = 0; $i < count($files); $i++) {
-        echo "<a href='/uploads/files/download/".$files[$i]["id"]."'>".$files[$i]["name"]."</a>";
-    }*/
-    print_r($files[0]->name);
+    for($i = 0; $i < count($files); $i++) {
+        echo "<a href='/uploads/files/download/".$files[$i]->id."'>".$files[$i]->name."</a>";
+    }
     $content = '../core/template/uploads/view.php';
     //include '../core/template/default.php';
 }
