@@ -144,19 +144,17 @@ function uploads_files_download($args) {
     }
     
     $file = "../../brigada-miit-storage/".$upload_id."/".$args['id'].".".$extension;
-    echo $file;
-    echo $filename;
-    /*if (file_exists($file)) {
+    if (file_exists($file)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.$name.'"');
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Length: ' . filesize($file));
         readfile($file);
         exit;
-    }*/
+    }
 }
 
 function uploads_view($args) {
