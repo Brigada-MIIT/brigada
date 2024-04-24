@@ -119,6 +119,41 @@ function uploads_files($args) {
     include '../core/template/uploads/files.php';
 }
 
+function uploads_files_download($args) {
+    global $system, $system_user_id, $_user;
+    if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
+        $system->printError(403);
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `files` WHERE `id` = '".$args['id']."'");
+    if($query->num_rows !== 1)
+        $system->printError(404);
+    $result = $query->fetch_assoc();
+    $upload_id = $result['upload_id'];
+    $extension = $result['extenstion'];
+    $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '$upload_id'");
+    if($query->num_rows !== 1)
+        die("Error: upload not found");
+    $result = $query->fetch_assoc();
+    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")); // владелец или админ?
+    if($result['status'] == 0 || $result['status'] == -1) {
+        if($check)
+            $system->printError(404);
+    }
+    
+    $file = "../../brigada-miit/storage/".$upload_id."/".$args['id'].".".$extension;
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.$result['name'].'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+        exit;
+    }
+}
+
 function uploads_view($args) {
     error_reporting(-1);
     ini_set('display_errors', 'On');
@@ -130,7 +165,7 @@ function uploads_view($args) {
     if($query->num_rows !== 1)
         $system->printError(404);
     $result = $query->fetch_assoc();
-    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")); // владелец или админ?
+    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")); // владелец или админ?
     if($result['status'] == 0 || $result['status'] == -1) {
         if($check)
             $system->printError(404);
@@ -539,8 +574,10 @@ function api_files_upload() {
             if (!mkdir($uploadDir . '/', 0777, true))
                 res(0, "Error: New directory wasn't created");
         }
-        
-        $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_FILES['Filedata']['name']."', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
+
+        $extenstion = substr($_FILES['Filedata']['name'],strripos($_FILES['Filedata']['name'],'.')+1);
+
+        $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `extenstion`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_FILES['Filedata']['name']."', '$extension', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
         if(!$query) exit('MySQL error');
         $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
         $result = $query->fetch_assoc();
@@ -553,7 +590,7 @@ function api_files_upload() {
             res(0, "MySQL error (query updating upload)");
 
         $tempFile   = $_FILES['Filedata']['tmp_name'];
-        $targetFile = $uploadDir . '/' . $file_id . '.' . substr($_FILES['Filedata']['name'],strripos($_FILES['Filedata']['name'],'.')+1);
+        $targetFile = $uploadDir . '/' . $file_id . '.' . $extenstion;
         $fileParts = pathinfo($_FILES['Filedata']['name']);
         if($_FILES['Filedata']['size'] > 524288000) {
             res(0, "Size cannot be > 50 MB");
