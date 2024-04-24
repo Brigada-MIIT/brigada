@@ -536,7 +536,7 @@ function api_files_upload() {
         $file_id = $result['id'];
 
         array_push($files, $file_id);
-        $query = $db->query("UPDATE `uploads` SET `files` = '$files' WHERE `uploads`.`id` = $upload_id;")
+        $query = $db->query("UPDATE `uploads` SET `files` = '$files' WHERE `uploads`.`id` = $upload_id;");
         if(!$query)
             res(0, "MySQL error (query updating upload)");
 
