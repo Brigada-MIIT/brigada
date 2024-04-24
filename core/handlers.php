@@ -124,7 +124,7 @@ function uploads_view($args) {
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
     $query = $system->db()->query('SELECT * FROM `uploads` WHERE `id` = "'.$args["id"].'"');
-    if($query->num_rows !== 0)
+    if($query->num_rows !== 1)
         $system->printError(404);
     $result = $query->fetch_assoc();
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")); // владелец или админ?
