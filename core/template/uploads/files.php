@@ -139,7 +139,7 @@ body {
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
                                         'status'     : '1',
-                                        'category'   : '1',
+                                        'category'   : $("#category").val(),
                                     },
 				'uploadScript'     : '/api/files/upload',
 				'onUploadComplete' : function(file, data) { console.log(data); }
