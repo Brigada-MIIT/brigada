@@ -517,7 +517,7 @@ function api_files_upload() {
             $system->printError(403);
         if($result['status'] != 0)
             res(0, "Upload is forbidden");
-        $files = json_decode($files);
+        $files = json_decode($result['files']);
         if(count($files) > 9)
             res(0, "Upload is forbidden");
 
