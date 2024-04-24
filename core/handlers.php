@@ -581,7 +581,7 @@ function api_test() {
 
     $uploadDir = '../../brigada-miit-storage/1';
     if (!mkdir($uploadDir . '/', 0777, true)) {
-
+        die('where is dir?');
     }
 }
 
