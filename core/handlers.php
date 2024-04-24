@@ -120,6 +120,8 @@ function uploads_files($args) {
 }
 
 function uploads_files_download($args) {
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
@@ -155,8 +157,6 @@ function uploads_files_download($args) {
 }
 
 function uploads_view($args) {
-    error_reporting(-1);
-    ini_set('display_errors', 'On');
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
@@ -187,7 +187,7 @@ function uploads_view($args) {
     $files = json_decode($result['files']);
     $count = (!empty($files) ? count($files) : 0);
     for($i = 0; $i < count($files); $i++) {
-        echo "<br><a href='/uploads/files/download/".$files[$i]->id."'>".$files[$i]->name."</a>";
+        echo "<br><a href='/uploads/files/download/".$files[$i]->id."' target='_blank'>".$files[$i]->name."</a>";
     }
     $content = '../core/template/uploads/view.php';
     //include '../core/template/default.php';
