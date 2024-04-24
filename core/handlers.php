@@ -500,6 +500,8 @@ function api_uploads_create() {
 }
 
 function api_files_upload() {
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
     global $system, $system_user_id, $_user;
     $uploadDir = '../../brigada-miit-storage/';
     $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
@@ -576,13 +578,6 @@ function api_test() {
     print_r($json_files);
     $query = $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $upload_id;");
     print_r($query);*/
-    error_reporting(-1);
-    ini_set('display_errors', 'On');
-
-    $uploadDir = '../../brigada-miit-storage/1';
-    if (!mkdir($uploadDir . '/', 0777, true)) {
-        die('where is dir?');
-    }
 }
 
 function api_files_upload_check() {
