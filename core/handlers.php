@@ -154,7 +154,7 @@ function uploads_view($args) {
     /*for($i = 0; $i < count($files); $i++) {
         echo "<a href='/uploads/files/download/".$files[$i]["id"]."'>".$files[$i]["name"]."</a>";
     }*/
-    print_r($files);
+    print_r($files[0]->name);
     $content = '../core/template/uploads/view.php';
     //include '../core/template/default.php';
 }
