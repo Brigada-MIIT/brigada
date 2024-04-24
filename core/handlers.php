@@ -506,7 +506,7 @@ function api_files_upload() {
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
     if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
         $upload_id = $_POST['id'];
-        if(empty($id)) 
+        if(empty($upload_id)) 
             res(0, "Invalid id");
         $db = $system->db();
         $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '$upload_id'");
