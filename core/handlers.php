@@ -525,7 +525,7 @@ function api_files_upload() {
 
         $uploadDir = $uploadDir . $upload_id;
         if(is_dir($uploadDir . '/')) {
-            if((count(scandir($uploadDir)) - 2) > 9)
+            if((count(scandir($uploadDir . '/')) - 2) > 9)
                 res(0, "Upload is forbidden");
         }
         else {
