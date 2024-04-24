@@ -132,6 +132,7 @@ function uploads_files_download($args) {
     $result = $query->fetch_assoc();
     $upload_id = $result['upload_id'];
     $filename = $result['name'];
+    $extension = $result['extension'];
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '$upload_id'");
     if($query->num_rows !== 1)
         die("Error: upload not found");
@@ -143,8 +144,6 @@ function uploads_files_download($args) {
     }
     
     $file = "../../brigada-miit-storage/".$upload_id."/".$args['id'].".".$extension;
-    echo $file;
-    print_r(file_exists($file));
     if (file_exists($file)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
