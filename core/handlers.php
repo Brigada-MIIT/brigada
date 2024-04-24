@@ -123,7 +123,8 @@ function uploads_view($args) {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
-    $query = $system->db()->query('SELECT * FROM `uploads` WHERE `id` = "'.$args["id"].'"');
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."'");
     if($query->num_rows !== 1)
         $system->printError(404);
     $result = $query->fetch_assoc();
@@ -137,14 +138,18 @@ function uploads_view($args) {
     $query_category = $system->db()->query('SELECT * FROM `categories` WHERE `id` = "'.$result['category'].'"');
     $result_category = $query_category->fetch_assoc();
     //print_r($result);
-    echo "Имя файла: " . $result['name'];
-    echo "<br>Описание файла: " . $result['description'];
-    echo "<br>Автор файла: " . (empty($result_author['lastname']) ? "Пользователь удалён" : $result_author['lastname']);
+    echo "Имя загрузки: " . $result['name'];
+    echo "<br>Описание загрузки: " . $result['description'];
+    echo "<br>Автор загрузки: " . (empty($result_author['lastname']) ? "Пользователь удалён" : $result_author['lastname']);
     setlocale(LC_ALL, 'rus_RUS');
     echo "<br>Дата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
     if($result['updated']) echo "<br>Дата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
     if(!$check) echo "<br>Статус: " . ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт");
     echo "<br>Категория: " . $result_category['name']; 
+    $files = json_decode($result['files']);
+    for($i = 0; $i < count($files); $i++) {
+        
+    }
     $content = '../core/template/uploads/view.php';
     //include '../core/template/default.php';
 }
@@ -538,8 +543,8 @@ function api_files_upload() {
         $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
         $result = $query->fetch_assoc();
         $file_id = $result['id'];
-
-        array_push($files, $file_id);
+        
+        array_push($files, array("id" => $file_id, "file_name" => $_FILES['Filedata']['name']));
         $files = json_encode($files);
         $query = $db->query("UPDATE `uploads` SET `files` = '$files' WHERE `uploads`.`id` = $upload_id;");
         if(!$query)
