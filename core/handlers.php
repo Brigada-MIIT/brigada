@@ -529,7 +529,7 @@ function api_files_upload() {
             if (!mkdir($uploadDir, 0777, true))
                 res(0, "Error: New directory wasn't created");
         
-        $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`, `token`) VALUES (NULL, '$id', '".$_FILES['Filedata']['name']."', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
+        $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_FILES['Filedata']['name']."', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
         if(!$query) exit('MySQL error');
         $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
         $result = $query->fetch_assoc();
