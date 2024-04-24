@@ -526,7 +526,7 @@ function api_files_upload() {
             if((count(scandir($dir)) - 2) > 9)
                 res(0, "Upload is forbidden");
         else
-            if (!mkdir($uploadDir, 0777, true))
+            if (!mkdir($uploadDir . '/', 0777, true))
                 res(0, "Error: New directory wasn't created");
         
         $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_FILES['Filedata']['name']."', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
