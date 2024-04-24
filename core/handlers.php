@@ -131,7 +131,7 @@ function uploads_files_download($args) {
         $system->printError(404);
     $result = $query->fetch_assoc();
     $upload_id = $result['upload_id'];
-    $extension = $result['extension'];
+    $filename = $result['name'];
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '$upload_id'");
     if($query->num_rows !== 1)
         die("Error: upload not found");
@@ -148,7 +148,7 @@ function uploads_files_download($args) {
     if (file_exists($file)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.$result['name'].'"');
+        header('Content-Disposition: attachment; filename="'.$name.'"');
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
