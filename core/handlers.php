@@ -524,9 +524,11 @@ function api_files_upload() {
             res(0, "Upload is forbidden");
 
         $uploadDir = $uploadDir . $upload_id;
-        if(is_dir($uploadDir))
+        if(is_dir($uploadDir . '/')) {
             if((count(scandir($dir)) - 2) > 9)
                 res(0, "Upload is forbidden");
+            echo 'dir detected EMEMEM';
+        }
         else
             if (!mkdir($uploadDir . '/', 0777, true))
                 res(0, "Error: New directory wasn't created");
