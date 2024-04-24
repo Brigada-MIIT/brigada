@@ -142,7 +142,7 @@ function uploads_files_download($args) {
             $system->printError(403);
     }
     
-    $file = "../../brigada-miit/storage/".$upload_id."/".$args['id'].".".$extension;
+    $file = "../../brigada-miit-storage/".$upload_id."/".$args['id'].".".$extension;
     echo $file;
     print_r(file_exists($file));
     if (file_exists($file)) {
