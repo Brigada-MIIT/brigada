@@ -112,7 +112,7 @@ function uploads_files($args) {
     $result = $query->fetch_assoc();
     if($result['author'] != $system_user_id)
         $system->printError(403);
-    if($result['files'] != "{}")
+    if($result['files'] != "[]")
         exit("Загрузка файлов запрещена");
     //$content = '../core/template/files/upload.php';
     //include '../core/template/default.php';
@@ -491,7 +491,7 @@ function api_uploads_create() {
     $category = $_POST['category']; // потом сделать проверку на категории через БД
     $timestamp = time();
     $db = $system->db();
-    $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `uploaded`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '{}', '$timestamp', '0', '0')");
+    $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `uploaded`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '[]', '$timestamp', '0', '0')");
     if(!$query) res(0, 'MySQL error');
     $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
     $result = $query->fetch_assoc();
