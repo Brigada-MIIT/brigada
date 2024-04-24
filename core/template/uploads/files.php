@@ -135,6 +135,7 @@ body {
                 'formData'         : {
                                         'timestamp'  : '<?php echo $timestamp;?>',
                                         'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
+                                        'id'         : '<?php $result['id'] ?>',
                                         'name'       : $("#name").val(),
                                         'description': $("#description").val(),
                                         'status'     : '1',

@@ -107,7 +107,7 @@ function uploads_files($args) {
         $system->printError(403);
     $db = $system->db();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."';");
-    if($query->num_rows == 0)
+    if($query->num_rows !== 1)
         $system->printError(404);
     $result = $query->fetch_assoc();
     if($result['author'] != $system_user_id)
@@ -124,7 +124,7 @@ function uploads_view($args) {
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
     $query = $system->db()->query('SELECT * FROM `uploads` WHERE `id` = "'.$args["id"].'"');
-    if($query->num_rows == 0)
+    if($query->num_rows !== 0)
         $system->printError(404);
     $result = $query->fetch_assoc();
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")); // владелец или админ?
@@ -505,40 +505,37 @@ function api_files_upload() {
     $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
     if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
-        if(count($_FILES) > 10)
-            res(0, "Count of files cannot be > 10");
-        
-        /*$category = $_POST['category']; // потом разобраться с проверкой на категорию
-        $status = $_POST['status'];
-        if($status != '0' && $status != '1')
-            res(0, "Invalid status type");
-
-        $timestamp = time();
+        $upload_id = $_POST['id'];
+        if(empty($id)) 
+            res(0, "Invalid id");
         $db = $system->db();
-        $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description'].", '$category', '$status', '{}', '$timestamp', '0')");
-        if(!$query) exit('MySQL error');
-        $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
+        $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '$upload_id'");
+        if($query->num_rows !== 1)
+            res(0, "Upload not found");
         $result = $query->fetch_assoc();
-        $upload_id = $result['id'];
+        if($result['id'] != $system_user_id)
+            $system->printError(403);
+        if($result['status'] != 0)
+            res(0, "Upload is forbidden");
+        if(count(json_decode($result['files'])) > 9)
+            res(0, "Upload is forbidden");
 
-        // составляем путь к файлу
-        if (!mkdir($uploadDir . $upload_id, 0777, true))
-            res(0, "Error: New directory wasn't created");
-        $tempFile   = $_FILES['Filedata']['tmp_name'];
-        $targetFile = $uploadDir . $upload_id . "/" . $_FILES['Filedata']['name'];
-
-        $files_id = array();
-        for($i = 0; $i < count($_FILES); $i++) {
-            $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`, `token`) VALUES (NULL, '$upload_id', '".$_POST['filename']."', '$targetFile', '".$$_FILES['Filedata']['size']."', '".$_POST['token']."')");
-            $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
-            $result = $query->fetch_assoc();
-            array_push($files_id, $result['id']);
-        }
-        $json_files = json_encode($files_id);
-        $query = $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $upload_id;");*/
+        $uploadDir = $uploadDir . $upload_id;
+        if(is_dir($uploadDir))
+            if((count(scandir($dir)) - 2) > 9)
+                res(0, "Upload is forbidden");
+        else
+            if (!mkdir($uploadDir, 0777, true))
+                res(0, "Error: New directory wasn't created");
         
+        $query = $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`, `token`) VALUES (NULL, '$id', '".$_FILES['Filedata']['name']."', '0', '".$_FILES['Filedata']['size']."', '".$_POST['token']."')");
+        if(!$query) exit('MySQL error');
+        $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
+        $result = $query->fetch_assoc();
+        $file_id = $result['id'];
+
         $tempFile   = $_FILES['Filedata']['tmp_name'];
-        $targetFile = $uploadDir . $_FILES['Filedata']['name'];
+        $targetFile = $uploadDir . '/' . $file_id . '.' . substr($_FILES['Filedata']['name'],strripos($_FILES['Filedata']['name'],'.')+1);
         $fileParts = pathinfo($_FILES['Filedata']['name']);
         if($_FILES['Filedata']['size'] > 524288000) {
             res(0, "Size cannot be > 50 MB");
