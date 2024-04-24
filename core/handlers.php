@@ -517,7 +517,8 @@ function api_files_upload() {
             $system->printError(403);
         if($result['status'] != 0)
             res(0, "Upload is forbidden");
-        if(count(json_decode($result['files'])) > 9)
+        $files = json_decode($files);
+        if(count($files) > 9)
             res(0, "Upload is forbidden");
 
         $uploadDir = $uploadDir . $upload_id;
@@ -533,6 +534,11 @@ function api_files_upload() {
         $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
         $result = $query->fetch_assoc();
         $file_id = $result['id'];
+
+        array_push($files, $file_id);
+        $query = $db->query("UPDATE `uploads` SET `files` = '$files' WHERE `uploads`.`id` = $upload_id;")
+        if(!$query)
+            res(0, "MySQL error (query updating upload)");
 
         $tempFile   = $_FILES['Filedata']['tmp_name'];
         $targetFile = $uploadDir . '/' . $file_id . '.' . substr($_FILES['Filedata']['name'],strripos($_FILES['Filedata']['name'],'.')+1);
