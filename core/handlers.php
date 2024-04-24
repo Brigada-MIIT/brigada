@@ -576,6 +576,13 @@ function api_test() {
     print_r($json_files);
     $query = $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $upload_id;");
     print_r($query);*/
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
+
+    $uploadDir = '../../brigada-miit-storage/1';
+    if (!mkdir($uploadDir . '/', 0777, true)) {
+
+    }
 }
 
 function api_files_upload_check() {
