@@ -161,6 +161,7 @@ function uploads_view($args) {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
+    header('Content-Type: text/html; charset=utf-8');
     $db = $system->db();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."'");
     if($query->num_rows !== 1)
