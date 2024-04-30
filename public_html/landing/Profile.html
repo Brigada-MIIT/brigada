@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Профиль</title>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f2e9d5;
+    }
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid black;
+    margin-bottom: 25px;
+}
+
+
+.container-buttons {
+     display: flex;
+     justify-content: space-around;
+}
+
+a {
+    color: black;
+}
+
+.btn {
+    width: 100%;
+    display: inline-block; 
+    background: #8C959D; 
+    color: black; 
+    padding: 1rem 1.5rem; 
+    text-decoration: none; 
+    border-radius: 3px;
+    background-color: deepskyblue;
+   }
+
+</style>
+</head>
+<body>
+
+<form action="/create_page.php">
+    <div class="container">
+        <h1><center>Ваш профиль:</center></h1>
+
+        <hr>
+
+        <center><p><img src="D:\1.jpg" width="100" height="100" style="border-radius: 100px;"></p> <label for="name"><b>Имя: {{ first_name }}</b></label></center>
+
+        <br> <br>
+
+        <center><label for="data_registration"><b>Фамилия: {{ last_name }}</b></label></center>
+
+        <br> <br>
+
+        <center><label for="count"><b> Количество загруженных файлов: {{ count_of_assemblings }}</b></label></center>
+
+        <br> <br>
+             <div class="container-buttons">
+                 <button type="submit" class="btn"> <a href=""> Изменить данные </a></button>
+                 <button type="submit" class="btn"> <a href="Final_login_1.html"> Выйти из профиля </a></button>
+             </div>
+        <hr>
+    </div>
+  
+  <div class="files">
+    <h1><center><b>Ваши файлы:</b><center></h1>
+  </div>
+  
+  <div>
+    <a href="private_page.html" class="btn"><center>Ваши приватные файлы</center></a>
+    <br> <br>
+    <a href="" class="btn"><center>Ваши публичные файлы</center></a>
+    <br> <br> <br> <br> <br> <br>
+    <a href="{% url 'add_assembling' %}" class="btn"><center>Создать новый файл</center></a>
+  </div>
+</form>
+
+</body>
+</html>
