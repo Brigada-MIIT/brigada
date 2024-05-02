@@ -5,7 +5,7 @@
         <title>Test</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--<link rel="stylesheet" href="/assets/css/dashboard.css?ver=2">-->
+        <link rel="stylesheet" href="/assets/css/dashboard.css?ver=2">
         <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
         <script src="/assets/js/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/assets/css/jquery.datetimepicker.css">
@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        
+
                     </div>
                 </div>
             </div>
