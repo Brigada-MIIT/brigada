@@ -14,7 +14,8 @@ function auth() {
     if ($system->auth() && $system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/");
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
-    include '../core/template/auth/login.php';
+    $content = '../core/template/auth/login.php';
+    include '../core/template/default.php';
 }
 
 function register() {
