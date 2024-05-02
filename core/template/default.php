@@ -44,7 +44,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: -90%;">
                             <a class="dropdown-item" href="/profile">Профиль</a>
                             <a class="dropdown-item" href="/profile/uploads">Мои загрузки</a>
-                            <hr>
+                            <hr style="margin-top: 5px;margin-bottom: 4px;">
                             <a class="dropdown-item" href="/logout">Выйти</a>
                         </div>
                     </li>'; ?>
