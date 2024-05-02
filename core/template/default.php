@@ -42,9 +42,10 @@
                             '. $_user['surname'] .'
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: -90%;">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="/profile">Профиль</a>
+                            <a class="dropdown-item" href="/profile/uploads">Мои загрузки</a>
+                            <hr>
+                            <a class="dropdown-item" href="/logout">Выйти</a>
                         </div>
                     </li>'; ?>
                 </ul>
