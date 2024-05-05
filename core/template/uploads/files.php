@@ -119,7 +119,7 @@
                     <label for="queue" style="">Загружаемые файлы:</label><br>
 		            <div id="queue"></div>
                     <input id="file_upload" name="file_upload" type="file" multiple="true">
-                    <a style="position: relative; top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')"><button class="uploadifive-button" style="width: 100px;height: 30px;">Загрузить</button></a>
+                    <a style="position: relative;" href="javascript:setForm();$('#file_upload').uploadifive('upload')"><button class="uploadifive-button" style="width: 100px;height: 30px;">Загрузить</button></a>
                 </div>
             </div>
         </form>
