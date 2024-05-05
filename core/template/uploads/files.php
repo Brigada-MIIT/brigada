@@ -145,8 +145,8 @@
             text: "После сохранения вы не сможете изменять файлы загрузки",
             icon: "warning",
             showCancelButton: true,
-            confirmButton: "btn btn-success",
-            cancelButton: "btn btn-danger",
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
             confirmButtonText: "Да, сохранить!",
             cancelButtonText: "Отменить",
         }).then((result) => {
