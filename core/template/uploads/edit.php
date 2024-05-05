@@ -44,29 +44,12 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <br><br><br><button type="submit" class="submit" onclick="submit();">Сохранить</button>
+                <br><br><br><button type="submit" class="submit" onclick="save();">Сохранить</button>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    function submit() {
-        Swal.fire({
-            title: "Вы уверены?",
-            text: "После сохранения вы не сможете изменять файлы загрузки",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#28a745",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Да, сохранить!",
-            cancelButtonText: "Отменить",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                save();
-            }
-        });
-    }
-    
     function save() {
         if(!document.getElementById('name').value || !document.getElementById('description').value)
             return Toast.fire({

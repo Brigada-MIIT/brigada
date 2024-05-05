@@ -213,8 +213,21 @@ function uploads_edit($args) {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "EDIT_UPLOADS"))
         $system->printError(403);
+    $db = $system->db();
+    $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+    $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."';");
+    if($query->num_rows !== 1)
+        $system->printError(404);
+    $result = $query->fetch_assoc();
+    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"));
+    if($check)
+        $system->printError(403);
+    if($result['status'] == -1) {
+        if(!$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"))
+            $system->printError(403);
+    }
     $content = '../core/template/uploads/edit.php';
-    //include '../core/template/default.php';
+    include '../core/template/default.php';
 }
 
 function uploads_delete($args) {
