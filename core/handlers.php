@@ -118,9 +118,9 @@ function uploads_files($args) {
         $system->printError(403);
     if($result['files'] != "[]")
         exit("Загрузка файлов запрещена");
-    //$content = '../core/template/files/upload.php';
-    //include '../core/template/default.php';
-    include '../core/template/uploads/files.php';
+    $content = '../core/template/uploads/files.php';
+    include '../core/template/default.php';
+    //include '../core/template/uploads/files.php';
 }
 
 function uploads_files_download($args) {
