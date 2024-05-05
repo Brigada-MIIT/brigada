@@ -581,7 +581,7 @@ function api_uploads_edit($args) {
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"));
     if($check)
         res(0);
-    if($result['files'] = "[]")
+    if($result['files'] == "[]")
         res(2);
     
     $status = $_POST['status']; // проверка на статус (0, 1, -1)
