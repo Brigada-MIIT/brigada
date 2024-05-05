@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.datetimepicker.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
+    <link rel="SHORTCUT ICON" href="/assets/img/logo_brigada.ico" type="image/x-icon">
     <title><?php echo ($title) ? $title : "Бригада"; ?></title>
     <script src="/assets/js/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
@@ -19,7 +20,7 @@
         <header>
             <nav class="navbar navbar-expand-md navbar-light bg-light">
                 <a class="navbar-brand" href="#">
-                    <img src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+                    <img src="/assets/img/logo_brigada.png" width="30" height="30" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>

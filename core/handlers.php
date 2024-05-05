@@ -546,7 +546,12 @@ function api_uploads_create() {
     if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']))
         res(0, "Invalid request");
     $status = 0; // 0 - неопубликован, так как ещё не приложены файлы
+
     $category = $_POST['category']; // потом сделать проверку на категории через БД
+    $query = $db->qeury("SELECT * FROM `categories` WHERE `id` = $category");
+    if(!$query || $query->num_rows == 0) res(0, 'error categories');
+    $result = $query->fetch_assoc();
+
     $timestamp = time();
     $db = $system->db();
     $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `uploaded`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '[]', '$timestamp', '0', '0')");
