@@ -18,6 +18,9 @@
             </div>
         </div>-->
         <div class="col-12">
+            <div class="text-center">
+                <h2 class="active">Вход</h2>
+            </div><br><br>
             <div class="in">
                 <label for="login">Логин</label><br>
                 <input type="text" class="text" id="login">
