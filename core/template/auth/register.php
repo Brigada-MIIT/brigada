@@ -35,13 +35,13 @@
         <div class="col-12">
             <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="surname">Имя</label><br>
-                <input type="password" class="text" id="surname" placeholder="Введите имя..." style="width:350px; height:37px;"><br>
+                <input type="text" class="text" id="surname" placeholder="Введите имя..." style="width:350px; height:37px;"><br>
             </div>
         </div>
         <div class="col-12">
             <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="patronymic">Отчество</label><br>
-                <input type="password" class="text" id="patronymic" placeholder="Введите отчество..." style="width:350px; height:37px;"><br>
+                <input type="text" class="text" id="patronymic" placeholder="Введите отчество..." style="width:350px; height:37px;"><br>
             </div>
         </div>
         <div class="col-12 text-center">
