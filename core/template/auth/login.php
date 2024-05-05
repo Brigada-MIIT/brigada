@@ -1,4 +1,4 @@
-<div class="container" style="padding-top: 5%;">  
+<div class="container" style="padding-top: 6%;">  
     <!--<p class="page-title">Настройки</p>-->
     <div class="form">
         <!--<div class="col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-xl-4 col-xl-4">
@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="login">Email</label><br>
-                <input type="text" class="text" id="login" placeholder="Введите адрес..."><br><br>
+                <input type="text" class="text" id="login" placeholder="Введите адрес..."><br>
                 <label for="password">Пароль</label><br>
                 <input type="password" class="text" id="password" placeholder="Введите пароль..."><br>
             </div>
