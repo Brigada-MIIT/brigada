@@ -177,7 +177,7 @@
             });
         $.ajax({
             type: 'POST',
-            url: '/api/uploads/edit',
+            url: '/api/uploads/edit/<?php echo $args['id'] ?>',
             data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value+'&status='+document.getElementById('status').value,
             success: async function(data) {
             var res = $.parseJSON(data);
