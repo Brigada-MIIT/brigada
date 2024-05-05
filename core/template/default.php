@@ -36,8 +36,9 @@
                     <ul class="navbar-nav">
                         <?php if(!$system->auth()) echo '
                         <li class="nav-item">
-                            <a class="nav-link" href="/app/auth">Логин</a>
+                            <a class="nav-link" href="/app/auth">Войти</a>
                         </li>
+                        <p style="color: rgba(0, 0, 0, .5);">|</p>
                         <li class="nav-item">
                             <a class="nav-link" href="/app/register">Регистрация</a>
                         </li>';
