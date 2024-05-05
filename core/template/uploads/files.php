@@ -139,6 +139,27 @@
     </div>
 </div>
 <script type="text/javascript">
+    function submit() {
+        Swal.fire({
+            title: "Вы уверены?",
+            text: "После сохранения вы не сможете изменять файлы загрузки",
+            icon: "warning",
+            showCancelButton: true,
+            //confirmButtonColor: "#3085d6",
+            //cancelButtonColor: "#d33",
+            confirmButtonText: "Да, сохранить!",
+            cancelButtonText: "Отменить",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    }
+
     <?php $timestamp = time();?>
     function getCookie(name) {
         let matches = document.cookie.match(new RegExp(
