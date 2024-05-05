@@ -7,7 +7,7 @@
 
 *{margin:0;border:0;padding:0;font-family: 'Open Sans', sans-serif;}
 
-body{background: #fff;background: -webkit-linear-gradient(to right, #eef2f3, #fff);background: linear-gradient(to right, #eef2f3, #fff);background-repeat: repeat-y;}
+body{background: #fff;background: -webkit-linear-gradient(to right, #eef2f3, #fff);background: #eef2f4;background-repeat: repeat-y;}
 
 
 a{color:#1E88E5;}
