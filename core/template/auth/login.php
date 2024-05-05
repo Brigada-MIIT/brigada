@@ -1,4 +1,4 @@
-<div class="container justify-content-center">  
+<div class="container justify-content-center text-center">  
     <!--<p class="page-title">Настройки</p>-->
     <div class="form">
         <div class="col-12">
@@ -23,9 +23,9 @@
             </div><br><br>
             <div class="in">
                 <label for="login">Логин</label><br>
-                <input type="text" class="text" id="login">
-                <label for="password">Логин</label><br>
-                <input type="password" class="text" id="password">
+                <input type="text" class="text" id="login"><br>
+                <label for="password">Пароль</label><br>
+                <input type="password" class="text" id="password"><br>
             </div>
         </div>
         <div class="col-12">
