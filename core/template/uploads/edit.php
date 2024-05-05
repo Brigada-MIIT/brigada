@@ -45,6 +45,7 @@
         <div class="col-12">
             <div class="in">
                 <br><br><br><button type="submit" class="submit" onclick="save();">Сохранить</button>
+                <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить загрузку</button>' ?>
             </div>
         </div>
     </div>
@@ -85,7 +86,50 @@
                     text: 'Обратитесь к администратору.',
                     footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
                 });
-                action = true;
+            }
+        }});
+    }
+
+    function submit_delete() {
+        Swal.fire({
+            title: "Вы уверены?",
+            text: "После удаления восстановление файлов будет невозможно",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Да, удалить!",
+            cancelButtonText: "Отменить",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                delete_upload();
+            }
+        });
+    }
+
+    function delete_upload() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/uploads/delete/<?php echo $args['id'] ?>',
+            success: async function(data) {
+            var res = $.parseJSON(data);
+            console.log(res);
+            if (res.result == 1) {
+                Swal.fire({
+                    title: "Успешно!",
+                    text: "Ваша загрузка была удалена",
+                    icon: "success"
+                }).then((result) => {
+                    location.replace("/");
+                });
+            }
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Произошла неизвестная ошибка!',
+                    text: 'Обратитесь к администратору.',
+                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                });
             }
         }});
     }

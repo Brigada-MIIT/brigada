@@ -618,6 +618,25 @@ function api_uploads_edit($args) {
     res(1, $id);
 }
 
+function api_uploads_delete($args) {
+    global $system, $system_user_id, $_user;
+    $id = $args['id'];
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `uploads` WHERE `id` = $id");
+    if(!$query || $query->num_rows == 0) res(0, 'error uploads');
+    $result = $query->fetch_assoc();
+    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS"));
+    if($check)
+        res(0);
+    if($result['status'] == -1) {
+        if(!$system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS"))
+            res(0, "forbidden (because hidden)");
+    }
+    $db()->query("INSERT INTO `uploads_deleted` SELECT * FROM `uploads` WHERE `id` = '$id'");
+    $db()->query("DELETE FROM `uploads` WHERE `id` = '$id'");
+    res(1);
+}
+
 function api_files_upload() {
     global $system, $system_user_id, $_user;
     $uploadDir = '../../brigada-miit-storage/';

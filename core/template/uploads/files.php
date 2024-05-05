@@ -204,7 +204,6 @@
                     text: 'Обратитесь к администратору.',
                     footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
                 });
-                action = true;
             }
         }});
     }

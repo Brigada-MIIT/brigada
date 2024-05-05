@@ -23,7 +23,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/uploads/files/download/{id:\d+}', 'uploads_files_download');
     $r->addRoute('GET', '/uploads/view/{id:\d+}', 'uploads_view');
     $r->addRoute('GET', '/uploads/edit/{id:\d+}', 'uploads_edit');
-    $r->addRoute('GET', '/uploads/delete/{id:\d+}', 'uploads_delete');
+    //$r->addRoute('GET', '/uploads/delete/{id:\d+}', 'uploads_delete');
     //*** API ***\\
     $r->addRoute('POST', '/api/login', 'api_login');
     $r->addRoute('GET', '/api/login/get', 'api_login');
