@@ -567,7 +567,7 @@ function api_uploads_create() {
 
 function api_uploads_edit($args) {
     global $system, $system_user_id, $_user;
-    if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']) || empty($_POST['status']))
+    if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']) || ($_POST['status'] != 0 && $_POST['status'] != 1 && $_POST['status'] != -1))
         res(0, "Invalid request");
 
     $id = $args['id'];
@@ -588,7 +588,6 @@ function api_uploads_edit($args) {
     if(!$check) {
         res(0);
     }
-    
     
     $status = $_POST['status']; // проверка на статус (0, 1, -1)
     if($status == 0 || $status == 1 || $status == -1) {
