@@ -55,8 +55,8 @@
             </div>
         </nav>
     </header>
-    <div class="containter">
-        <?php include $content; ?>
-    </div>
+    <main>
+        <?php include $content;?>
+    </main>
   </body>
 </html>
