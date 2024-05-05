@@ -151,13 +151,42 @@
             cancelButtonText: "Отменить",
         }).then((result) => {
             if (result.isConfirmed) {
+                save();
+            }
+        });
+    }
+    
+    function save() {
+        if(!document.getElementById('name').value || !document.getElementById('description').value)
+            return Toast.fire({
+                icon: 'error',
+                title: 'Заполните, пожалуйста, все поля'
+            });
+        $.ajax({
+            type: 'POST',
+            url: '/api/uploads/edit',
+            data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value,
+            success: async function(data) {
+            var res = $.parseJSON(data);
+            console.log(res);
+            if (res.result == 1) {
                 Swal.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted.",
                     icon: "success"
+                }).then((result) => {
+                    location.replace("/uploads/view/"+res.text);
                 });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Произошла неизвестная ошибка!',
+                    text: 'Обратитесь к администратору.',
+                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                });
+                action = true;
             }
-        });
+        }});
     }
 
     <?php $timestamp = time();?>

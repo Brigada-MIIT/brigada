@@ -103,6 +103,7 @@ function uploads_create() {
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
     $db = $system->db();
+    $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/uploads/create.php';
     include '../core/template/default.php';
     //include '../core/template/uploads/create.php';
@@ -113,6 +114,7 @@ function uploads_files($args) {
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
     $db = $system->db();
+    $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."';");
     if($query->num_rows !== 1)
         $system->printError(404);

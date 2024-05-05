@@ -74,7 +74,7 @@
                     icon: 'error',
                     title: 'Произошла неизвестная ошибка!',
                     text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
                 });
                 action = true;
             }
