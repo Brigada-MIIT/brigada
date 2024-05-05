@@ -116,7 +116,7 @@
                                 die("Categories error");
                             for($i = 0; $i < $query->num_rows; $i++) {
                                 $results = $query->fetch_assoc();
-                                echo "<option value='".$results['id']."' label='".$results['name']."'".(($result['category'] == $results['id']) ? 'selected' : '').">";
+                                echo "<option value='".$results['id']."' label='".$results['name']."'".(($result['category'] == $results['id']) ? ' selected' : '').">";
                             }
                         ?>
                     </select><br>
