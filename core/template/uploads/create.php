@@ -18,7 +18,15 @@
             <div class="in">
                 <label for="category">Категория загрузки</label><br>
                 <select id="category">
-                    <option value="1" label="Test">
+                    <?php 
+                        $query = $db->query("SELECT * FROM `categories` WHERE `status` = 1");
+                        if(!$query || $query->num_rows == 0)
+                            die("Categories error");
+                        for($i = 0; $i < $query->num_rows; $i++) {
+                            $result = $query->fetch_assoc();
+                            echo "<option value='".$result['id']."' label='".$result['name']."'>";
+                        }
+                    ?>
                 </select><br>
             </div>
         </div>
