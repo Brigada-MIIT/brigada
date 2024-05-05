@@ -22,14 +22,14 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="in">
+            <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="login">Логин</label><br>
                 <input type="text" class="text text-center" id="login"><br><br>
                 <label for="password">Пароль</label><br>
                 <input type="password" class="text text-center" id="password"><br>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 text-center">
             <div class="in">
                 <br><button type="submit" class="submit text-center" onclick="login();">Войти</button>
             </div>
