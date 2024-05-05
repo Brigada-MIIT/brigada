@@ -53,7 +53,7 @@
         </nav>
     </header>
     <div class="containter">
-        <h1>Hello, world!</h1>
+        <?php echo $content; ?>
     </div>
   </body>
 </html>
