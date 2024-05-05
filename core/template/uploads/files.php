@@ -81,7 +81,8 @@
         margin-right: 10px;
     }
     #queue {
-        border: 1px solid #E5E5E5;
+        background: #fff;
+        border: 1px solid #000;
         height: 177px;
         overflow: auto;
         margin-bottom: 10px;
@@ -126,6 +127,7 @@
                     <label for="queue" style="">Загружаемые файлы:</label><br>
 		            <div id="queue"></div>
                     <input id="file_upload" name="file_upload" type="file" multiple="true">
+                    <button class="uploadifive-button" style="width: 100px;height: 30px;">Загрузить</button>
                 </div>
             </div>
             <div class="col-12">
