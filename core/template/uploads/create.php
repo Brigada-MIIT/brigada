@@ -1,4 +1,4 @@
-<div class="container" style="padding-top: 6%;">  
+<div class="container">  
     <p class="page-title">Создание новой страницы</p>
     <h2>После создания страницы вам будет предложено загрузить файлы<br>ВНИМАНИЕ! Файлы можно загрузить только один раз. После загрузки изменять можно будет только: название, описание, категорию.</h2>
     <div class="form">
@@ -10,13 +10,13 @@
             </div>
         </div>-->
         <div class="col-12">
-            <div class="in" style="margin: 0 auto; width: max-content;">
+            <div class="in">
                 <label for="name">Название загрузки</label><br>
                 <input type="text" class="text" id="name" placeholder="Введите название..."><br><br>
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="margin: 0 auto; width: max-content;">
+            <div class="in">
                 <label for="description">Описание загрузки</label><br>
                 <textarea id="description" required placeholder="Введите описание загрузке..." style="width: 75%; display: block;"></textarea><br>
             </div>
@@ -29,7 +29,7 @@
                 </select><br>
             </div>
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12">
             <div class="in">
                 <br><button type="submit" class="submit" onclick="submit();">Создать</button>
             </div>
