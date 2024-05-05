@@ -16,32 +16,32 @@
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="password-field">Пароль</label><br>
-                <input type="password" class="text" id="password-field" placeholder="Введите пароль..." style="width:350px; height:40px;"><br>
+                <input type="password" class="text" id="password-field" placeholder="Введите пароль..." style="width:350px; height:35px;"><br>
                 
             </div>
         </div>
         <div class="col-12">
             <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="password-repeat-field">Повторите пароль</label><br>
-                <input type="password" class="text" id="password-repeat-field" placeholder="Повторите пароль..." style="width:350px; height:40px;"><br>
+                <input type="password" class="text" id="password-repeat-field" placeholder="Повторите пароль..." style="width:350px; height:35px;"><br>
             </div>
         </div>
         <div class="col-12">
             <div class="in" style="padding-top: 25px; margin: 0 auto; width: max-content;">
                 <label for="lastname">Фамилия</label><br>
-                <input type="text" class="text" id="lastname" placeholder="Введите фамилию..." style="width:350px; height:40px;"><br>
+                <input type="text" class="text" id="lastname" placeholder="Введите фамилию..." style="width:350px; height:35px;"><br>
             </div>
         </div>
         <div class="col-12">
             <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="surname">Имя</label><br>
-                <input type="password" class="text" id="surname" placeholder="Введите имя..." style="width:350px; height:40px;"><br>
+                <input type="password" class="text" id="surname" placeholder="Введите имя..." style="width:350px; height:35px;"><br>
             </div>
         </div>
         <div class="col-12">
             <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="patronymic">Отчество</label><br>
-                <input type="password" class="text" id="patronymic" placeholder="Введите отчество..." style="width:350px; height:40px;"><br>
+                <input type="password" class="text" id="patronymic" placeholder="Введите отчество..." style="width:350px; height:35px;"><br>
             </div>
         </div>
         <div class="col-12 text-center">
