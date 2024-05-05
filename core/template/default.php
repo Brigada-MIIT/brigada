@@ -38,7 +38,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/app/auth">Войти</a>
                         </li>
-                        <p style="color: rgba(0, 0, 0, .5);">|</p>
+                        <p class="d-none d-md-block" style="color: rgba(0, 0, 0, .5);">|</p>
+                        <hr class="d-none d-sm-block">
                         <li class="nav-item">
                             <a class="nav-link" href="/app/register">Регистрация</a>
                         </li>';
