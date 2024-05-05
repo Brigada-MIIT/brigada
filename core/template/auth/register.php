@@ -46,7 +46,7 @@
         </div>
         <div class="col-12 text-center">
             <div class="in">
-                <br><button type="submit" class="submit text-center" onclick="register();">Войти</button>
+                <br><button type="submit" class="submit text-center" onclick="register();">Зарегистрироваться</button>
             </div>
         </div>
     </div>
