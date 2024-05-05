@@ -114,7 +114,7 @@
 
     document.addEventListener('keypress', function(event) {
         if(arguments[0].code == "Enter" || arguments[0].code == "NumpadEnter") {
-            register();
+            if(!Swal.isVisible()) register();
         }
     });
 
