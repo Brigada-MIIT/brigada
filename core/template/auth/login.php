@@ -1,4 +1,4 @@
-<div class="container justify-content-center ">  
+<div class="container" style="padding-top: 5%;">  
     <!--<p class="page-title">Настройки</p>-->
     <div class="form">
         <!--<div class="col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-xl-4 col-xl-4">
@@ -18,7 +18,7 @@
             <div class="in">
                 <div class="text-center">
                     <h2 class="active">Вход</h2>
-                </div><br><br>
+                </div><br>
             </div>
         </div>
         <div class="col-12">
