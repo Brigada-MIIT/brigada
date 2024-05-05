@@ -1,5 +1,5 @@
 <div class="container">  
-    <p class="page-title">Редактирование загрузки<?php if($result['author'] != $system_user_id) echo "(MOD: <a href='/profile/".$result['author']."'>перейти к автору</a>)" ?></p>
+    <p class="page-title">Редактирование загрузки<?php if($result['author'] != $system_user_id) echo " (<a href='/profile/".$result['author']."'>перейти к автору</a>)" ?></p>
     <div class="form">
         <div class="col-12">
             <div class="in">
