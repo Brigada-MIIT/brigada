@@ -1,9 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>UploadiFive Test</title>
-<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="/assets/js/jquery.uploadifive.min.js" type="text/javascript"></script>
 <style>
     .uploadifive-button {
@@ -78,73 +72,99 @@
         height: 3px;
         width: 0;
     }
-</style>
-<style type="text/css">
-body {
-	font: 13px Arial, Helvetica, Sans-serif;
-}
-.uploadifive-button {
-	float: left;
-	margin-right: 10px;
-}
-#queue {
-	border: 1px solid #E5E5E5;
-	height: 177px;
-	overflow: auto;
-	margin-bottom: 10px;
-	padding: 0 3px 3px;
-	width: 300px;
-}
-</style>
-</head>
 
-<body>
-	<h1>Загрузка файлов</h1>
-	<form>
-        <label for="name">Название загрузки</label>  
-        <input id="name" type="text" value="<?php echo $result['name'] ?>" placeholder="Введите название загрузке..." style="height: 5%; width: 30%; display: block;"><br>
-        <label for="description">Описание загрузки</label>
-        <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"><?php echo $result['description'] ?></textarea><br>
-        <label for="category">Категория загрузки</label>
-        <select id="category">
-            <option value="1" label="Test">
-        </select><br>
-        <label for="queue" style="">Загружаемые файлы:</label>
-		<div id="queue"></div>
-		<input id="file_upload" name="file_upload" type="file" multiple="true">
-		<a style="position: relative; top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')">Upload Files</a>
-	</form>
-	<script type="text/javascript">
-		<?php $timestamp = time();?>
-        function getCookie(name) {
-            let matches = document.cookie.match(new RegExp(
-                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-            ));
-            return matches ? decodeURIComponent(matches[1]) : undefined;
-        }
-        setForm();
-        async function setForm() {
-            await $('#file_upload').uploadifive({
-				'auto'             : false,
-				'checkScript'      : '/api/files/upload/check',
-				'fileType'         : '.jpg,.jpeg,.gif,.png,.docx,.doc,.txt,.xls,.xlsx,.ppt,.pptx,.zip,.pdf',
-				'queueID'          : 'queue',
-                'buttonText'       : 'Выбрать файлы',
-                'fileSizeLimit'    : 524288000,
-                'simUploadLimit'   : 10,
-                'formData'         : {
-                                        'timestamp'  : '<?php echo $timestamp;?>',
-                                        'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
-                                        'id'         : '<?php echo $result['id'] ?>',
-                                        'name'       : $("#name").val(),
-                                        'description': $("#description").val(),
-                                        'status'     : '0',
-                                        'category'   : $("#category").val(),
-                                    },
-				'uploadScript'     : '/api/files/upload',
-				'onUploadComplete' : function(file, data) { console.log(data); }
-			});
-        }
-	</script>
-</body>
-</html>
+    body {
+        font: 13px Arial, Helvetica, Sans-serif;
+    }
+    .uploadifive-button {
+        float: left;
+        margin-right: 10px;
+    }
+    #queue {
+        border: 1px solid #E5E5E5;
+        height: 177px;
+        overflow: auto;
+        margin-bottom: 10px;
+        padding: 0 3px 3px;
+        width: 300px;
+    }
+</style>
+<div class="container">  
+    <p class="page-title">Загрузка файлов</p>
+    <div class="form">
+        <form>
+            <div class="col-12">
+                <div class="in">
+                    <label for="name">Название загрузки</label><br>
+                    <input id="name" type="text" value="<?php echo $result['name'] ?>" placeholder="Введите название загрузке...">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="description">Описание загрузки</label>
+                    <textarea id="description" placeholder="Введите описание загрузке..." style="width: 75%; display: block;"><?php echo $result['description'] ?></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="category">Категория загрузки</label><br>
+                    <select id="category">
+                        <option value="1" label="Test">
+                    </select><br>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="category">Категория загрузки</label><br>
+                    <select id="category">
+                        <option value="1" label="Test">
+                    </select><br>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="queue" style="">Загружаемые файлы:</label><br>
+		            <div id="queue"></div>
+                    <input id="file_upload" name="file_upload" type="file" multiple="true">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <a style="position: relative; top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')"><button type="submit" class="submit">Создать</button></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    <?php $timestamp = time();?>
+    function getCookie(name) {
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+    setForm();
+    async function setForm() {
+        await $('#file_upload').uploadifive({
+            'auto'             : false,
+            'checkScript'      : '/api/files/upload/check',
+            'fileType'         : '.jpg,.jpeg,.gif,.png,.docx,.doc,.txt,.xls,.xlsx,.ppt,.pptx,.zip,.pdf',
+            'queueID'          : 'queue',
+            'buttonText'       : 'Выбрать файлы',
+            'fileSizeLimit'    : 524288000,
+            'simUploadLimit'   : 10,
+            'formData'         : {
+                                    'timestamp'  : '<?php echo $timestamp;?>',
+                                    'token'      : '<?php echo md5('unique_salt' . $timestamp);?>',
+                                    'id'         : '<?php echo $result['id'] ?>',
+                                    'name'       : $("#name").val(),
+                                    'description': $("#description").val(),
+                                    'status'     : '0',
+                                    'category'   : $("#category").val(),
+                                },
+            'uploadScript'     : '/api/files/upload',
+            'onUploadComplete' : function(file, data) { console.log(data); }
+        });
+    }
+</script>
