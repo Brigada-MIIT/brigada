@@ -16,7 +16,12 @@
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="password-field">Пароль</label><br>
-                <input type="password" class="text" id="password-field" placeholder="Введите пароль..."><br><br>
+                <input type="password" class="text" id="password-field" placeholder="Введите пароль..."><br>
+                
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="password-repeat-field">Повторите пароль</label><br>
                 <input type="password" class="text" id="password-repeat-field" placeholder="Повторите пароль..."><br>
             </div>
@@ -24,9 +29,17 @@
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="lastname">Фамилия</label><br>
-                <input type="text" class="text" id="lastname" placeholder="Введите фамилию..."><br><br>
+                <input type="text" class="text" id="lastname" placeholder="Введите фамилию..."><br>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="surname">Имя</label><br>
-                <input type="password" class="text" id="surname" placeholder="Введите имя..."><br><br>
+                <input type="password" class="text" id="surname" placeholder="Введите имя..."><br>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="patronymic">Отчество</label><br>
                 <input type="password" class="text" id="patronymic" placeholder="Введите отчество..."><br>
             </div>
