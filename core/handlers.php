@@ -632,8 +632,8 @@ function api_uploads_delete($args) {
         if(!$system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS"))
             res(0, "forbidden (because hidden)");
     }
-    $db()->query("INSERT INTO `uploads_deleted` SELECT * FROM `uploads` WHERE `id` = '$id'");
-    $db()->query("DELETE FROM `uploads` WHERE `id` = '$id'");
+    $db->query("INSERT INTO `uploads_deleted` SELECT * FROM `uploads` WHERE `id` = '$id'");
+    $db->query("DELETE FROM `uploads` WHERE `id` = '$id'");
     res(1);
 }
 
