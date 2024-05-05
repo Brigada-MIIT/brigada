@@ -1,3 +1,4 @@
+<?php $title = "Бригада | Регистрация"; ?>
 <div class="container" style="padding-top: 2%;">  
     <div class="form">
         <div class="col-12">

@@ -1,3 +1,4 @@
+<?php $title = "Бригада | Авторизация"; ?>
 <div class="container" style="padding-top: 6%;">  
     <!--<p class="page-title">Настройки</p>-->
     <div class="form">
