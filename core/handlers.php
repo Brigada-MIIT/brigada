@@ -579,6 +579,7 @@ function api_uploads_edit($args) {
     if(!$query || $query->num_rows == 0) res(0, 'error uploads');
     $result = $query->fetch_assoc();
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"));
+    res($system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"));
     if($check)
         res(0);
     if($result['files'] = "[]")
