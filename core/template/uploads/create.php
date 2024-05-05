@@ -31,7 +31,7 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <button type="submit" class="submit" onclick="submit();">Создать</button>
+                <br><button type="submit" class="submit" onclick="submit();">Создать</button>
             </div>
         </div>
     </div>
