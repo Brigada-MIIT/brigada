@@ -1,5 +1,6 @@
-<div class="container">    
-    <div class="row justify-content-center">
+<div class="container justify-content-center">  
+    <p class="page-title">Настройки</p>
+    <div class="form">
         <div class="col-12">
             <h1 class="title"></h1>
         </div>
