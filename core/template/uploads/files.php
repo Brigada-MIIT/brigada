@@ -129,7 +129,7 @@
                         <option value="0" label="Не опубликовано">
                         <option value="1" label="Опубликовано">
                         <?php if($system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")) echo '
-                            <option value="0" label="=============" disabled>
+                            <option value="0" label="==== Moderation ====" disabled>
                             <option value="-1" label="Скрыть">';
                         ?>
                     </select><br>
