@@ -10,11 +10,11 @@
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="email">Email</label><br>
-                <input type="text" class="text auth" id="email" placeholder="Введите адрес..."><br><br>
+                <input type="text" class="text" id="email" placeholder="Введите адрес..."><br><br>
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="padding-top: 30px; margin: 0 auto; width: max-content;">
+            <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="password-field">Пароль</label><br>
                 <input type="password" class="text" id="password-field" placeholder="Введите пароль..."><br>
                 
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="padding-top: 30px; margin: 0 auto; width: max-content;">
+            <div class="in" style="padding-top: 25px; margin: 0 auto; width: max-content;">
                 <label for="lastname">Фамилия</label><br>
                 <input type="text" class="text" id="lastname" placeholder="Введите фамилию..."><br>
             </div>
