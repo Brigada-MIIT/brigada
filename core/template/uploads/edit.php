@@ -37,7 +37,7 @@
                     <option value="1" label="Опубликовано"<?php if($result['status'] == 1) echo ' selected' ?>>
                     <?php if($system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")) echo '
                         <option value="0" label="==== MODERATION ====" disabled>
-                        <option value="-1" label="Скрыть"'.($result['status'] == -1) ? " selected" : "".'>';
+                        <option value="-1" label="Скрыть"'.(($result['status'] == -1) ? " selected" : "").'>';
                     ?>
                 </select><br>
             </div>
