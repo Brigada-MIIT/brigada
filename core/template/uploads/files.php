@@ -190,6 +190,13 @@
                 }).then((result) => {
                     location.replace("/uploads/view/"+res.text);
                 });
+            }
+            else if (res.result == 2) {
+                Swal.fire({
+                    title: "Ошибка!",
+                    text: "Вы не можете сохранить пока не загрузите файлы",
+                    icon: "error"
+                });
             } else {
                 Swal.fire({
                     icon: 'error',

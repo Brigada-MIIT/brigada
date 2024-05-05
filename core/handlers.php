@@ -667,6 +667,8 @@ function api_uploads_edit() {
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = $id");
     if(!$query || $query->num_rows == 0) res(0, 'error uploads');
     $result = $query->fetch_assoc();
+    if($result['files'] = "[]")
+        res(2);
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"));
     if($result['status'] == -1) {
         if(!$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"))
@@ -675,6 +677,7 @@ function api_uploads_edit() {
     if(!$check) {
         res(0);
     }
+    
     
     $status = $_POST['status']; // проверка на статус (0, 1, -1)
     if($status == 0 || $status == 1 || $status == -1) {
