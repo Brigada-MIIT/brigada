@@ -116,23 +116,10 @@
             </div>
             <div class="col-12">
                 <div class="in">
-                    <label for="category">Категория загрузки</label><br>
-                    <select id="category">
-                        <option value="1" label="Test">
-                    </select><br>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="in">
                     <label for="queue" style="">Загружаемые файлы:</label><br>
 		            <div id="queue"></div>
                     <input id="file_upload" name="file_upload" type="file" multiple="true">
-                    <button class="uploadifive-button" style="width: 100px;height: 30px;">Загрузить</button>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="in">
-                    <a style="position: relative; top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')"><button type="submit" class="submit">Создать</button></a>
+                    <a style="position: relative; top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')"><button class="uploadifive-button" style="width: 100px;height: 30px;">Загрузить</button></a>
                 </div>
             </div>
         </form>
