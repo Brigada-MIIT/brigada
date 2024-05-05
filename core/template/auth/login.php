@@ -1,9 +1,6 @@
-<div class="container justify-content-center text-center">  
+<div class="container justify-content-center ">  
     <!--<p class="page-title">Настройки</p>-->
     <div class="form">
-        <div class="col-12">
-            <h1 class="title"></h1>
-        </div>
         <!--<div class="col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-xl-4 col-xl-4">
             <div class="login">
                 <div class="text-center">
@@ -18,19 +15,23 @@
             </div>
         </div>-->
         <div class="col-12">
-            <div class="text-center">
-                <h2 class="active">Вход</h2>
-            </div><br><br>
             <div class="in">
-                <label for="login">Логин</label><br>
-                <input type="text" class="text" id="login"><br>
-                <label for="password">Пароль</label><br>
-                <input type="password" class="text" id="password"><br>
+                <div class="text-center">
+                    <h2 class="active">Вход</h2>
+                </div><br><br>
             </div>
         </div>
         <div class="col-12">
             <div class="in">
-                <br><button type="submit" class="submit" onclick="login();">Войти</button>
+                <label for="login">Логин</label><br>
+                <input type="text" class="text text-center" id="login"><br><br>
+                <label for="password">Пароль</label><br>
+                <input type="password" class="text text-center" id="password"><br>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="in">
+                <br><button type="submit" class="submit text-center" onclick="login();">Войти</button>
             </div>
         </div>
     </div>
