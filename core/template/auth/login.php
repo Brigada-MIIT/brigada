@@ -41,7 +41,7 @@
                     icon: 'error',
                     title: 'Неверный пароль!',
                     text: 'Проверьте правильность введённых данных.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Забыли пароль?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Забыли пароль?</a>'
                 });
             } else if (res.result == 1) {
                 $(".res").html('');
@@ -51,7 +51,7 @@
                     icon: 'error',
                     title: 'Ваш аккаунт заблокирован!',
                     text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                 });
             } else if (res.result == 100) {
                 const { value: user_code } = await Swal.fire({
@@ -70,7 +70,7 @@
                     icon: 'error',
                     title: 'Неверный код 2FA!',
                     text: 'Попробуйте снова или обратитесь к администратору.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                 });
             } else if (res.result == 102) {
                 Swal.fire({
@@ -84,7 +84,7 @@
                     icon: 'error',
                     title: 'Произошла неизвестная ошибка!',
                     text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                 });
             }
         }
@@ -104,28 +104,28 @@
                     icon: 'error',
                     title: 'Ошибка',
                     text: 'При отправке письма произошла неизвестная ошибка. Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                 });
             } else if (res.result == 1) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Письмо успешно оптравлено',
                     text: 'На указанный Email-адрес было отправлено письмо с ссылкой для подтверждения вашего аккаунта',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                 });
             } else if (res.result == 2) {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Письмо не было отправлено',
                     text: 'Переотправка письма возможна 1 раз в 5 минут. Попробуйте переотправить письмо чуть позже снова.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Произошла неизвестная ошибка!',
                     text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                 });
             }
         }

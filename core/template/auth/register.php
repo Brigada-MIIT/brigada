@@ -64,48 +64,48 @@
                         icon: 'success',
                         title: 'Успешная регистрация',
                         text: 'На указанный Email-адрес было отправлено письмо с ссылкой для подтверждения вашего аккаунта',
-                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                     });
                 } else if (res.result == 2) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Указан неверный Email-адрес',
                         text: 'Укажите, пожалуйста, правильный Email-адрес',
-                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                     });
                 } else if (res.result == 3) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Пароли не совпадают',
                         text: 'Перепроверьте, пожалуйста, совпадение паролей в полях',
-                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                     });
                 } else if (res.result == 4) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Пароль меньше 6-ти символов',
                         text: 'Укажите, пожалуйста, пароль не менее 6-ти символов',
-                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a href="<?php echo $settings['link_to_admin'];n ?>">Возникли вопросы?</a>'
                     });
                 } else if (res.result == 5) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Не заполнены поля фамилия/имя',
                         text: 'Пожалуйста, заполните следующие поля: фамилия, имя, отчество',
-                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                     });
                 } else if (res.result == 6) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Пользователь уже существует',
                         text: 'Пользователь с указанным Email-адресом уже существует',
-                        footer: '<a href="<?php echo $link_to_admin ?>">Забыли пароль?</a>'
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Забыли пароль?</a>'
                     });
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Произошла неизвестная ошибка!',
-                        footer: '<a href="<?php echo $link_to_admin ?>">Возникли вопросы?</a>'
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                     });
                 }
             }
