@@ -574,6 +574,7 @@ function api_uploads_edit($args) {
     $name = $_POST['name'];
     $description = $_POST['description'];
 
+    $db = $system->db();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = $id");
     if(!$query || $query->num_rows == 0) res(0, 'error uploads');
     $result = $query->fetch_assoc();
@@ -599,7 +600,6 @@ function api_uploads_edit($args) {
     else res(0, "status error");
 
     $category = $_POST['category']; // проверка на категорию через БД
-    $db = $system->db();
     $query = $db->query("SELECT * FROM `categories` WHERE `id` = $category");
     if(!$query || $query->num_rows == 0) res(0, 'error categories');
     $resultc = $query->fetch_assoc();
