@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="login">Email</label><br>
-                <input type="text" class="text" id="login" placeholder="Введите адрес..."><br>
+                <input type="text" class="text" id="login" placeholder="Введите адрес..."><br><br>
                 <label for="password">Пароль</label><br>
                 <input type="password" class="text" id="password" placeholder="Введите пароль..."><br>
             </div>
