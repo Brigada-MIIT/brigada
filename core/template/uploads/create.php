@@ -26,7 +26,7 @@
                 <label for="category">Категория загрузки</label><br>
                 <select id="category">
                     <option value="1" label="Test">
-                </select>
+                </select><br>
             </div>
         </div>
         <div class="col-12">
