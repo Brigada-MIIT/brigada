@@ -13,6 +13,7 @@ function auth() {
     global $system, $system_user_id, $_user;
     if ($system->auth() && $system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/");
+    $title = "Бригада | Авторизация";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/auth/login.php';
     include '../core/template/default.php';
@@ -23,6 +24,7 @@ function register() {
     global $system, $system_user_id, $_user;
     if ($system->auth() && $system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/");
+    $title = "Бригада | Регистрация";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/auth/register.php';
     include '../core/template/default.php';
