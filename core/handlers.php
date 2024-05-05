@@ -548,7 +548,7 @@ function api_uploads_create() {
     $status = 0; // 0 - неопубликован, так как ещё не приложены файлы
 
     $category = $_POST['category']; // проверка на категорию через БД
-    $query = $db->qeury("SELECT * FROM `categories` WHERE `id` = $category");
+    $query = $db->query("SELECT * FROM `categories` WHERE `id` = $category");
     if(!$query || $query->num_rows == 0) res(0, 'error categories');
     $result = $query->fetch_assoc();
     if($result['status'] == 0) res(0, 'category is hidden');
