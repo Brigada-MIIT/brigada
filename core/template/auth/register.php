@@ -40,7 +40,7 @@
         </div>
         <div class="col-12">
             <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
-                <label for="patronymic">Отчество</label><br>
+                <label for="patronymic">Отчество (при наличии)</label><br>
                 <input type="text" class="text" id="patronymic" placeholder="Введите отчество..." style="width:350px; height:37px;"><br>
             </div>
         </div>
