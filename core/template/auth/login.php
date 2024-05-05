@@ -23,10 +23,10 @@
         </div>
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
-                <label for="login">Логин</label><br>
-                <input type="text" class="text text-center" id="login"><br><br>
+                <label for="login">Email (эл. адрес)</label><br>
+                <input type="text" class="text text-center" id="login" placeholder="Email (эл. адрес)"><br><br>
                 <label for="password">Пароль</label><br>
-                <input type="password" class="text text-center" id="password"><br>
+                <input type="password" class="text text-center" id="password" placeholder="Пароль"><br>
             </div>
         </div>
         <div class="col-12 text-center">
