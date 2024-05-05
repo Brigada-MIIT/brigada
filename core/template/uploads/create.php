@@ -23,7 +23,7 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <label for="category">Категория загрузки</label>
+                <label for="category">Категория загрузки</label><br>
                 <select id="category">
                     <option value="1" label="Test">
                 </select><br>
