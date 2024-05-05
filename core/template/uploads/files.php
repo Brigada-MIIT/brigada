@@ -123,6 +123,11 @@
                 </div>
             </div>
         </form>
+        <div class="col-12">
+            <div class="in">
+                <br><button type="submit" class="submit" onclick="submit();">Сохранить</button>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
