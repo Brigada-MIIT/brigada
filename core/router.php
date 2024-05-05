@@ -41,7 +41,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/uploads/delete/{id:\d+}', 'api_uploads_delete');
     $r->addRoute('POST', '/api/files/upload', 'api_files_upload');
     $r->addRoute('POST', '/api/files/upload/check', 'api_files_upload_check');
-    $r->addRoute('GET', '/api/test', 'api_test'); // TEST УДАЛИТЬ
+    //$r->addRoute('GET', '/api/test', 'api_test'); // TEST УДАЛИТЬ
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
