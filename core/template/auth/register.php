@@ -1,9 +1,3 @@
-<style>
-    .auth {
-        width: 350px;
-        height: 40px;
-    }
-</style>
 <div class="container" style="padding-top: 3%;">  
     <div class="form">
         <div class="col-12">
@@ -20,34 +14,34 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="margin: 0 auto; width: max-content;">
+            <div class="in" style="padding-top: 30px; margin: 0 auto; width: max-content;">
                 <label for="password-field">Пароль</label><br>
-                <input type="password" class="text auth" id="password-field" placeholder="Введите пароль..."><br>
+                <input type="password" class="text" id="password-field" placeholder="Введите пароль..."><br>
                 
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="margin: 0 auto; width: max-content;">
+            <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="password-repeat-field">Повторите пароль</label><br>
-                <input type="password" class="text auth" id="password-repeat-field" placeholder="Повторите пароль..."><br>
+                <input type="password" class="text" id="password-repeat-field" placeholder="Повторите пароль..."><br>
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="margin: 0 auto; width: max-content;">
+            <div class="in" style="padding-top: 30px; margin: 0 auto; width: max-content;">
                 <label for="lastname">Фамилия</label><br>
-                <input type="text" class="text auth" id="lastname" placeholder="Введите фамилию..."><br>
+                <input type="text" class="text" id="lastname" placeholder="Введите фамилию..."><br>
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="margin: 0 auto; width: max-content;">
+            <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="surname">Имя</label><br>
-                <input type="password" class="text auth" id="surname" placeholder="Введите имя..."><br>
+                <input type="password" class="text" id="surname" placeholder="Введите имя..."><br>
             </div>
         </div>
         <div class="col-12">
-            <div class="in" style="margin: 0 auto; width: max-content;">
+            <div class="in" style="padding-top: 10px; margin: 0 auto; width: max-content;">
                 <label for="patronymic">Отчество</label><br>
-                <input type="password" class="text auth" id="patronymic" placeholder="Введите отчество..."><br>
+                <input type="password" class="text" id="patronymic" placeholder="Введите отчество..."><br>
             </div>
         </div>
         <div class="col-12 text-center">

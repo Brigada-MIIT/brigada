@@ -11,9 +11,9 @@
         <div class="col-12">
             <div class="in" style="margin: 0 auto; width: max-content;">
                 <label for="login">Email</label><br>
-                <input type="text" class="text" id="login" placeholder="Введите адрес..."><br><br>
+                <input type="text" class="text" id="login" placeholder="Введите адрес..." style="width:350px; height:40px;"><br><br>
                 <label for="password">Пароль</label><br>
-                <input type="password" class="text" id="password" placeholder="Введите пароль..."><br>
+                <input type="password" class="text" id="password" placeholder="Введите пароль..." style="width:350px; height:40px;"><br>
             </div>
         </div>
         <div class="col-12 text-center">
