@@ -124,6 +124,19 @@
             </div>
             <div class="col-12">
                 <div class="in">
+                    <label for="status">Статус загрузки</label><br>
+                    <select id="status">
+                        <option value="0" label="Не опубликовано">
+                        <option value="1" label="Опубликовано">
+                        <?php if($system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")) echo '
+                            <option value="0" label="=============" disabled>
+                            <option value="-1" label="Скрыть">';
+                        ?>
+                    </select><br>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
                     <label for="queue" style="">Загружаемые файлы:</label><br>
 		            <div id="queue"></div>
                     <input id="file_upload" name="file_upload" type="file" multiple="true">
@@ -165,14 +178,14 @@
         $.ajax({
             type: 'POST',
             url: '/api/uploads/edit',
-            data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value,
+            data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value+'&status='+document.getElementById('status').value,
             success: async function(data) {
             var res = $.parseJSON(data);
             console.log(res);
             if (res.result == 1) {
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "Успешно!",
+                    text: "Ваша загрузка была изменена",
                     icon: "success"
                 }).then((result) => {
                     location.replace("/uploads/view/"+res.text);

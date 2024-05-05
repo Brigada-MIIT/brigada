@@ -654,3 +654,46 @@ function api_files_upload_check() {
     else
         echo 0;
 }
+
+function api_uploads_edit() {
+    global $system, $system_user_id, $_user;
+    if(empty($_POST['id']) || empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']) || empty($_POST['status']))
+        res(0, "Invalid request");
+
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+
+    $query = $db->query("SELECT * FROM `uploads` WHERE `id` = $id");
+    if(!$query || $query->num_rows == 0) res(0, 'error uploads');
+    $result = $query->fetch_assoc();
+    $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"));
+    if($result['status'] == -1) {
+        if(!$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"))
+            res(100, "forbidden (because hidden)");
+    }
+    if(!$check) {
+        res(0);
+    }
+    
+    $status = $_POST['status']; // проверка на статус (0, 1, -1)
+    if($status == 0 || $status == 1 || $status == -1) {
+        if($status == -1) {
+            if(!$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"))
+                res(100, "no permission to hide");
+        }
+    }
+    else res(0, "status error");
+
+    $category = $_POST['category']; // проверка на категорию через БД
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `categories` WHERE `id` = $category");
+    if(!$query || $query->num_rows == 0) res(0, 'error categories');
+    $resultc = $query->fetch_assoc();
+    if($resultc['status'] == 0) res(0, 'category is hidden');
+
+    $timestamp = time();
+    $query = $db->query("UPDATE `uploads` SET `name` = '$name', `description` = '$description', `category` = '$category', `status` = '$status' WHERE `uploads`.`id` = $id");
+    if(!$query) res(0, 'MySQL error');
+    res(1, $upload_id);
+}
