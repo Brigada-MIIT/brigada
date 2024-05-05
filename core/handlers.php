@@ -602,7 +602,7 @@ function api_uploads_edit($args) {
     $timestamp = time();
     $query = $db->query("UPDATE `uploads` SET `name` = '$name', `description` = '$description', `category` = '$category', `status` = '$status' WHERE `uploads`.`id` = $id");
     if(!$query) res(0, 'MySQL error');
-    res(1, $upload_id);
+    res(1, $id);
 }
 
 function api_files_upload() {
