@@ -100,9 +100,9 @@ function uploads_create() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
-    //$content = '../core/template/files/upload.php';
-    //include '../core/template/default.php';
-    include '../core/template/uploads/create.php';
+    $content = '../core/template/uploads/create.php';
+    include '../core/template/default.php';
+    //include '../core/template/uploads/create.php';
 }
 
 function uploads_files($args) {
