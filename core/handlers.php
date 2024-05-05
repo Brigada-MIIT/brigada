@@ -548,13 +548,13 @@ function api_uploads_create() {
     $status = 0; // 0 - неопубликован, так как ещё не приложены файлы
 
     $category = $_POST['category']; // проверка на категорию через БД
+    $db = $system->db();
     $query = $db->query("SELECT * FROM `categories` WHERE `id` = $category");
     if(!$query || $query->num_rows == 0) res(0, 'error categories');
     $result = $query->fetch_assoc();
     if($result['status'] == 0) res(0, 'category is hidden');
 
     $timestamp = time();
-    $db = $system->db();
     $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `uploaded`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '[]', '$timestamp', '0', '0')");
     if(!$query) res(0, 'MySQL error');
     $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
