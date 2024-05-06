@@ -397,11 +397,17 @@ function api_users_edit() {
             res(0, "email_verifed error 2");
     }
     
+    $patr_check = 0;
+
     $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "lastname error");
     $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "surname error");
-    $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : res(0, "patronymic error");
+    $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : ($patr_check = 1);
 
-    $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
+    if(!$patr_check)
+        $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
+    else
+        $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = NULL WHERE `id` = '$user_id'");
+    
     if(!$query) res(0, "mysql error");
     res(1, "Данные пользователя успешно обновлены");
 }
