@@ -85,8 +85,8 @@
                     </div>
                 </div>
                 <div class="col-12"><br><br>
-                    <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/users/delete/<?php echo $user['id'] ?>"><button id="submit" type="submit" class="submit">Удалить пользователя</button></a>
+                    <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
+                    <button id="submit" type="submit" class="submit" onclick="delete_user();" style="margin-left: 20px;">Удалить пользователя</button>
                 </div>
             </div>
             <div style="float:right; width: 50%;">
