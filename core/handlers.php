@@ -83,7 +83,7 @@ function uploads_create() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
-    if ($_user['ban_upload'] == 1)
+    if ($_user['ban_upload'] != 0)
         $system->printError(101);
     $db = $system->db();
     $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
@@ -96,7 +96,7 @@ function uploads_files($args) {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
-    if ($_user['ban_upload'] == 1)
+    if ($_user['ban_upload'] != 0)
         $system->printError(101);
     $db = $system->db();
     $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
@@ -155,7 +155,7 @@ function uploads_view($args) {
     global $system, $system_user_id, $_user;
     /*if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);*/
-    if($system->auth() && $_user['ban'] == 1)
+    if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     
     header('Content-Type: text/html; charset=utf-8');
@@ -535,8 +535,11 @@ function download_moderation_tool() {
 
 function api_uploads_create() {
     global $system, $system_user_id, $_user;
+    if(!$system->auth()) res(0);
     if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']))
         res(0, "Invalid request");
+    if ($_user['ban_upload'] != 0)
+        $system->printError(101);
     $status = 0; // 0 - неопубликован, так как ещё не приложены файлы
 
     $category = $_POST['category']; // проверка на категорию через БД
@@ -557,8 +560,11 @@ function api_uploads_create() {
 
 function api_uploads_edit($args) {
     global $system, $system_user_id, $_user;
+    if(!$system->auth()) res(0);
     if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']) || ($_POST['status'] != 0 && $_POST['status'] != 1 && $_POST['status'] != -1))
         res(0, "Invalid request");
+    if ($_user['ban_upload'] != 0)
+        $system->printError(101);
 
     $id = $args['id'];
     $name = $_POST['name'];
@@ -597,6 +603,9 @@ function api_uploads_edit($args) {
 
 function api_uploads_delete($args) {
     global $system, $system_user_id, $_user;
+    if(!$system->auth()) res(0);
+    if ($_user['ban_upload'] != 0)
+        $system->printError(101);
     $id = $args['id'];
     $db = $system->db();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = $id");
@@ -616,6 +625,7 @@ function api_uploads_delete($args) {
 
 function api_files_upload() {
     global $system, $system_user_id, $_user;
+    if(!$system->auth()) res(0);
     $uploadDir = '../../brigada-miit-storage/';
     $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
