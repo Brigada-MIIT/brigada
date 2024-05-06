@@ -522,26 +522,13 @@ function download_moderation_tool() {
     }
 }
 
-/*function api_files_upload() {
-    if($_FILES) {
-        foreach ($_FILES["uploads"]["error"] as $key => $error) {
-            if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["uploads"]["tmp_name"][$key];
-                $name = $_FILES["uploads"]["name"][$key];
-                move_uploaded_file($tmp_name, "../../brigada-miit-storage/".$name);
-            }
-        }
-        echo "Файлы загружены";
-    }
-}*/
-
 function api_uploads_create() {
     global $system, $system_user_id, $_user;
-    if(!$system->auth()) res(0);
-    if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']))
-        res(0, "Invalid request");
+    if(!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS")) res(0);
     if ($_user['ban_upload'] != 0)
         $system->printError(101);
+    if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']))
+        res(0, "Invalid request");
     $status = 0; // 0 - неопубликован, так как ещё не приложены файлы
 
     $category = $_POST['category']; // проверка на категорию через БД
@@ -562,7 +549,7 @@ function api_uploads_create() {
 
 function api_uploads_edit($args) {
     global $system, $system_user_id, $_user;
-    if(!$system->auth()) res(0);
+    if(!$system->haveUserPermission($system_user_id, "EDIT_UPLOADS")) res(0);
     if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']) || ($_POST['status'] != 0 && $_POST['status'] != 1 && $_POST['status'] != -1))
         res(0, "Invalid request");
     if ($_user['ban_upload'] != 0)
@@ -605,7 +592,7 @@ function api_uploads_edit($args) {
 
 function api_uploads_delete($args) {
     global $system, $system_user_id, $_user;
-    if(!$system->auth()) res(0);
+    if(!$system->haveUserPermission($system_user_id, "DELETE_UPLOADS")) res(0);
     if ($_user['ban_upload'] != 0)
         res(0, "ban upload");
     $id = $args['id'];
@@ -627,7 +614,7 @@ function api_uploads_delete($args) {
 
 function api_files_upload() {
     global $system, $system_user_id, $_user;
-    if(!$system->auth()) res(0);
+    if(!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS")) res(0);
     if($_user['ban_upload'] != 0) res(0, "ban upload");
     $uploadDir = '../../brigada-miit-storage/';
     $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
@@ -687,27 +674,6 @@ function api_files_upload() {
         else
             res(0, "Invalid file type");
     }
-} // /files/download/<upload id>/<file id>
-
-function api_test() {
-    /*global $system, $system_user_id, $_user;
-    $db = $system->db();
-    $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `updated`) VALUES (NULL, '1', 'test', 'test', '1', '1', '{}', '1000', '2000')");
-    if(!$query) exit('MySQL error');
-    $query = $db->query("SELECT `id` FROM `uploads` ORDER BY ID DESC LIMIT 1");
-    $result = $query->fetch_assoc();
-    $upload_id = $result['id'];
-    $files_id = array();
-    for($i = 0; $i < rand(1,10); $i++) {
-        $db->query("INSERT INTO `files` (`id`, `upload_id`, `name`, `path`, `size`) VALUES (NULL, '$upload_id', 'test', 'test', '40960000')");
-        $query = $db->query("SELECT `id` FROM `files` ORDER BY ID DESC LIMIT 1");
-        $result = $query->fetch_assoc();
-        array_push($files_id, $result['id']);
-    }
-    $json_files = json_encode($files_id);
-    print_r($json_files);
-    $query = $db->query("UPDATE `uploads` SET `files` = '$json_files' WHERE `uploads`.`id` = $upload_id;");
-    print_r($query);*/
 }
 
 function api_files_upload_check() {
