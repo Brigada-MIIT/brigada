@@ -462,11 +462,10 @@ function api_settings_update() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS_CMS"))
         res(0, "Ошибка доступа");
-    $days = intval($_POST['days']) > 0 ? intval($_POST['days']) : res(0, 'Укажите целое положительное число (days)');
-    $logs_in_page = intval($_POST['logs_in_page']) > 0 ? intval($_POST['logs_in_page']) : res(0, 'Укажите целое положительное число (logs_in_page)');
     $max_size_avatar = intval($_POST['max_size_avatar']) > 0 ? intval($_POST['max_size_avatar']) : res(0, 'Укажите целое положительное число (max_size_avatar)');
     $link_to_admin = empty($_POST['link_to_admin']) ? res(0, "Укажите ссылку на администратора") : $_POST['link_to_admin'];
-    $system->db()->query("UPDATE `settings` SET `delete_after` = '$days', `logs_in_page` = '$logs_in_page', `max_size_avatar` = '$max_size_avatar', `link_to_admin` = '$link_to_admin' WHERE 1");
+    $max_size_file = intval($_POST['max_size_file']) > 0 ? intval($_POST['max_size_file']) : res(0, 'Укажите целое положительное число (max_size_file)');
+    $system->db()->query("UPDATE `settings` SET `max_size_avatar` = '$max_size_avatar', `link_to_admin` = '$link_to_admin', `max_size_file` = '$max_size_file' WHERE 1");
     res(1, "Настройки успешно обновлены");
 }
 
