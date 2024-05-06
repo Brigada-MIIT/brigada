@@ -35,7 +35,7 @@ function register() {
 
 function users() {
     global $system, $system_user_id, $_user;
-    if($system->haveUserPermission($system_user_id, "MANAGE_USERS"))
+    if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         $system->printError(403);
     $content = '../core/template/users/users.php';
     include '../core/template/default.php';
