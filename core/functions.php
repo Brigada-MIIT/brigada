@@ -76,7 +76,7 @@ class System {
     function haveUserPermission($id, $permission) {
         if(!$this->auth()) return false;
         if(!$id || !$permission) return false;
-        if($this->userinfo($id)['ban'] == 1)
+        if($this->userinfo($id)['ban'] != 0)
             $this->printError(100);
         if($this->haveGroupPermissions($this->userinfo($id)['user_type'], $permission) || $this->haveUserApartPermission($id, $permission))
             return true;

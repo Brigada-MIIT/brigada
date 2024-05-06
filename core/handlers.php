@@ -4,7 +4,7 @@ function main() {
     global $system, $system_user_id, $_user;
     /*if ($system->userinfo()['user_type'] < 1 || !$system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/app/auth");*/
-    if($system->auth() && $_user['ban'] == 1)
+    if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     //$content = '../core/template/dashboard.php';
@@ -240,6 +240,8 @@ function api_login() {
     $id = $result['id'];
     $solt = bin2hex(openssl_random_pseudo_bytes(20, $cstrong));
     if($id != 0 && !is_null($id)) {
+        if($result['ban'] != 0)
+            res(4);
         if($system->enabled_2fa($id)) {
             $user_code = $_REQUEST['auth_code'];
             if (is_null($user_code))
