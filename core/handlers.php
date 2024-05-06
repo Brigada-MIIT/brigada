@@ -303,6 +303,8 @@ function api_register() {
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
     if ($query->num_rows !== 1)
         res(7);
+    $id = $query->fetch_assoc()['id'];
+    $query = $db->query("INSERT INTO `permissions` (`id`, `userid`, `ACCESS`, `MANAGE_USERS`, `MANAGE_SETTINGS`, `VIEW_UPLOADS`, `VIEW_HIDDEN_UPLOADS`, `CREATE_UPLOADS`, `EDIT_UPLOADS`, `EDIT_ALL_UPLOADS`, `DELETE_UPLOADS`, `DELETE_ALL_UPLOADS`, `MANAGE_CATEGORIES`) VALUES (NULL, '$id', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')");
     $system->send_email_verification($emailSendHash);
     res(1);
 }
@@ -413,9 +415,9 @@ function api_users_delete() {
     $email = $system->userinfo($id)['email'];
     if ($user_role <= $system->userinfo($id)['user_type'])
         res(0, "Ваша роль меньше или равна удаляемому пользователю");
-    /*$system->db()->query("INSERT INTO `users_deleted` SELECT * FROM `users` WHERE `id` = '$id'");
+    $system->db()->query("INSERT INTO `users_deleted` SELECT * FROM `users` WHERE `id` = '$id'");
     $system->db()->query("DELETE FROM `users` WHERE `id` = '$id'");
-    $system->db()->query("DELETE FROM `users_session` WHERE `id` = '$id'");*/ // сделать добавление perms в registration
+    $system->db()->query("DELETE FROM `users_session` WHERE `id` = '$id'");
     res(1, "Пользователь ". $email . " успешно удален");
 }
 
