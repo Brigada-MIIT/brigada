@@ -384,7 +384,7 @@ function api_users_edit() {
     $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "surname error");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : res(0, "patronymic error");
 
-    res(0, "email_verifed: " . $email_verifed . ", ban_upload: " . $ban_upload . ", ban: " . $ban);
+    res(0, "email_verifed: " . $email_verifed . ", ban_upload: " . $ban_upload . ", ban: " . $ban . "; email_verfied (user): " . $user['email_verfied']);
 
     $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
     if(!$query) res(0, "mysql error");
