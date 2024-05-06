@@ -410,7 +410,7 @@ function api_users_delete() {
         res(0, "Ошибка доступа");
     $id = intval($_POST['id']) > 0 ? intval($_POST['id']) : res(0, 'Выберите пользователя');
     $user_role = $system->userinfo()['user_type'];
-    $login = $system->userinfo($id)['email'];
+    $email = $system->userinfo($id)['email'];
     if ($user_role <= $system->userinfo($id)['user_type'])
         res(0, "Ваша роль меньше или равна удаляемому пользователю");
     /*$system->db()->query("INSERT INTO `users_deleted` SELECT * FROM `users` WHERE `id` = '$id'");
