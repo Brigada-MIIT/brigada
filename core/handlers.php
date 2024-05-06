@@ -200,6 +200,8 @@ function uploads_edit($args) {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "EDIT_UPLOADS"))
         $system->printError(403);
+    if ($_user['ban_upload'] != 0)
+        $system->printError(101);
     $db = $system->db();
     $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."';");
@@ -564,7 +566,7 @@ function api_uploads_edit($args) {
     if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']) || ($_POST['status'] != 0 && $_POST['status'] != 1 && $_POST['status'] != -1))
         res(0, "Invalid request");
     if ($_user['ban_upload'] != 0)
-        $system->printError(101);
+        res(0, "ban upload");
 
     $id = $args['id'];
     $name = $_POST['name'];
@@ -605,7 +607,7 @@ function api_uploads_delete($args) {
     global $system, $system_user_id, $_user;
     if(!$system->auth()) res(0);
     if ($_user['ban_upload'] != 0)
-        $system->printError(101);
+        res(0, "ban upload");
     $id = $args['id'];
     $db = $system->db();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = $id");
