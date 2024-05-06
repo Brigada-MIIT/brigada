@@ -685,7 +685,8 @@ function api_files_upload() {
         $tempFile   = $_FILES['Filedata']['tmp_name'];
         $targetFile = $uploadDir . '/' . $file_id . '.' . $extension;
         $fileParts = pathinfo($_FILES['Filedata']['name']);
-        if($_FILES['Filedata']['size'] > 524288000) {
+        $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+        if($_FILES['Filedata']['size'] > $settings['max_size_file'] * 1048576) {
             res(0, "Size cannot be > 50 MB");
         }
         if(in_array(strtolower($fileParts['extension']), $fileTypes)) {

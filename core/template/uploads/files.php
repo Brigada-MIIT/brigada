@@ -223,7 +223,7 @@
             'fileType'         : '.jpg,.jpeg,.gif,.png,.docx,.doc,.txt,.xls,.xlsx,.ppt,.pptx,.zip,.pdf',
             'queueID'          : 'queue',
             'buttonText'       : 'Выбрать файлы',
-            'fileSizeLimit'    : 524288000,
+            'fileSizeLimit'    : <?php echo $settings['max_file_size'] * 1048576 ?>,
             'simUploadLimit'   : 10,
             'formData'         : {
                                     'timestamp'  : '<?php echo $timestamp;?>',
