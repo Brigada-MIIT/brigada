@@ -4,6 +4,8 @@ function main() {
     global $system, $system_user_id, $_user;
     /*if ($system->userinfo()['user_type'] < 1 || !$system->haveUserPermission($system_user_id, "ACCESS"))
         Location("/app/auth");*/
+    if($system->auth() && $_user['ban'] == 1)
+        $system->printError(100);
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     //$content = '../core/template/dashboard.php';
     include '../core/template/default.php';
@@ -81,6 +83,8 @@ function uploads_create() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
+    if ($_user['ban_upload'] == 1)
+        $system->printError(101);
     $db = $system->db();
     $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/uploads/create.php';
@@ -92,6 +96,8 @@ function uploads_files($args) {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
+    if ($_user['ban_upload'] == 1)
+        $system->printError(101);
     $db = $system->db();
     $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $query = $db->query("SELECT * FROM `uploads` WHERE `id` = '".$args['id']."';");
@@ -147,8 +153,10 @@ function uploads_files_download($args) {
 
 function uploads_view($args) {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
-        $system->printError(403);
+    /*if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
+        $system->printError(403);*/
+    if($system->auth() && $_user['ban'] == 1)
+        $system->printError(100);
     
     header('Content-Type: text/html; charset=utf-8');
     $locale='ru_RU.UTF-8';
