@@ -358,19 +358,19 @@ function api_users_edit() {
     $db = $system->db();
     $db->set_charset("utf8");
 
-    $ban = !empty(intval($_POST['ban'])) ? intval($_POST['ban']) : res(0, "ban error 1");
+    $ban = !empty(intval($_POST['ban'])) ? intval($_POST['ban']) : res(0, "ban error 1 " + print_r($_POST['ban']));
     if($ban == 1) 
         $ban = $system_user_id;
     else if($ban == 0);
     else res(0, "ban error 2");
 
-    $ban_upload = !empty(intval($_POST['ban_upload'])) ? intval($_POST['ban_upload']) : res(0, "ban_upload error 1");
+    $ban_upload = !empty(intval($_POST['ban_upload'])) ? intval($_POST['ban_upload']) : res(0, "ban_upload error 1 " + print_r($_POST['ban_upload']));
     if($ban_upload == 1) 
         $ban_upload = $system_user_id;
     else if($ban_upload == 0);
     else res(0, "ban_upload error 2");
 
-    $email_verfied = !empty(intval($_POST['email_verfied'])) ? intval($_POST['email_verfied']) : res(0, "email_verfied error 1");
+    $email_verfied = !empty(intval($_POST['email_verfied'])) ? intval($_POST['email_verfied']) : res(0, "email_verfied error 1 " + print_r($_POST['email_verfied']));
     if($email_verfied == 1) {
         if($user['email_verfied'] == 0)
             $email_verfied = $system_user_id;
