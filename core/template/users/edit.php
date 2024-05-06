@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-12"><br><br>
                     <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
-                    <button id="submit" type="submit" class="submit" onclick="delete_user();" style="margin-left: 20px;">Удалить пользователя</button>
+                    <button id="submit" type="submit" class="submit" onclick="delete_user();" style="margin-left: 20px;">Удалить пользователя</button><br>
                 </div>
             </div>
             <div style="float:right; width: 50%;">
