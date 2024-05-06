@@ -31,7 +31,7 @@
         $.ajax({
             type: 'post',
             url: "/api/settings/update",
-            data: '&max_size_avatar='+$("#max_size_avatar").val()+'&link_to_admin='+$("#link_to_admin").val()+'max_size_file='+$("#max_size_file").val(),
+            data: '&max_size_avatar='+$("#max_size_avatar").val()+'&link_to_admin='+$("#link_to_admin").val()+'&max_size_file='+$("#max_size_file").val(),
             dataType: 'json',
             success: function(data){
                 const Toast = Swal.mixin({
