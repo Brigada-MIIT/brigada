@@ -53,7 +53,7 @@
                 <div class="col-12">
                     <div class="in">
                         <label for="email_verifed">Email-адрес подтверждён?</label><br>
-                        <input id="email_verifed" type="checkbox"<?php if($user['email_verfied'] == 1) echo ' checked disabled'; ?>>
+                        <input id="email_verifed" type="checkbox"<?php if($user['email_verifed'] == 1) echo ' checked disabled'; ?>>
                     </div>
                 </div>
                 <div class="col-12">
@@ -221,7 +221,7 @@
                     document.getElementById('lastname').disabled = true;
                     document.getElementById('surname').disabled = true;
                     document.getElementById('patronymic').disabled = true;
-                    document.getElementById('email_verfied').disabled = true;
+                    document.getElementById('email_verifed').disabled = true;
                     document.getElementById('ban_upload').disabled = true;
                     document.getElementById('ban').disabled = true;
 
