@@ -52,8 +52,8 @@
                 </div>
                 <div class="col-12">
                     <div class="in">
-                        <label for="verifed_email">Email-адрес подтверждён?</label><br>
-                        <input id="verifed_email" type="checkbox"<?php if($user['email_verfied'] == 1) echo ' checked disabled'; ?>>
+                        <label for="email_verifed">Email-адрес подтверждён?</label><br>
+                        <input id="email_verifed" type="checkbox"<?php if($user['email_verfied'] == 1) echo ' checked disabled'; ?>>
                     </div>
                 </div>
                 <div class="col-12">
@@ -195,7 +195,7 @@
         $.ajax({
             type: 'post',
             url: "/api/users/edit",
-            data: 'id=<?php echo $user['id']?>&role='+$("#role").val(),
+            data: 'id=<?php echo $user['id']?>&role='+$("#role").val()+'&lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&ban_upload='+$("#ban_upload").val()+'&ban='+$("#ban").val()+'&email_verifed='+$("#email_verifed").val(),
             dataType: 'json',
             success: function(data){
                 const Toast = Swal.mixin({
@@ -216,8 +216,13 @@
                     });
 
                     document.getElementById('submit').onclick = "";
-                    document.getElementById('password').disabled = true;
                     document.getElementById('role').disabled = true;
+                    document.getElementById('lastname').disabled = true;
+                    document.getElementById('surname').disabled = true;
+                    document.getElementById('patronymic').disabled = true;
+                    document.getElementById('email_verfied').disabled = true;
+                    document.getElementById('ban_upload').disabled = true;
+                    document.getElementById('ban').disabled = true;
 
                     function reload() {
                         return location.reload(); 
