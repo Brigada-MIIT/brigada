@@ -226,7 +226,7 @@ function api_login() {
     $result = $query->fetch_assoc();
     if(!password_verify($password, $result['password']))
         res(0);
-    if($result['email_verfied'] == 0 || $result['email_verfied'] == '0')
+    if($result['email_verifed'] == 0 || $result['email_verifed'] == '0')
         res(102, $result['email_send_token']);
 
     $id = $result['id'];
@@ -282,9 +282,9 @@ function api_register() {
     $emailSendHash = $db->real_escape_string(RandomString(20));
     $time = $db->real_escape_string(time());
     if(!empty($patronymic))
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verfied`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', '$patronymic', '$time')");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', '$patronymic', '$time')");
     else
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verfied`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', NULL, '$time')");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', NULL, '$time')");
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
     if ($query->num_rows !== 1)
         res(7);
@@ -319,7 +319,7 @@ function api_email_verify($args) {
     $query = $db->query("SELECT * FROM `users` WHERE `email_token`='$token'");
     if($query->num_rows !== 1)
         exit("Токен не найден. Если считаете, что произошла ошибка, обратитесь к <a href='".$link."'>администратору<a>.");
-    $db->query("UPDATE `users` SET `email_verfied` = '1' WHERE `users`.`email_token` = '$token';");
+    $db->query("UPDATE `users` SET `email_verifed` = '1' WHERE `users`.`email_token` = '$token';");
     $db->query("UPDATE `users` SET `email_send_token` = NULL WHERE `users`.`email_token`='$token'");
     $db->query("UPDATE `users` SET `email_token` = NULL WHERE `users`.`email_token`='$token'");
     exit("Ваш аккаунт успешно подтверждён! Теперь вы можете <a href='/app/auth'>авторизироваться</a>.");
@@ -390,7 +390,7 @@ function api_users_edit() {
     $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "surname error");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : res(0, "patronymic error");
 
-    res(0, "email_verifed: " . $email_verifed . ", ban_upload: " . $ban_upload . ", ban: " . $ban . "; email_verfied (user): " . $user['email_verfied']);
+    res(0, "email_verifed: " . $email_verifed . ", ban_upload: " . $ban_upload . ", ban: " . $ban . "; email_verifed (user): " . $user['email_verifed']);
 
     $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
     if(!$query) res(0, "mysql error");
