@@ -343,25 +343,48 @@ function api_users_edit() {
     global $system, $system_user_id, $_user;
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         res(0, "Ошибка доступа");
+
     $user_id = !empty(intval($_POST['id'])) ? intval($_POST['id']) : res(0, "Ошибка доступа");
     if (!$user = $system->userinfo($user_id))
         res(0, "Ошибка");
     if(!is_numeric($_POST['role']))
         res(4, "Выберите роль и попробуйте снова");
+
     $role = !empty(intval($_POST['role'])) || $_POST['role'] < 1 ? intval($_POST['role']) : 1;
     $user_role = $system->userinfo()['user_type'];
     if ($user_role <= $user['user_type'] || $role >= $user_role)
         res(0, "Ваша роль ниже чем у данного пользователя");
+
     $db = $system->db();
     $db->set_charset("utf8");
-    $login = strlen($_POST['login']) > 3 ? $db->real_escape_string($_POST['login']) : res("Логин не может быть короче 3 символов");
-    $password = $db->real_escape_string(trim($_POST['password']));
-    if (empty($password))
-        $db->query("UPDATE `users` SET `login` = '$login', `user_type` = '$role' WHERE `id` = '$user_id'");
-    else {
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $db->query("UPDATE `users` SET `login` = '$login', `password` = '$password', `user_type` = '$role' WHERE `id` = '$user_id'");
+
+    $ban = !empty(intval($_POST['ban'])) ? intval($_POST['ban']) : res(0, "Ошибка доступа");
+    if($ban == 1) 
+        $ban = $system_user_id;
+    else if($ban == 0);
+    else res(0, "ban error");
+
+    $ban_upload = !empty(intval($_POST['ban_upload'])) ? intval($_POST['ban_upload']) : res(0, "Ошибка доступа");
+    if($ban_upload == 1) 
+        $ban_upload = $system_user_id;
+    else if($ban_upload == 0);
+    else res(0, "ban_upload error");
+
+    $email_verfied = !empty(intval($_POST['email_verfied'])) ? intval($_POST['email_verfied']) : res(0, "Ошибка доступа");
+    if($email_verfied == 1) {
+        if($user['email_verfied'] == 0)
+            $email_verfied = $system_user_id;
     }
+    else if($email_verfied == 0) {
+        if($user['email_verfied'] == 0);
+        else res(0, "email_verfied error");
+    }
+    
+    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Ошибка доступа");
+    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Ошибка доступа");
+    $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : res(0, "Ошибка доступа");
+
+    $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verfied` = '$email_verfied', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
     res(1, "Данные пользователя успешно обновлены");
 }
 
