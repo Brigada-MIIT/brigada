@@ -358,19 +358,19 @@ function api_users_edit() {
     $db = $system->db();
     $db->set_charset("utf8");
 
-    $ban = !empty(intval($_POST['ban'])) ? intval($_POST['ban']) : res(0, "ban error 1 " + print_r($_POST['ban']));
+    $ban = !empty(intval($_POST['ban'])) ? intval($_POST['ban']) : res(0, "ban error 1");
     if($ban == 1) 
         $ban = $system_user_id;
     else if($ban == 0);
     else res(0, "ban error 2");
 
-    $ban_upload = !empty(intval($_POST['ban_upload'])) ? intval($_POST['ban_upload']) : res(0, "ban_upload error 1 " + print_r($_POST['ban_upload']));
+    $ban_upload = !empty(intval($_POST['ban_upload'])) ? intval($_POST['ban_upload']) : res(0, "ban_upload error 1");
     if($ban_upload == 1) 
         $ban_upload = $system_user_id;
     else if($ban_upload == 0);
     else res(0, "ban_upload error 2");
 
-    $email_verfied = !empty(intval($_POST['email_verfied'])) ? intval($_POST['email_verfied']) : res(0, "email_verfied error 1 " + print_r($_POST['email_verfied']));
+    $email_verfied = !empty(intval($_POST['email_verfied'])) ? intval($_POST['email_verfied']) : res(0, "email_verfied error 1");
     if($email_verfied == 1) {
         if($user['email_verfied'] == 0)
             $email_verfied = $system_user_id;
@@ -384,7 +384,8 @@ function api_users_edit() {
     $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "surname error");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : res(0, "patronymic error");
 
-    $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verfied` = '$email_verfied', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
+    $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verfied` = '$email_verfied', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
+    if(!$query) res(0, "mysql error");
     res(1, "Данные пользователя успешно обновлены");
 }
 
