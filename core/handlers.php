@@ -368,6 +368,7 @@ function api_users_edit() {
         res(4, "Выберите роль и попробуйте снова");
 
     $role = !empty(intval($_POST['role'])) || $_POST['role'] < 1 ? intval($_POST['role']) : 1;
+    if($role < 1) res(0, "Неправильно задана роль");
     $user_role = $system->userinfo()['user_type'];
     if ($user_role <= $user['user_type'] || $role >= $user_role)
         res(0, "Ваша роль ниже чем у данного пользователя");
