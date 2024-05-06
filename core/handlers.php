@@ -370,21 +370,21 @@ function api_users_edit() {
     else if($ban_upload == 0);
     else res(0, "ban_upload error 2");
 
-    $email_verfied = (intval($_POST['email_verfied']) == 0 || intval($_POST['email_verfied']) == 1) ? intval($_POST['email_verfied']) : res(0, "email_verfied error 1");
-    if($email_verfied == 1) {
-        if($user['email_verfied'] == 0)
-            $email_verfied = $system_user_id;
+    $email_verifed = (intval($_POST['email_verifed']) == 0 || intval($_POST['email_verifed']) == 1) ? intval($_POST['email_verifed']) : res(0, "email_verifed error 1");
+    if($email_verifed == 1) {
+        if($user['email_verifed'] == 0)
+            $email_verifed = $system_user_id;
     }
-    else if($email_verfied == 0) {
-        if($user['email_verfied'] == 0);
-        else res(0, "email_verfied error 2. " . $_POST['email_verfied']);
+    else if($email_verifed == 0) {
+        if($user['email_verifed'] == 0);
+        else res(0, "email_verifed error 2");
     }
     
     $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "lastname error");
     $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "surname error");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : res(0, "patronymic error");
 
-    $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verfied` = '$email_verfied', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
+    $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
     if(!$query) res(0, "mysql error");
     res(1, "Данные пользователя успешно обновлены");
 }
