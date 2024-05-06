@@ -626,6 +626,7 @@ function api_uploads_delete($args) {
 function api_files_upload() {
     global $system, $system_user_id, $_user;
     if(!$system->auth()) res(0);
+    if($user['ban_upload'] != 0) res(0, "ban upload");
     $uploadDir = '../../brigada-miit-storage/';
     $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip');
     $verifyToken = md5('unique_salt' . $_POST['timestamp']);
