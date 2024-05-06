@@ -35,15 +35,7 @@ function users() {
     global $system, $system_user_id, $_user;
     if($system->userinfo()['user_type'] < 2 || !$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         $system->printError(403);
-    $content = '../core/template/manage-users/users.php';
-    include '../core/template/default.php';
-}
-
-function users_add() {
-    global $system, $system_user_id, $_user;
-    if($system->userinfo()['user_type'] < 2 || !$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
-        $system->printError(403);
-    $content = '../core/template/manage-users/users_add.php';
+    $content = '../core/template/users/users.php';
     include '../core/template/default.php';
 }
 
@@ -53,23 +45,10 @@ function users_edit($args) {
         $system->printError(403);
     $user_id = !empty(intval($args['id'])) ? intval($args['id']) : Location("/users");
     if (!$user = $system->userinfo($user_id))
-        Location("/users");
+        Location("/app/users");
     if ($user['user_type'] >= $system->userinfo()['user_type'])
-        Location("/users");
-    $content = '../core/template/manage-users/user.php';
-    include '../core/template/default.php';
-}
-
-function users_delete($args) {
-    global $system, $system_user_id, $_user;
-    if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
-        $system->printError(403);
-    $user_id = !empty(intval($args['id'])) ? intval($args['id']) : Location("/users");
-    if (!$user = $system->userinfo($user_id))
-        Location("/users");
-    if ($user['user_type'] >= $system->userinfo()['user_type'])
-        Location("/users");
-    $content = '../core/template/manage-users/user_delete.php';
+        Location("/app/users");
+    $content = '../core/template/users/edit.php';
     include '../core/template/default.php';
 }
 
@@ -230,14 +209,6 @@ function uploads_edit($args) {
     include '../core/template/default.php';
 }
 
-function uploads_delete($args) {
-    global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "DELETE_UPLOADS"))
-        $system->printError(403);
-    $content = '../core/template/uploads/delete.php';
-    //include '../core/template/default.php';
-}
-
 // ================ API ================ \\
 
 function api_login() {
@@ -368,33 +339,6 @@ function logout() {
     Location("/");
 }
 
-function api_users_add() {
-    global $system, $system_user_id, $_user;
-    if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
-        res(0, "Ошибка доступа");
-    $user_role = $system->userinfo()['user_type'];
-    $role = !empty(intval($_POST['role'])) ? intval($_POST['role']) : $role = 1;
-    if ($role < 1)
-        res(0, "Роль не может равняться нулю или быть меньше него");
-    if ($user_role <= $role)
-        res(0, "Ваша роль меньше или равна создаваемой");
-    if(empty($_POST['login']) || empty($_POST['password']))
-        res(0, "Заполните все поля");
-    $db = $system->db();
-    $db->set_charset("utf8");
-    $login = $db->real_escape_string(trim($_POST['login']));
-    $query = $db->query("SELECT * FROM `users` WHERE `login` = '$login' LIMIT 1");
-    if ($query->num_rows !== 0)
-        res(0, "Пользователь с таким логином уже существует");
-    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
-    $db->query("INSERT INTO `users`(`login`, `password`, `avatar`, `user_type`, `coins`, `minutes`, `afk_minutes`, `work_minutes`, `work_afk_minutes`) VALUES ('$login', '$password', '/assets/img/profile.jpg', '$role', '0', '0', '0', '0', '0')");
-    $query = $db->query("SELECT * FROM `users` WHERE `login` = '$login' LIMIT 1");
-    $result = $query->fetch_assoc();
-    $id = $result['id'];
-    $db->query("INSERT INTO `permissions` (`id`, `userid`, `DASHBOARD`, `VIEWING_HISTORY_OF_PUNISHMENTS`, `CHANGE_AVATAR`, `CHANGE_PASSWORD`, `DOWNLOAD_MODERTOOL`, `VIEWING_LOGS`, `ACCESS_TO_LOGS`, `CHAT_LOGS`, `CMDS_LOGS`, `JOINS_LOGS`, `KILLS_LOGS`, `MANAGE_SETTINGS_CMS`, `CONTROL_IMAGE_HOST_TOKENS`, `MANAGE_USERS`, `VIEWING_PROMOCODES`, `ADDING_PROMOCODES`, `MANAGE_PROMOCODES`, `VIEWING_LIST_PLAYERS`, `VIEWING_LIST_PLAYERS_IP`, `PM_TO_PLAYER`, `KICK_PLAYER`, `MUTE_PLAYER`, `UNMUTE_PLAYER`, `WAKE_UP_HELPERS`, `MANAGE_COINS_USERS`, `VIEWING_ONLINE_TABLE`, `RCON_SURVIVAL`, `WORK_ACCOUNTS_MOD`, `WORK_ACCOUNTS_OTHER`) VALUES (NULL, '$id', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');");
-    res(1, "Пользователь " . $login . " успешно создан в базе");
-}
-
 function api_users_edit() {
     global $system, $system_user_id, $_user;
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
@@ -436,7 +380,7 @@ function api_users_delete() {
     res(1, "Пользователь ". $login . " успешно удален");
 }
 
-function api_user_permissions() {
+function api_users_permissions() {
     global $system, $system_user_id, $_user;
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         Location("/");

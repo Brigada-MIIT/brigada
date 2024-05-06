@@ -11,10 +11,10 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'main');
     $r->addRoute('GET', '/app/auth', 'auth');
     $r->addRoute('GET', '/app/register', 'register');
-    $r->addRoute('GET', '/users', 'users'); // ***
-    $r->addRoute('GET', '/users/create', 'users_add');
-    $r->addRoute('GET', '/users/edit/{id:\d+}', 'users_edit');
-    $r->addRoute('GET', '/users/delete/{id:\d+}', 'users_delete');
+    $r->addRoute('GET', '/app/users', 'users'); // ***
+    //$r->addRoute('GET', '/app/users/create', 'users_add');
+    $r->addRoute('GET', '/app/users/edit/{id:\d+}', 'users_edit');
+    //$r->addRoute('GET', '/app/users/delete/{id:\d+}', 'users_delete');
     $r->addRoute('GET', '/app/settings', 'settings');
     $r->addRoute('GET', '/profile/password', 'profile_password');
     $r->addRoute('GET', '/profile/avatar', 'profile_avatar');
@@ -31,10 +31,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/email/resend/{token}', 'api_email_resend');
     $r->addRoute('GET', '/email/verify/{token}', 'api_email_verify');
     $r->addRoute('GET', '/logout', 'logout');
-    $r->addRoute('POST', '/api/users/add', 'api_users_add');
-    $r->addRoute('POST', '/api/user/edit', 'api_users_edit');
+    $r->addRoute('POST', '/api/users/edit', 'api_users_edit');
     $r->addRoute('POST', '/api/users/delete', 'api_users_delete');
-    $r->addRoute('POST', '/api/user/permissions', 'api_user_permissions');
+    $r->addRoute('POST', '/api/users/permissions', 'api_users_permissions');
     $r->addRoute('POST', '/api/settings/update', 'api_settings_update');
     $r->addRoute('POST', '/api/uploads/create', 'api_uploads_create');
     $r->addRoute('POST', '/api/uploads/edit/{id:\d+}', 'api_uploads_edit');

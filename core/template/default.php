@@ -53,8 +53,10 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: -55%;">
                                 <a class="dropdown-item" href="/profile">Профиль</a>
                                 <a class="dropdown-item" href="/profile/uploads">Мои загрузки</a>';
-                            if($system->haveUserPermission($system_user_id, "MANAGE_SETTINGS")) echo '
+                            if($system->haveUserPermission($system_user_id, "MANAGE_USERS") || $system->haveUserPermission($system_user_id, "MANAGE_SETTINGS")) echo '
                                 <hr style="margin-top: 5px;margin-bottom: 4px;">';
+                            if($system->haveUserPermission($system_user_id, "MANAGE_USERS")) echo '
+                                <a class="dropdown-item" href="/app/users">Пользователи</a>';
                             if($system->haveUserPermission($system_user_id, "MANAGE_SETTINGS")) echo '
                                 <a class="dropdown-item" href="/app/settings">Настройки</a>';
                             if($system->auth()) echo '
