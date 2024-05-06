@@ -73,9 +73,9 @@
         width: 0;
     }
 
-    /*body {
+    body main {
         font: 13px Arial, Helvetica, Sans-serif;
-    }*/
+    }
     .uploadifive-button {
         float: left;
         margin-right: 10px;
