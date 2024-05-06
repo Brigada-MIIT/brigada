@@ -399,8 +399,8 @@ function api_users_edit() {
     
     $patr_check = 0;
 
-    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "lastname error");
-    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "surname error");
+    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Укажите фамилию");
+    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "укажите имя");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : ($patr_check = 1);
 
     if(!$patr_check)
