@@ -52,6 +52,22 @@
                 </div>
                 <div class="col-12">
                     <div class="in">
+                    <!--  <input id="role" type="number" placeholder="Права" <?php echo $_user['user_type'] < 3 ? 'style="display:none;"' : ''?> value="<?php echo $user['user_type']?>"> -->
+                    <?php if ($_user['user_type'] > 1): ?>
+                    <label for="role">Роль:</label><br> 
+                    <select id="role">
+                        <option value="<?php echo $user['user_type']; ?>"><?php echo $system->getNameRole($user['user_type']); ?></option> 
+                        <option>===========</option> 
+                            <?php for ($type = 1; $type < $_user['user_type']; $type++): ?>
+                                <?php if($type == $user['user_type']) continue; ?>
+                                <option value="<?php echo $type; ?>"><?php echo $system->getNameRole($type); ?></option> 
+                            <?php endfor; ?> 
+                        </select> 
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="in">
                         <label for="email_verifed">Email-адрес подтверждён?</label><br>
                         <input id="email_verifed" type="checkbox"<?php if($user['email_verifed'] != 0) echo ' checked disabled'; ?>>
                     </div>
@@ -68,25 +84,9 @@
                         <input id="ban" type="checkbox"<?php if($user['ban'] != 0) echo ' checked'; ?>>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="in">
-                    <!--  <input id="role" type="number" placeholder="Права" <?php echo $_user['user_type'] < 3 ? 'style="display:none;"' : ''?> value="<?php echo $user['user_type']?>"> -->
-                    <?php if ($_user['user_type'] > 1): ?>
-                    <label for="role">Роль:</label><br> 
-                    <select id="role">
-                        <option value="<?php echo $user['user_type']; ?>"><?php echo $system->getNameRole($user['user_type']); ?></option> 
-                        <option>===========</option> 
-                            <?php for ($type = 1; $type < $_user['user_type']; $type++): ?>
-                                <?php if($type == $user['user_type']) continue; ?>
-                                <option value="<?php echo $type; ?>"><?php echo $system->getNameRole($type); ?></option> 
-                            <?php endfor; ?> 
-                        </select> 
-                        <?php endif; ?>
-                    </div>
-                </div>
                 <div class="col-12"><br><br>
                     <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
-                    <button id="submit" type="submit" class="submit" onclick="delete_user();" style="margin-left: 20px;">Удалить пользователя</button><br>
+                    <button id="submit" type="submit" class="submit" onclick="delete_user();" style="margin-left: 20px;">Удалить пользователя</button>
                 </div>
             </div>
             <div style="float:right; width: 50%;">
