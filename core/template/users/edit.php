@@ -53,19 +53,19 @@
                 <div class="col-12">
                     <div class="in">
                         <label for="email_verifed">Email-адрес подтверждён?</label><br>
-                        <input id="email_verifed" type="checkbox"<?php if($user['email_verifed'] == 1) echo ' checked disabled'; ?>>
+                        <input id="email_verifed" type="checkbox"<?php if($user['email_verifed'] != 0) echo ' checked disabled'; ?>>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="in">
                         <label for="ban_upload">Блокировка на загрузку файлов</label><br>
-                        <input id="ban_upload" type="checkbox"<?php if($user['ban_upload'] == 1) echo ' checked'; ?>>
+                        <input id="ban_upload" type="checkbox"<?php if($user['ban_upload'] != 0) echo ' checked'; ?>>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="in">
                         <label for="ban">Ограничение доступа к сайту</label><br>
-                        <input id="ban" type="checkbox"<?php if($user['ban'] == 1) echo ' checked'; ?>>
+                        <input id="ban" type="checkbox"<?php if($user['ban'] != 0) echo ' checked'; ?>>
                     </div>
                 </div>
                 <div class="col-12">
