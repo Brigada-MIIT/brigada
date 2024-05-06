@@ -377,7 +377,7 @@ function api_users_edit() {
     }
     else if($email_verfied == 0) {
         if($user['email_verfied'] == 0);
-        else res(0, "email_verfied error 2. " + $email_verfied);
+        else res(0, "email_verfied error 2. " . $email_verfied);
     }
     
     $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "lastname error");
