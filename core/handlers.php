@@ -372,6 +372,7 @@ function api_users_edit() {
 
     $email_verifed = (intval($_POST['email_verifed']) == 0 || intval($_POST['email_verifed']) == 1) ? intval($_POST['email_verifed']) : res(0, "email_verifed error 1");
     if($email_verifed == 1) {
+        res(0, "alo...".intval($user['email_verifed']));
         if(intval($user['email_verifed']) == 0) {
             res(0, "alo");
             $email_verifed = $system_user_id;
