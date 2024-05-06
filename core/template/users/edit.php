@@ -192,10 +192,13 @@
     }
 
     function edit() {
+        let email_verifed = (document.getElementById('email_verifed').checked) ? 1 : 0;
+        let ban_upload = (document.getElementById('ban_upload').checked) ? 1 : 0;
+        let ban = (document.getElementById('ban').checked) ? 1 : 0;
         $.ajax({
             type: 'post',
             url: "/api/users/edit",
-            data: 'id=<?php echo $user['id']?>&role='+$("#role").val()+'&lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&ban_upload='+$("#ban_upload").val()+'&ban='+$("#ban").val()+'&email_verifed='+$("#email_verifed").val(),
+            data: 'id=<?php echo $user['id']?>&role='+$("#role").val()+'&lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&ban_upload='+ban_upload+'&ban='+ban+'&email_verifed='+email_verfied,
             dataType: 'json',
             success: function(data){
                 const Toast = Swal.mixin({
