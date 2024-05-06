@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-12"><br><br>
                     <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
-                    <button id="submit" type="submit" class="submit" onclick="delete_user();" style="margin-left: 20px;">Удалить пользователя</button>
+                    <button id="submit" type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
                 </div>
             </div>
             <div style="float:right; width: 50%;">
@@ -246,5 +246,57 @@
             }
         });
         //updatePermissions();
+    }
+
+    function submit_delete() {
+        Swal.fire({
+            title: "Вы уверены?",
+            text: "После удаления восстановление пользователя будет невозможно",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Да, удалить!",
+            cancelButtonText: "Отменить",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                delete_user();
+            }
+        });
+    }
+
+    function delete_user() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/users/delete',
+            data: 'id=<?php echo $args['id'] ?>',
+            success: async function(data) {
+            var res = $.parseJSON(data);
+            console.log(res);
+            if (res.result == 1) {
+                Swal.fire({
+                    title: "Успешно!",
+                    text: res.text,
+                    icon: "success"
+                }).then((result) => {
+                    location.replace("/app/users");
+                });
+            }
+            else if (res.result == 0) {
+                Swal.fire({
+                    title: "Ошибка!",
+                    text: res.text,
+                    icon: "error"
+                });
+            }
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Произошла неизвестная ошибка!',
+                    text: 'Обратитесь к администратору.',
+                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                });
+            }
+        }});
     }
 </script>

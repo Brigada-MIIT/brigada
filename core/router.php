@@ -11,10 +11,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'main');
     $r->addRoute('GET', '/app/auth', 'auth');
     $r->addRoute('GET', '/app/register', 'register');
-    $r->addRoute('GET', '/app/users', 'users'); // ***
-    //$r->addRoute('GET', '/app/users/create', 'users_add');
+    $r->addRoute('GET', '/app/users', 'users');
     $r->addRoute('GET', '/app/users/edit/{id:\d+}', 'users_edit');
-    //$r->addRoute('GET', '/app/users/delete/{id:\d+}', 'users_delete');
     $r->addRoute('GET', '/app/settings', 'settings');
     $r->addRoute('GET', '/profile/password', 'profile_password');
     $r->addRoute('GET', '/profile/avatar', 'profile_avatar');
@@ -23,7 +21,6 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/uploads/files/download/{id:\d+}', 'uploads_files_download');
     $r->addRoute('GET', '/uploads/view/{id:\d+}', 'uploads_view');
     $r->addRoute('GET', '/uploads/edit/{id:\d+}', 'uploads_edit');
-    //$r->addRoute('GET', '/uploads/delete/{id:\d+}', 'uploads_delete');
     //*** API ***\\
     $r->addRoute('POST', '/api/login', 'api_login');
     $r->addRoute('GET', '/api/login/get', 'api_login');
@@ -40,7 +37,6 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/uploads/delete/{id:\d+}', 'api_uploads_delete');
     $r->addRoute('POST', '/api/files/upload', 'api_files_upload');
     $r->addRoute('POST', '/api/files/upload/check', 'api_files_upload_check');
-    //$r->addRoute('GET', '/api/test', 'api_test'); // TEST УДАЛИТЬ
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];

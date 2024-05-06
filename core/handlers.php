@@ -50,6 +50,7 @@ function users_edit($args) {
         Location("/app/users");
     if ($user['user_type'] >= $system->userinfo()['user_type'])
         Location("/app/users");
+    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/users/edit.php';
     include '../core/template/default.php';
 }
@@ -407,13 +408,13 @@ function api_users_delete() {
         res(0, "Ошибка доступа");
     $id = intval($_POST['id']) > 0 ? intval($_POST['id']) : res(0, 'Выберите пользователя');
     $user_role = $system->userinfo()['user_type'];
-    $login = $system->userinfo($id)['login'];
+    $login = $system->userinfo($id)['email'];
     if ($user_role <= $system->userinfo($id)['user_type'])
         res(0, "Ваша роль меньше или равна удаляемому пользователю");
     $system->db()->query("INSERT INTO `users_deleted` SELECT * FROM `users` WHERE `id` = '$id'");
     $system->db()->query("DELETE FROM `users` WHERE `id` = '$id'");
     $system->db()->query("DELETE FROM `users_session` WHERE `id` = '$id'");
-    res(1, "Пользователь ". $login . " успешно удален");
+    res(1, "Пользователь ". $email . " успешно удален");
 }
 
 function api_users_permissions() {
