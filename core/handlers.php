@@ -75,7 +75,7 @@ function users_delete($args) {
 
 function settings() {
     global $system, $system_user_id, $_user;
-    if(!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS_CMS"))
+    if(!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS"))
         $system->printError(403);
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/settings/settings.php';
@@ -460,7 +460,7 @@ function api_user_permissions() {
 
 function api_settings_update() {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS_CMS"))
+    if (!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS"))
         res(0, "Ошибка доступа");
     $max_size_avatar = intval($_POST['max_size_avatar']) > 0 ? intval($_POST['max_size_avatar']) : res(0, 'Укажите целое положительное число (max_size_avatar)');
     $link_to_admin = empty($_POST['link_to_admin']) ? res(0, "Укажите ссылку на администратора") : $_POST['link_to_admin'];
