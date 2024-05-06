@@ -56,7 +56,7 @@
                             if($system->haveUserPermission($system_user_id, "MANAGE_SETTINGS")) echo '
                                 <hr style="margin-top: 5px;margin-bottom: 4px;">';
                             if($system->haveUserPermission($system_user_id, "MANAGE_SETTINGS")) echo '
-                                <a class="dropdown-item" href="/app/settings">Выйти</a>';
+                                <a class="dropdown-item" href="/app/settings">Настройки</a>';
                             if($system->auth()) echo '
                                 <hr style="margin-top: 5px;margin-bottom: 4px;">
                                 <a class="dropdown-item" href="/logout">Выйти</a>
