@@ -115,8 +115,8 @@ function uploads_files($args) {
 }
 
 function uploads_files_download($args) {
-    error_reporting(-1);
-    ini_set('display_errors', 'On');
+    /*error_reporting(-1);
+    ini_set('display_errors', 'On');*/
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
