@@ -413,9 +413,9 @@ function api_users_delete() {
     $login = $system->userinfo($id)['email'];
     if ($user_role <= $system->userinfo($id)['user_type'])
         res(0, "Ваша роль меньше или равна удаляемому пользователю");
-    $system->db()->query("INSERT INTO `users_deleted` SELECT * FROM `users` WHERE `id` = '$id'");
+    /*$system->db()->query("INSERT INTO `users_deleted` SELECT * FROM `users` WHERE `id` = '$id'");
     $system->db()->query("DELETE FROM `users` WHERE `id` = '$id'");
-    $system->db()->query("DELETE FROM `users_session` WHERE `id` = '$id'");
+    $system->db()->query("DELETE FROM `users_session` WHERE `id` = '$id'");*/ // сделать добавление perms в registration
     res(1, "Пользователь ". $email . " успешно удален");
 }
 
