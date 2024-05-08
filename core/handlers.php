@@ -237,7 +237,7 @@ function api_main_get_uploads() {
     /*$sql = "SELECT id, name, date, user FROM uploads LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);*/
 
-    $query = $db->query("SELECT `id`, `name`, `date`, `author` FROM `uploads` LIMIT $limit OFFSET $offset");
+    $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads` LIMIT $limit OFFSET $offset");
     if(!$query) die("MySQL error query");
 
     $data = array();
