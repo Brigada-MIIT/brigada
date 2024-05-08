@@ -7,9 +7,9 @@
         $('#fileTable').DataTable();
     });
 </script>
-<table id="fileTable" class="table table-striped table-bordered">
+<div class="container mt-4">
     <h2>Последние загрузки</h2>
-    <table class="table">
+    <table id="fileTable" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th scope="col">ID</th>
