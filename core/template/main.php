@@ -11,6 +11,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": function(data, callback, settings) {
+                console.log(data);
                 $.ajax({
                     url: "/api/main/get_uploads",
                     method: "POST",
@@ -19,11 +20,12 @@
                         "page": Math.ceil(data.start / data.length) + 1
                     },
                     success: function(response) {
+                        console.log(response);
                         callback({
                             draw: data.draw,
-                            recordsTotal: response.recordsTotal,
-                            recordsFiltered: response.recordsFiltered,
-                            data: response.data
+                            recordsTotal: response.length,
+                            recordsFiltered: response.length,
+                            data: response
                         });
                     }
                 });
