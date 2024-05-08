@@ -3,7 +3,7 @@
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script>
-    $(document).ready(function() {
+  $(document).ready(function() {
         $('#fileTable').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Russian.json"
@@ -21,9 +21,9 @@
                     success: function(response) {
                         callback({
                             draw: data.draw,
-                            recordsTotal: response.length,
-                            recordsFiltered: response.length,
-                            data: response
+                            recordsTotal: response.recordsTotal,
+                            recordsFiltered: response.recordsFiltered,
+                            data: response.data
                         });
                     }
                 });
@@ -31,14 +31,14 @@
             "columns": [
                 {"data": "id"},
                 {"data": "name"},
-                {"data": "date"},
-                {"data": "user"}
+                {"data": "created"},
+                {"data": "author"}
             ],
             "paging": true,
-            "lengthMenu": [ 10, 25, 50 ],
-            "pageLength": 10
+            "lengthMenu": [ 10, 25, 50 ], // Опции выбора количества строк на странице
+            "pageLength": 10 // Количество строк на странице по умолчанию
         });
-    });
+  });
 </script>
 <div class="container mt-4">
     <h2>Последние загрузки</h2>
