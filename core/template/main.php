@@ -4,7 +4,11 @@
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#fileTable').DataTable();
+        $('#fileTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Russian.json"
+            }
+        });
     });
 </script>
 <div class="container mt-4">
