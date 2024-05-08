@@ -1,4 +1,13 @@
-<div class="container mt-4">
+<link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#fileTable').DataTable();
+    });
+</script>
+<table id="fileTable" class="table table-striped table-bordered">
     <h2>Последние загрузки</h2>
     <table class="table">
         <thead>
