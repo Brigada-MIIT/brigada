@@ -224,6 +224,32 @@ function uploads_edit($args) {
 
 // ================ API ================ \\
 
+function api_main_get_uploads() {
+    global $system, $system_user_id, $_user;
+    if($system->auth() && $_user['ban'] != 0)
+        $system->printError(100);
+    $db = $system->db();
+    $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
+    if($limit > 100) die("limit should be < 100");
+    $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
+    $offset = ($page - 1) * $limit; // Смещение
+
+    /*$sql = "SELECT id, name, date, user FROM uploads LIMIT $limit OFFSET $offset";
+    $result = $conn->query($sql);*/
+
+    $query = $db->query("SELECT `id`, `name`, `date`, `author` FROM `uploads` LIMIT $limit OFFSET $offset");
+    if(!$query) die("MySQL error query");
+
+    $data = array();
+    if ($query->num_rows > 0) {
+        while($row = $query->fetch_assoc()) {
+            $data[] = $row;
+        }
+    }
+
+    echo json_encode($data);
+}
+
 function api_login() {
     global $system, $system_user_id, $_user;
     if ($system->auth())

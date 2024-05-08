@@ -7,7 +7,36 @@
         $('#fileTable').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Russian.json"
-            }
+            },
+            "processing": true,
+            "serverSide": true,
+            "ajax": function(data, callback, settings) {
+                $.ajax({
+                    url: "/api/main/get_uploads",
+                    method: "POST",
+                    data: {
+                        "limit": data.length,
+                        "page": Math.ceil(data.start / data.length) + 1
+                    },
+                    success: function(response) {
+                        callback({
+                            draw: data.draw,
+                            recordsTotal: response.length,
+                            recordsFiltered: response.length,
+                            data: response
+                        });
+                    }
+                });
+            },
+            "columns": [
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "date"},
+                {"data": "user"}
+            ],
+            "paging": true,
+            "lengthMenu": [ 10, 25, 50 ],
+            "pageLength": 10
         });
     });
 </script>
