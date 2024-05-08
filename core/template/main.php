@@ -27,14 +27,17 @@
                             recordsFiltered: response.length,
                             data: response
                         });
+                    }, 
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
                     }
                 });
             },
             "columns": [
-                {data: "id"},
-                {data: "name"},
-                {data: "created"},
-                {data: "author"}
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "created"},
+                {"data": "author"}
             ],
             "paging": true,
             "lengthMenu": [ 10, 25, 50 ], // Опции выбора количества строк на странице
