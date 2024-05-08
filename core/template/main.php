@@ -34,10 +34,10 @@
                 });
             },
             "columns": [
-                {"data": "id"},
-                {"data": "name"},
-                {"data": "created"},
-                {"data": "author"}
+                {"data": "id", "type": "num"},
+                {"data": "name", "type": "string"},
+                {"data": "created", "type": "string"},
+                {"data": "author", "type": "string"}
             ],
             "paging": true,
             "lengthMenu": [ 10, 25, 50 ], // Опции выбора количества строк на странице
