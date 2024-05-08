@@ -7,7 +7,7 @@ function main() {
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
-    //$content = '../core/template/dashboard.php';
+    $content = '../core/template/main.php';
     include '../core/template/default.php';
 }
 
