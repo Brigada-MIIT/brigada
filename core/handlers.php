@@ -229,7 +229,7 @@ function api_main_get_uploads() {
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     $db = $system->db();
-    $db->set_charset("utf8mb4");
+    header('Content-Type: text/html; charset=utf-8');
     $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
     if($limit > 100) die("limit should be < 100");
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
