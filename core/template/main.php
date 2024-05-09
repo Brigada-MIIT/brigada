@@ -10,35 +10,16 @@
             },
             "processing": true,
             "serverSide": true,
-            "ajax": function(data, callback, settings) {
-                console.log(data);
-                $.ajax({
-                    url: "/api/main/get_uploads",
-                    method: "POST",
-                    data: {
-                        "limit": data.length,
-                        "page": Math.ceil(data.start / data.length) + 1
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        callback({
-                            draw: data.draw,
-                            recordsTotal: response.length,
-                            recordsFiltered: response.length,
-                            data: response
-                        });
-                    }, 
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
+            "ajax": {
+                url: '/api/main/get_uploads',
+                dataSrc: ''
             },
             "columns": [
-                {"data": "id", "type": "num"},
-                {"data": "name", "type": "string"},
-                {"data": "created", "type": "string"},
-                {"data": "author", "type": "string"}
-            ],
+                { "data": 'id' },
+                { "data": 'name' },
+                { "data": 'created' },
+                { "data": 'author' },
+            ]
             "paging": true,
             "lengthMenu": [ 10, 25, 50 ], // Опции выбора количества строк на странице
             "pageLength": 10 // Количество строк на странице по умолчанию
