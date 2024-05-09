@@ -221,3 +221,24 @@ function unixDateToString($timestamp) {
 function countWhiteSpaces($s) {
     return substr_count($s, ' ');
 }
+
+function fileIconName($name) {
+    // 'jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip'
+    swtich($name) {
+        case 'jpg':
+            return "image";
+        case 'jpeg':
+            return "image";
+        case 'gif':
+            return "image";
+        case 'png':
+            return "image";
+        case 'docx':
+            return "word";
+        case 'doc':
+            return "word";
+        // 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip'
+        default:
+            return "file";
+    }
+}

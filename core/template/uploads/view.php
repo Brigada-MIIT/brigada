@@ -21,7 +21,7 @@
                             <li class='list-group-item'>
                                 <div class='d-flex justify-content-between align-items-center'>
                                     <a href='/uploads/files/download/".$files[$i]->id."' target='_blank' class='btn btn-link'>
-                                        <!--<img src='microsoft_word_logo.png' alt='Microsoft Word' width='16' height='16' class='mr-1'>-->
+                                        <img src='/assets/img/files/".fileIconName(substr($files[$i]->name,strripos($files[$i]->name,'.')+1)).".png' width='16' height='16' class='mr-1'>
                                         ".$files[$i]->name."
                                     </a>
                                     <span>".$files[$i]->size."</span>
