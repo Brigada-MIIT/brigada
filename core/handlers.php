@@ -257,18 +257,11 @@ function api_main_get_uploads() {
         }
     }
 
-    // SQL запрос для получения количества отфильтрованных записей
-    $query = $db->query("SELECT COUNT(*) AS count FROM `uploads`
-    WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
-    ORDER BY `$orderBy` $orderDir 
-    LIMIT $limit OFFSET $offset");
-    $filtred_count = $query->fetch_assoc()['count'];
-
     // Формирование ответа в формате JSON
     $response = array(
         //"draw" => intval($_GET['draw']), // Номер текущего запроса
         "count" => $count, // Общее количество записей (без учета LIMIT и OFFSET)
-        "filtred_count" => $filtred_count, // Количество записей после фильтрации (если используется поиск)
+        "filtred_count" => $query->num_rows, // Количество записей после фильтрации (если используется поиск)
         "data" => $data // Данные для отображения в таблице
     );
 
