@@ -224,19 +224,25 @@ function countWhiteSpaces($s) {
 
 function fileIconName($name) {
     // 'jpg', 'jpeg', 'gif', 'png', 'docx', 'doc', 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip'
-    swtich($name) {
+    switch($name) {
         case 'jpg':
             return "image";
+            break;
         case 'jpeg':
             return "image";
+            break;
         case 'gif':
             return "image";
+            break;
         case 'png':
             return "image";
+            break;
         case 'docx':
             return "word";
+            break;
         case 'doc':
             return "word";
+            break;
         // 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip'
         default:
             return "file";
