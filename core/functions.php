@@ -219,7 +219,7 @@ function unixDateToString($timestamp) {
 }    
 
 function countWhiteSpaces($s) {
-    if(empty($s)) return 0;
+    if(!$s) return 0;
     return substr_count($s, ' ');
 }
 
