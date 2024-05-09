@@ -11,7 +11,6 @@
             "processing": true,
             "serverSide": true,
             "ajax": function(data, callback, settings) {
-            // Отправка AJAX запроса на сервер для получения данных
                 $.ajax({
                     url: "/api/main/get_uploads",
                     method: "POST",
@@ -19,14 +18,14 @@
                         "limit": data.length,
                         "page": Math.ceil(data.start / data.length) + 1
                     },
-                    /*success: function(response) {
+                    success: function(response) {
                         callback({
                             draw: data.draw,
                             recordsTotal: response.length,
                             recordsFiltered: response.length,
                             data: response
                         });
-                    },*/
+                    },
                     dataSrc: ''
                 });
             },
