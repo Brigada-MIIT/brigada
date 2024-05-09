@@ -41,11 +41,11 @@ class System {
             return false;
     }
     function userinfo($id = false) {
-        if(!isset($_COOKIE['id']))
-            return false;
         $db = $this->db();
         if (empty($id))
-            $id = trim($_COOKIE['id']);
+            if(isset($_COOKIE['id']))
+                $id = trim($_COOKIE['id']);
+            else return false;
         $query = $db->query("SELECT * FROM `users` WHERE `id` = '$id'");
         return $query->num_rows == 1 ? $query->fetch_assoc() : false;
     }
