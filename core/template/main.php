@@ -49,7 +49,7 @@
   });
 </script>
 <div class="container mt-4">
-    <p class="title">Последние загрузки</h2>
+    <p class="page-title">Последние загрузки</h2>
     <table id="fileTable" class="table table-striped table-bordered">
         <thead>
             <tr>
