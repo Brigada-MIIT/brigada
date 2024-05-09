@@ -260,7 +260,7 @@ function api_main_get_uploads() {
     // Формирование ответа в формате JSON
     $response = array(
         //"draw" => intval($_GET['draw']), // Номер текущего запроса
-        "count" => $count, // Общее количество записей (без учета LIMIT и OFFSET)
+        "count" => intval($count), // Общее количество записей (без учета LIMIT и OFFSET)
         "filtred_count" => $query->num_rows, // Количество записей после фильтрации (если используется поиск)
         "data" => $data // Данные для отображения в таблице
     );
