@@ -22,10 +22,10 @@
                         console.log(data);
                         console.log(response);
                         callback({
-                            "draw": data.draw,
-                            "recordsTotal": response.length,
-                            "recordsFiltered": response.length,
-                            "data": response
+                            draw: data.draw,
+                            recordsTotal: response.length,
+                            recordsFiltered: response.length,
+                            data: JSON.parse(response)
                         });
                     },
                     dataSrc: ''
