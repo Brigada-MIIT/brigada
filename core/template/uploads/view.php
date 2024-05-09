@@ -11,16 +11,14 @@
             <p class="card-text"><b>Статус:</b> <?php echo ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт") ?></p>
             <p class="card-text"><b>Категория:</b> <?php echo $result_category['name']; ?></p>
             <hr>
-            <h5 class="card-title">Файлы:</h5>
+            <h5 class="card-title"><b>Файлы:</b></h5>
             <ul class="list-group">
-                {{#post.files}}
                 <li class="list-group-item">
                     <a href="/uploads/files/download/{{id}}" class="btn btn-link">
                         <!-- Вставьте здесь логотип обозначения файла -->
                         {{file_name}}
                     </a>
                 </li>
-                {{/post.files}}
             </ul>
         </div>
     </div>
