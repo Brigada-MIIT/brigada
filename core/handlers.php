@@ -275,7 +275,7 @@ function api_main_get_uploads() {
             $user = $system->userinfo(intval($row['author']));
             $username = "Пользователь удалён";
             if($user) {
-                $username = "<a href='/profile/".$row['author'].">".$user['surname']." ".$user['lastname']."</a>";
+                $username = "<a href='/profile/".$row['author']."'>".$user['surname']." ".$user['lastname']."</a>";
             }
         
             $row['id'] = intval($row['id']);
