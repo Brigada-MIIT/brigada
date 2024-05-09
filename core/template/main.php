@@ -60,7 +60,7 @@
         <?php if($_user['ban_upload'] == 0) echo '
             <button class="submit">Создать загрузку</button>'; ?>
     </div>
-    <table id="fileTable" class="table table-striped table-bordered" style="background: #fff">
+    <table id="fileTable" class="table table-striped table-bordered" style="background-color: #fff">
         <thead>
             <tr>
                 <th scope="col">ID</th>
