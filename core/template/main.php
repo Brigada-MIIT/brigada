@@ -60,7 +60,7 @@
     <div class="col-12" style="display: flex;flex-direction: row;align-items: center;">
         <p class="page-title">Последние загрузки</p>
         <br class="d-sm-none">
-        <?php if($_user['ban_upload'] == 0) echo '
+        <?php if($system->auth() && $_user['ban_upload'] == 0) echo '
             <button class="submit">Создать загрузку</button>'; ?>
     </div>
     <table id="fileTable" class="table table-striped table-bordered" style="background-color: #fff">
