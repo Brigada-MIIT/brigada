@@ -105,14 +105,14 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Ошибка в заполнении полей',
-                        text: 'Вы ввели слишком много символов',
+                        text: 'В полях ФИО слишком много символов',
                         footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                     });
                 } else if (res.result == 8) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Ошибка в заполнении полей',
-                        text: 'В полях слишком много пробелов',
+                        text: 'В полях ФИО слишком много пробелов',
                         footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
                     });
                 } else {

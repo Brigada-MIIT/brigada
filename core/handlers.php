@@ -480,6 +480,11 @@ function api_users_edit() {
     $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Укажите имя");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : ($patr_check = 1);
 
+    if (strlen($lastname) > 25 || strlen($surname) > 25 || strlen($patronymic) > 30)
+        res(0, "В полях ФИО слишком много символов");
+    if (countWhiteSpaces($lastname) >= 2 || countWhiteSpaces($surname) >= 2 || countWhiteSpaces($patronymic) >= 1)
+        res(0, "В полях ФИО слишком много пробелов");
+
     if(!$patr_check)
         $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
     else
