@@ -272,8 +272,15 @@ function api_main_get_uploads() {
     $data = array();
     if ($query->num_rows > 0) {
         while($row = $query->fetch_assoc()) {
+            $user = $system->userinfo(intval($row['author']));
+            $username = "Пользователь удалён";
+            if($user) {
+                $username = "<a href='/profile/".$row['author'].">".$user['surname']." ".$user['lastname']."</a>";
+            }
+        
             $row['id'] = intval($row['id']);
             $row['created'] = unixDateToString(intval($row['created']));
+            $row['author'] = $username;
             $data[] = $row;
         }
     }
