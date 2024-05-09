@@ -265,9 +265,9 @@ function api_main_get_uploads() {
 
     $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
     WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
+    AND WHERE `status` = 1
     ORDER BY `$order` $orderDir 
-    LIMIT $limit OFFSET $offset 
-    AND WHERE `status` = 1");
+    LIMIT $limit OFFSET $offset");
     if(!$query) die("MySQL error query");
 
     $data = array();
