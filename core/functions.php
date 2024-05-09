@@ -41,14 +41,7 @@ class System {
             return false;
     }
     function userinfo($id = false) {
-        $db = $this->db();
-        if ($id == false) {
-            if(isset($_COOKIE['id']))
-                $id = trim($_COOKIE['id']);
-            else return false;
-        }
-        $query = $db->query("SELECT * FROM `users` WHERE `id` = '$id'");
-        return $query->num_rows == 1 ? $query->fetch_assoc() : false;
+        
     }
     function haveGroupPermissions($id, $permission) {
         if(!$id || !$permission) return false;
