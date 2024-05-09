@@ -16,7 +16,6 @@
             },
             "colReorder": true,
             "resize": true,
-            "scrollX": true,
             "processing": true,
             "serverSide": true,
             "ajax": function(data, callback, settings) {
