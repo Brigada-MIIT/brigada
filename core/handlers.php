@@ -235,7 +235,8 @@ function api_main_get_uploads() {
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
     $offset = ($page - 1) * $limit; // Смещение
     $searchTerm = isset($_REQUEST['search']) ? $_REQUEST['search'] : ''; // Термин поиска
-    $orderBy = isset($_REQUEST['order']) ? $_REQUEST['order'] : 'id'; // Поле для сортировки
+    //$orderBy = isset($_REQUEST['order']) ? $_REQUEST['order'] : 'id'; // Поле для сортировки
+    $ordeyBy = 'id';
     $orderDir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 'DESC'; // Направление сортировки
 
 
