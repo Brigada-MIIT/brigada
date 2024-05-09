@@ -4,12 +4,12 @@
             Информация о загрузке
         </div>
         <div class="card-body">
-            <h5 class="card-title">Название: <?php echo $result['name'] ?></h5>
-            <p class="card-text">Описание: <?php echo $result['description'] ?></p>
-            <p class="card-text">Автор: <?php echo (empty($result_author['lastname']) ? "Пользователь удалён" : ($result_author['surname']) . " " . $result_author['lastname']) ?></p>
-            <p class="card-text">Дата: <?php echo unixDateToString(intval($result['created'])) ?></p>
-            <p class="card-text">Статус: <?php echo ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт") ?></p>
-            <p class="card-text">Категория: <?php echo $result_category['name']; ?></p>
+            <h5 class="card-title"><b>Название:</b> <?php echo $result['name'] ?></h5>
+            <p class="card-text"><b>Описание:</b> <?php echo $result['description'] ?></p>
+            <p class="card-text"><b>Автор:</b> <?php echo (empty($result_author['lastname']) ? "Пользователь удалён" : "<a href='/profile/".$result_author['id']."'>".($result_author['surname'])." ".$result_author['lastname'])."</a>" ?></p>
+            <p class="card-text"><b>Дата:</b> <?php echo unixDateToString(intval($result['created'])) ?></p>
+            <p class="card-text"><b>Статус:</b> <?php echo ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт") ?></p>
+            <p class="card-text"><b>Категория:</b> <?php echo $result_category['name']; ?></p>
             <hr>
             <h5 class="card-title">Файлы:</h5>
             <ul class="list-group">
