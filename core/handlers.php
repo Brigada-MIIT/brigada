@@ -280,8 +280,8 @@ function api_main_get_uploads() {
             }
             
             $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
+            $row['created'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
-            $row['created'] = unixDateToString(intval($row['created']));
             $row['author'] = $username;
             $data[] = $row;
         }
