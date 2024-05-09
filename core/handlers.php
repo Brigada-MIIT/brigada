@@ -282,7 +282,7 @@ function api_main_get_uploads() {
             }
             
             $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
-            $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".date("d m Y", intval($row['created']))."</a>";
+            $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".date("j F Y", intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['author'] = $username;
             $data[] = $row;
