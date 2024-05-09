@@ -237,7 +237,7 @@ function api_main_get_uploads() {
 
     $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
     if(!$query) die("MySQL error count query");
-    $count = $query->fetch_assoc['count'];
+    $count = $query->fetch_assoc()['count'];
 
     $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads` LIMIT $limit OFFSET $offset");
     if(!$query) die("MySQL error query");
