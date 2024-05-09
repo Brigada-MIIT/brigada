@@ -181,7 +181,7 @@ function uploads_view($args) {
     $query_category = $system->db()->query('SELECT * FROM `categories` WHERE `id` = "'.$result['category'].'"');
     $result_category = $query_category->fetch_assoc();
     //print_r($result);
-    echo "Имя загрузки: " . $result['name'];
+    /*echo "Имя загрузки: " . $result['name'];
     echo "<br>Описание загрузки: " . $result['description'];
     echo "<br>Автор загрузки: " . (empty($result_author['lastname']) ? "Пользователь удалён" : $result_author['lastname']);
     setlocale(LC_ALL, 'rus_RUS');
@@ -194,9 +194,9 @@ function uploads_view($args) {
     $count = (!empty($files) ? count($files) : 0);
     for($i = 0; $i < count($files); $i++) {
         echo "<br><a href='/uploads/files/download/".$files[$i]->id."' target='_blank'>".$files[$i]->name."</a>";
-    }
+    }*/
     $content = '../core/template/uploads/view.php';
-    //include '../core/template/default.php';
+    include '../core/template/default.php';
 }
 
 function uploads_edit($args) {
