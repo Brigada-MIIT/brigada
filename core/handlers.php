@@ -264,7 +264,7 @@ function api_main_get_uploads() {
     $count = $query->fetch_assoc()['count'];
 
     $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
-    WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
+    WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
     AND `status` = 1
     ORDER BY `$order` $orderDir 
     LIMIT $limit OFFSET $offset");
