@@ -25,8 +25,8 @@
                                         <!--<img src='microsoft_word_logo.png' alt='Microsoft Word' width='16' height='16' class='mr-1'>-->
                                         ".$files[$i]->name."
                                     </div>
-                                    <span class='ml-auto'>{{file_size}}</span>
                                 </a>
+                                <span class='ml-auto'>{{file_size}}</span>
                             </li>
                         ";
                     }
