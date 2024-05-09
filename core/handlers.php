@@ -281,7 +281,7 @@ function api_main_get_uploads() {
     $response = array(
         //"draw" => intval($_GET['draw']), // Номер текущего запроса
         "count" => intval($count), // Общее количество записей (без учета LIMIT и OFFSET)
-        "filtred_count" => $query->num_rows, // Количество записей после фильтрации (если используется поиск)
+        "filtred_count" => ($searchTerm == '') ? intval($count) : $query->num_rows, // Количество записей после фильтрации (если используется поиск)
         "data" => $data // Данные для отображения в таблице
     );
 
