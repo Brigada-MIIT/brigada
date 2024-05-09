@@ -273,7 +273,7 @@ function api_main_get_uploads() {
     if ($query->num_rows > 0) {
         while($row = $query->fetch_assoc()) {
             $row['id'] = intval($row['id']);
-            $row['created'] = unixDateToString($row['created']);
+            $row['created'] = unixDateToString(intval($row['created']));
             $data[] = $row;
         }
     }
