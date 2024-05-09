@@ -13,6 +13,8 @@
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Russian.json"
             },
+            "colReorder": true,
+            "resize": true,
             "processing": true,
             "serverSide": true,
             "ajax": function(data, callback, settings) {
