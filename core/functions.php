@@ -246,5 +246,6 @@ function fileIconName($name) {
         // 'txt', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'zip'
         default:
             return "file";
+            break;
     }
 }
