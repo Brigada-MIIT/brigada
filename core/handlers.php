@@ -235,10 +235,19 @@ function api_main_get_uploads() {
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
     $offset = ($page - 1) * $limit; // Смещение
     $searchTerm = isset($_REQUEST['search']) ? $_REQUEST['search'] : ''; // Термин поиска
-    //$orderBy = isset($_REQUEST['order']) ? $_REQUEST['order'] : 'id'; // Поле для сортировки
-    $orderBy = 'id';
+    $orderBy = isset($_REQUEST['order']) ? intval($_REQUEST['order']) : 0; // Поле для сортировки
     $orderDir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 'DESC'; // Направление сортировки
 
+    switch($orderBy) {
+        case 0:
+            $order = "id";
+        case 1:
+            $order = "name";
+        case 2:
+            $order = "created";
+        case 3:
+            $order = "author";
+    }
 
     $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
     if(!$query) die("MySQL error count query");
@@ -250,7 +259,7 @@ function api_main_get_uploads() {
     LIMIT $limit OFFSET $offset");
     if(!$query) die("SELECT `id`, `name`, `created`, `author` FROM `uploads`
     WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
-    ORDER BY `$orderBy` $orderDir 
+    ORDER BY `$order` $orderDir 
     LIMIT $limit OFFSET $offset"); //die("MySQL error query");
 
     $data = array();
