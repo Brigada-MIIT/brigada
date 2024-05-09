@@ -276,10 +276,10 @@ function api_main_get_uploads() {
             $user = $system->userinfo(intval($row['author']));
             $username = "Пользователь удалён";
             if($user) {
-                $username = "<a target='_blank' href='/profile/".$row['author']."'>".$user['surname']." ".$user['lastname']."</a>";
+                $username = "<a style='color: inherit' target='_blank' href='/profile/".$row['author']."'>".$user['surname']." ".$user['lastname']."</a>";
             }
             
-            $row['name'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
+            $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['created'] = unixDateToString(intval($row['created']));
             $row['author'] = $username;
