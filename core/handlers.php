@@ -235,15 +235,16 @@ function api_main_get_uploads() {
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
     $offset = ($page - 1) * $limit; // Смещение
 
-    /*$sql = "SELECT id, name, date, user FROM uploads LIMIT $limit OFFSET $offset";
-    $result = $conn->query($sql);*/
+    $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
+    if(!$query) die("MySQL error count query");
+    $count = $query->fetch_assoc['count'];
 
     $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads` LIMIT $limit OFFSET $offset");
     if(!$query) die("MySQL error query");
 
     $data = array();
     if ($query->num_rows > 0) {
-        $data['count'] = $query->num_rows;
+        $data['count'] = $count;
         while($row = $query->fetch_assoc()) {
             $row['id'] = intval($row['id']);
             $data['data'][] = $row;
