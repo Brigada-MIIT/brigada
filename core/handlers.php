@@ -247,6 +247,8 @@ function api_main_get_uploads() {
             $order = "created";
         case 3:
             $order = "author";
+        default:
+            $order = "id";
     }
 
     $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
