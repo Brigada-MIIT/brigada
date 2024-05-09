@@ -744,6 +744,7 @@ function api_files_upload() {
         
         array_push($files, array("id" => $file_id, "name" => $_FILES['Filedata']['name'], "size" => $_FILES['Filedata']['size']));
         $files = json_encode($files);
+        $db->set_charset("utf8");
         $query = $db->query("UPDATE `uploads` SET `files` = '$files' WHERE `uploads`.`id` = $upload_id;");
         if(!$query)
             res(0, "MySQL error (query updating upload)");
