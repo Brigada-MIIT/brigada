@@ -231,9 +231,7 @@ function api_main_get_uploads() {
     $db = $system->db();
 
     header('Content-Type: text/html; charset=utf-8');
-    $locale='ru_RU.UTF-8';
-    setlocale(LC_ALL, $locale);
-    putenv('LC_ALL='.$locale);
+    setlocale(LC_ALL, "ru_RU");
     
     $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
     if($limit > 100) die("limit should be < 100");
@@ -282,7 +280,7 @@ function api_main_get_uploads() {
             }
             
             $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
-            $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".date("j F Y", intval($row['created']))."</a>";
+            $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['author'] = $username;
             $data[] = $row;
