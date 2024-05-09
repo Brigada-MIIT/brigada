@@ -61,7 +61,7 @@
         <p class="page-title">Последние загрузки</p>
         <br class="d-sm-none">
         <?php if($system->auth() && $_user['ban_upload'] == 0) echo '
-            <button class="submit">Создать загрузку</button>'; ?>
+            <button class="submit" href="/uploads/create">Создать загрузку</button>'; ?>
     </div>
     <table id="fileTable" class="table table-striped table-bordered" style="background-color: #fff">
         <thead>
