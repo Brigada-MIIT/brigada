@@ -278,7 +278,8 @@ function api_main_get_uploads() {
                 $username = "<a target='_blank' href='/profile/".$row['author']."'>".$user['surname']." ".$user['lastname']."</a>";
             }
             
-            $row['id'] = "<a href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
+            $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
+            $row['name'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
             $row['created'] = unixDateToString(intval($row['created']));
             $row['author'] = $username;
             $data[] = $row;
