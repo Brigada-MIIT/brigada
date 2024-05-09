@@ -241,14 +241,19 @@ function api_main_get_uploads() {
     switch($orderBy) {
         case 0:
             $order = "id";
+            break;
         case 1:
             $order = "name";
+            break;
         case 2:
             $order = "created";
+            break;
         case 3:
             $order = "author";
+            break;
         default:
             $order = "id";
+            break;
     }
 
     $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
