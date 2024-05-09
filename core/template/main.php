@@ -12,6 +12,11 @@
             "serverSide": true,
             "ajax": {
                 url: '/api/main/get_uploads',
+                method: 'POST',
+                data: {
+                    "limit": data.length,
+                    "page": Math.ceil(data.start / data.length) + 1
+                },
                 dataSrc: ''
             },
             "columns": [
