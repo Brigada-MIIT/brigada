@@ -216,3 +216,7 @@ function unixDateToString($timestamp) {
 
     return $result;
 }    
+
+function countWhiteSpaces(s) {
+    return s.indexOf(' ');
+}

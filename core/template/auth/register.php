@@ -101,6 +101,20 @@
                         text: 'Пользователь с указанным Email-адресом уже существует',
                         footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Забыли пароль?</a>'
                     });
+                } else if (res.result == 7) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ошибка в заполнении полей',
+                        text: 'Вы ввели слишком много символов',
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
+                    });
+                } else if (res.result == 8) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ошибка в заполнении полей',
+                        text: 'В полях слишком много пробелов',
+                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Возникли вопросы?</a>'
+                    });
                 } else {
                     Swal.fire({
                         icon: 'error',
