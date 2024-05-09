@@ -252,3 +252,13 @@ function fileIconName($name) {
             break;
     }
 }
+
+function formatFileSize($size) {
+    $units = array('Б', 'кБ', 'МБ', 'ГБ', 'ТБ');
+
+    for ($i = 0; $size > 1024; $i++) {
+        $size /= 1024;
+    }
+
+    return round($size, 1) . ' ' . $units[$i];
+}
