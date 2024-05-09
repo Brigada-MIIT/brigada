@@ -266,7 +266,8 @@ function api_main_get_uploads() {
     $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
     WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
     ORDER BY `$order` $orderDir 
-    LIMIT $limit OFFSET $offset");
+    LIMIT $limit OFFSET $offset 
+    AND WHERE `status` = 1");
     if(!$query) die("MySQL error query");
 
     $data = array();
@@ -279,7 +280,7 @@ function api_main_get_uploads() {
             }
             
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
-            $row['name'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
+            //$row['name'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
             $row['created'] = unixDateToString(intval($row['created']));
             $row['author'] = $username;
             $data[] = $row;
