@@ -1,3 +1,17 @@
+<script>
+    function getReadableFileSizeString(fileSizeInBytes) {
+        var i = -1;
+        var byteUnits = [' кБ', ' МБ', ' ГБ', ' ТБ', 'PB', 'EB', 'ZB', 'YB'];
+        do {
+            fileSizeInBytes /= 1024;
+            i++;
+        } while (fileSizeInBytes > 1024);
+
+        return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+    }
+
+    document.getElementById('size').value = getReadableFileSizeString(<?php echo $files[$i]->size ?>);
+</script>
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
@@ -24,7 +38,7 @@
                                         <img src='/assets/img/files/".fileIconName(substr($files[$i]->name,strripos($files[$i]->name,'.')+1)).".png' width='16' height='16' class='mr-1'>
                                         ".$files[$i]->name."
                                     </a>
-                                    <span>".$files[$i]->size."</span>
+                                    <span id='size'></span>
                                 </div>
                             </li>
                         ";
