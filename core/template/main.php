@@ -24,10 +24,10 @@
                             draw: data.draw,
                             recordsTotal: result.count,
                             recordsFiltered: result.count,
-                            data: result
+                            data: result.data
                         });
                     },
-                    dataSrc: 'data'
+                    dataSrc: ''
                 });
             },
             "columns": [
