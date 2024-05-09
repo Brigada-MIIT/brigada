@@ -259,7 +259,7 @@ function api_main_get_uploads() {
             break;
     }
 
-    $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
+    $query = $db->query("SELECT COUNT(*) as count FROM `uploads` WHERE `status` = 1");
     if(!$query) die("MySQL error count query");
     $count = $query->fetch_assoc()['count'];
 
