@@ -742,7 +742,7 @@ function api_files_upload() {
         $result = $query->fetch_assoc();
         $file_id = $result['id'];
         
-        array_push($files, array("id" => $file_id, "name" => $_FILES['Filedata']['name']));
+        array_push($files, array("id" => $file_id, "name" => $_FILES['Filedata']['name'], "size" => $_FILES['Filedata']['size']));
         $files = json_encode($files);
         $query = $db->query("UPDATE `uploads` SET `files` = '$files' WHERE `uploads`.`id` = $upload_id;");
         if(!$query)
