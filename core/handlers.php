@@ -285,15 +285,12 @@ function api_main_get_uploads() {
         }
     }
 
-    // Формирование ответа в формате JSON
     $response = array(
-        //"draw" => intval($_GET['draw']), // Номер текущего запроса
-        "count" => intval($count), // Общее количество записей (без учета LIMIT и OFFSET)
-        "filtred_count" => ($searchTerm == '') ? intval($count) : $query->num_rows, // Количество записей после фильтрации (если используется поиск)
-        "data" => $data // Данные для отображения в таблице
+        "count" => intval($count),
+        "filtred_count" => ($searchTerm == '') ? intval($count) : $query->num_rows,
+        "data" => $data
     );
 
-    // Возвращение данных в формате JSON
     echo json_encode($response);
 }
 
