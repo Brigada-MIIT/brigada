@@ -32,7 +32,7 @@
                 ?>
             </ul>
             <?php if(!$check2) echo "
-                <a href='/uploads/edit/".$result['id']."' class='btn ".($result['status'] == -1 && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")) ? "disabled " : ""."btn-primary float-right mr-2' style='margin-top: 20px;'>Редактировать пост</a>"; ?>
+                <a href='/uploads/edit/".$result['id']."' class='btn ".(($result['status'] == -1 && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS")) ? "disabled " : "")."btn-primary float-right mr-2' style='margin-top: 20px;'>Редактировать пост</a>"; ?>
         </div>
     </div>
 </div>
