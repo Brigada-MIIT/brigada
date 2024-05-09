@@ -361,7 +361,7 @@ function api_register() {
         res(5);
     if (strlen($lastname) > 25 || strlen($surname) > 25 || strlen($patronymic) > 30)
         res(7);
-    if (countWhiteSpaces($lastname) > 2 || countWhiteSpaces($surname) > 2 || countWhiteSpaces($patronymic) > 1)
+    if (countWhiteSpaces($lastname) >= 2 || countWhiteSpaces($surname) >= 2 || countWhiteSpaces($patronymic) >= 1)
         res(8);
 
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
