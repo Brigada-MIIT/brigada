@@ -243,9 +243,10 @@ function api_main_get_uploads() {
 
     $data = array();
     if ($query->num_rows > 0) {
+        $data['count'] = $query->num_rows;
         while($row = $query->fetch_assoc()) {
             $row['id'] = intval($row['id']);
-            $data[] = $row;
+            $data['data'][] = $row;
         }
     }
 

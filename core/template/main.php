@@ -22,12 +22,12 @@
                         let result = JSON.parse(response);
                         callback({
                             draw: data.draw,
-                            recordsTotal: result.length,
-                            recordsFiltered: result.length,
+                            recordsTotal: result.count,
+                            recordsFiltered: result.count,
                             data: result
                         });
                     },
-                    dataSrc: ''
+                    dataSrc: 'data'
                 });
             },
             "columns": [
