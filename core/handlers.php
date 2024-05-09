@@ -234,24 +234,46 @@ function api_main_get_uploads() {
     if($limit > 100) die("limit should be < 100");
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
     $offset = ($page - 1) * $limit; // Смещение
+    $searchTerm = isset($_REQUEST['search']) ? $_REQUEST['search'] : ''; // Термин поиска
+    $orderBy = isset($_REQUEST['order']) ? $_REQUEST['order'] : 'id'; // Поле для сортировки
+    $orderDir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 'DESC'; // Направление сортировки
+
 
     $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
     if(!$query) die("MySQL error count query");
     $count = $query->fetch_assoc()['count'];
 
-    $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads` ORDER BY `id` DESC LIMIT $limit OFFSET $offset");
+    $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
+    WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
+    ORDER BY `$orderBy` $orderDir 
+    LIMIT $limit OFFSET $offset");
     if(!$query) die("MySQL error query");
 
     $data = array();
     if ($query->num_rows > 0) {
-        $data['count'] = $count;
         while($row = $query->fetch_assoc()) {
             $row['id'] = intval($row['id']);
-            $data['data'][] = $row;
+            $data[] = $row;
         }
     }
 
-    echo json_encode($data);
+    // SQL запрос для получения количества отфильтрованных записей
+    $query = $db->query("SELECT COUNT(*) AS count FROM `uploads`
+    WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
+    ORDER BY `$orderBy` $orderDir 
+    LIMIT $limit OFFSET $offset");
+    $filtred_count = $query->fetch_assoc()['count'];
+
+    // Формирование ответа в формате JSON
+    $response = array(
+        //"draw" => intval($_GET['draw']), // Номер текущего запроса
+        "count" => $count, // Общее количество записей (без учета LIMIT и OFFSET)
+        "filtred_count" => $filtred_count, // Количество записей после фильтрации (если используется поиск)
+        "data" => $data // Данные для отображения в таблице
+    );
+
+    // Возвращение данных в формате JSON
+    echo json_encode($response);
 }
 
 function api_login() {

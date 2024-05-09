@@ -16,14 +16,17 @@
                     method: "POST",
                     data: {
                         "limit": data.length,
-                        "page": Math.ceil(data.start / data.length) + 1
+                        "page": Math.ceil(data.start / data.length) + 1,
+                        "search": data.search.value,
+                        "order": data.order[0].column,
+                        "dir": data.order[0].dir
                     },
                     success: function(response) {
                         let result = JSON.parse(response);
                         callback({
                             draw: data.draw,
                             recordsTotal: result.count,
-                            recordsFiltered: result.count,
+                            recordsFiltered: result.filtred_count,
                             data: result.data
                         });
                     },
@@ -38,7 +41,8 @@
             ],
             "paging": true,
             "lengthMenu": [ 10, 25, 50 ], // Опции выбора количества строк на странице
-            "pageLength": 10 // Количество строк на странице по умолчанию
+            "pageLength": 10, // Количество строк на странице по умолчанию
+            "order": [[ 2, "desc" ]]
         });
   });
 </script>
