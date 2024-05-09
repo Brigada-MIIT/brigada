@@ -264,15 +264,14 @@ function api_main_get_uploads() {
     WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
     ORDER BY `$order` $orderDir 
     LIMIT $limit OFFSET $offset");
-    if(!$query) die("SELECT `id`, `name`, `created`, `author` FROM `uploads`
-    WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
-    ORDER BY `$order` $orderDir 
-    LIMIT $limit OFFSET $offset"); //die("MySQL error query");
+    if(!$query) die("MySQL error query");
 
+    setlocale(LC_ALL, 'ru_RU', 'ru_RU.UTF-8', 'ru', 'russian');  
     $data = array();
     if ($query->num_rows > 0) {
         while($row = $query->fetch_assoc()) {
             $row['id'] = intval($row['id']);
+            $row['created'] = date("j F Y", intval($row['created'])); // March 10, 2001, 5:16 pm
             $data[] = $row;
         }
     }
