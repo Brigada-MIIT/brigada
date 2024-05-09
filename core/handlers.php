@@ -257,7 +257,7 @@ function api_main_get_uploads() {
 
     $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
     WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
-    ORDER BY `$orderBy` $orderDir 
+    ORDER BY `$order` $orderDir 
     LIMIT $limit OFFSET $offset");
     if(!$query) die("SELECT `id`, `name`, `created`, `author` FROM `uploads`
     WHERE `name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%'
