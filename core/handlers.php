@@ -230,7 +230,7 @@ function api_main_get_uploads() {
         $system->printError(100);
     $db = $system->db();
     header('Content-Type: text/html; charset=utf-8');
-    setlocale(LC_ALL, 'ru_RU', 'ru_RU.UTF-8', 'ru', 'russian');  
+    setlocale(LC_ALL, 'ru_RU');  
     $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
     if($limit > 100) die("limit should be < 100");
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
