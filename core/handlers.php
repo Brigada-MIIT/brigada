@@ -231,7 +231,7 @@ function api_main_get_uploads() {
     $db = $system->db();
 
     header('Content-Type: text/html; charset=utf-8');
-    setlocale(LC_ALL, 'ru_RU.utf8');
+    setlocale(LC_ALL, 'ru_RU');
     
     $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
     if($limit > 100) die("limit should be < 100");
