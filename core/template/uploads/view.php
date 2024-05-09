@@ -31,6 +31,7 @@
                     }
                 ?>
             </ul>
+            <a href="#" class="btn btn-primary float-right mr-2">Редактировать пост</a>
         </div>
     </div>
 </div>
