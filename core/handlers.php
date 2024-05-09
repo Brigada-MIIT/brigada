@@ -289,7 +289,7 @@ function api_main_get_uploads() {
             12 => 'декабря'
         );
     
-        $result = $day " . $months[$month] . " $year;
+        $result = $day . " " . $months[$month] . " " . $year;
     
         return $result;
     }    
