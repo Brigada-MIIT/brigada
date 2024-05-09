@@ -277,8 +277,8 @@ function api_main_get_uploads() {
             if($user) {
                 $username = "<a href='/profile/".$row['author']."'>".$user['surname']." ".$user['lastname']."</a>";
             }
-        
-            $row['id'] = intval($row['id']);
+            
+            $row['id'] = "<a href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['created'] = unixDateToString(intval($row['created']));
             $row['author'] = $username;
             $data[] = $row;
