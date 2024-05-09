@@ -6,10 +6,10 @@
         <div class="card-body">
             <h5 class="card-title">Название: <?php echo $result['name'] ?></h5>
             <p class="card-text">Описание: <?php echo $result['description'] ?></p>
-            <p class="card-text">Автор: <?php echo (empty($result_author['lastname']) ? "Пользователь удалён" : ($result_author['lastname']) . " " . $result_author['surname']) ?></p>
-            <p class="card-text">Дата: <?php echo unixDateToString($result['created']) ?></p>
+            <p class="card-text">Автор: <?php echo (empty($result_author['lastname']) ? "Пользователь удалён" : ($result_author['ыгктфьу']) . " " . $result_author['lastname']) ?></p>
+            <p class="card-text">Дата: <?php echo unixDateToString(intval($result['created'])) ?></p>
             <p class="card-text">Статус: <?php echo ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт") ?></p>
-            <p class="card-text">Категория: <?php $result_category['name']; ?></p>
+            <p class="card-text">Категория: <?php echo $result_category['name']; ?></p>
             <hr>
             <h5 class="card-title">Файлы:</h5>
             <ul class="list-group">
