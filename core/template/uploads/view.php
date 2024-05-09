@@ -22,6 +22,15 @@
                         <span class="ml-auto">{{file_size}}</span>
                     </a>
                 </li>
+                <li class="list-group-item">
+                    <a href="/uploads/files/download/{{id}}" class="btn btn-link d-flex justify-content-between align-items-center">
+                        <div>
+                            <!--<img src="microsoft_word_logo.png" alt="Microsoft Word" width="16" height="16" class="mr-1">-->
+                            {{file_name}}
+                        </div>
+                        <span class="ml-auto">{{file_size}}</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
