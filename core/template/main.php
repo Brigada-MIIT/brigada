@@ -19,13 +19,12 @@
                         "page": Math.ceil(data.start / data.length) + 1
                     },
                     success: function(response) {
-                        console.log(data);
-                        console.log(response);
+                        let result = JSON.parse(response);
                         callback({
                             draw: data.draw,
-                            recordsTotal: response.length,
-                            recordsFiltered: response.length,
-                            data: JSON.parse(response)
+                            recordsTotal: result.length,
+                            recordsFiltered: result.length,
+                            data: result
                         });
                     },
                     dataSrc: ''
