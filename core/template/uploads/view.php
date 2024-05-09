@@ -31,7 +31,7 @@
                     }
                 ?>
             </ul>
-            <?php if(!$check) echo "
+            <?php if(!$check2) echo "
                 <a href='/uploads/edit/".$result['id']."' class='btn btn-primary float-right mr-2' style='margin-top: 20px;'>Редактировать пост</a>"; ?>
         </div>
     </div>

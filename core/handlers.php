@@ -173,6 +173,7 @@ function uploads_view($args) {
         $system->printError(404);
     $result = $query->fetch_assoc();
     $check = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")); // владелец или админ?
+    $check2 = ($result['author'] != $system_user_id && !$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"));
     if($result['status'] == 0 || $result['status'] == -1) {
         if($check)
             $system->printError(403);
