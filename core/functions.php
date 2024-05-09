@@ -191,3 +191,28 @@ function RandomString($length) {
 
     return $key;
 }
+
+function unixDateToString($timestamp) {
+    $day = gmdate('j', $timestamp);
+    $month = gmdate('n', $timestamp);
+    $year = gmdate('Y', $timestamp);
+
+    $months = array(
+        1 => 'января',
+        2 => 'февраля',
+        3 => 'марта',
+        4 => 'апреля',
+        5 => 'мая',
+        6 => 'июня',
+        7 => 'июля',
+        8 => 'августа',
+        9 => 'сентября',
+        10 => 'октября',
+        11 => 'ноября',
+        12 => 'декабря'
+    );
+
+    $result = $day . " " . $months[$month] . " " . $year;
+
+    return $result;
+}    
