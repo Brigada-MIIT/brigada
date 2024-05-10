@@ -1,27 +1,15 @@
-<style>
-    .profile-card {
-      max-width: 400px;
-    }
-    .avatar {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto;
-    }
-</style>
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card profile-card">
-          <div class="card-body text-center">
-            <img src="avatar.jpg" class="avatar rounded-circle mb-3" alt="Avatar">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="avatar.jpg" class="card-img-top" alt="Avatar">
+          <div class="card-body">
             <h5 class="card-title">Имя пользователя (ФИО)</h5>
             <p class="card-text">Роль пользователя</p>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-md-12">
+      <div class="col-md-8">
         <h2>Загрузки пользователя</h2>
         <hr>
         <table id="uploadsTable" class="table table-striped table-bordered" style="width:100%">
