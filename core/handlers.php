@@ -75,7 +75,7 @@ function profile($args) {
 function profile_uploads() {
     global $system, $system_user_id, $_user;
     if (!$system->auth()) {
-        setcookie("last", "/profile/uploads", time()-1, "/");
+        setcookie("last", "/profile/uploads", time()+(60*60*24*7), "/");
         Location("/app/auth");
     }
     $db = $system->db();
@@ -335,8 +335,11 @@ function api_login() {
 
     if(empty($_COOKIE['last']))
         res(1);
-    else
-        res(1, trim($_COOKIE['last']));
+    else {
+        $location = trim($_COOKIE['last']);
+        setcookie("last", $location, time()-1, "/");
+        res(1, $location);
+    }
 }
 
 function api_register() {
