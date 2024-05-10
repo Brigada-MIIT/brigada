@@ -44,8 +44,10 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <br><br><br><button type="submit" class="submit" onclick="save();">Сохранить</button>
-                <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить загрузку</button>' ?>
+                <div class="btn-group">
+                    <button type="submit" class="submit" onclick="save();">Сохранить</button>
+                    <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить загрузку</button>' ?>
+                </div>
             </div>
         </div>
     </div>
