@@ -1,9 +1,7 @@
 <div class="container mt-5">
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title">Имя Фамилия</h2>
-        <p class="card-text">Отчество</p>
-        <img src="avatar.jpg" class="img-fluid rounded-circle my-3" alt="Avatar">
+        <img src="/assets/img/avatar.jpg" class="img-fluid rounded-circle my-3" alt="Avatar"><h2 class="card-title">Фамилия Имя Отчество</h2>
         <p><strong>Роль:</strong> Администратор</p>
         <table id="downloadsTable" class="table table-striped table-bordered" style="width:100%">
           <thead>
