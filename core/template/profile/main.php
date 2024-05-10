@@ -5,7 +5,9 @@
             <img src="/assets/img/avatar.jpg" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
             <h2 class="card-title" style="margin-left: 20px;">Фамилия Имя Отчество</h2>
         </div>
+        <hr>
         <p><strong>Роль:</strong> Администратор</p>
+        <p><strong>Информация о себе:</strong> Не курю</p>
         <hr>
         <h3>Последние загрузки:</h3>
         <table id="downloadsTable" class="table table-striped table-bordered" style="width:100%">
