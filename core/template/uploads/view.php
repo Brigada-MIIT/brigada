@@ -20,11 +20,11 @@
                         echo "
                             <li class='list-group-item'>
                                 <div class='d-flex justify-content-between align-items-center'>
-                                    <a href='/uploads/files/download/".$files[$i]->id."' target='_blank' class='btn btn-link'>
+                                    <a href='/uploads/files/download/".$files[$i]->id."' target='_blank' class='btn btn-link' style='text-overflow: ellipsis; overflow: hidden;'>
                                         <img src='/assets/img/files/".fileIconName(substr($files[$i]->name,strripos($files[$i]->name,'.')+1)).".png' width='16' height='16' class='mr-1'>
                                         ".$files[$i]->name."
                                     </a>
-                                    <span id='size'>".formatFileSize($files[$i]->size)."</span>
+                                    <span id='size' style='white-space: nowrap;'>".formatFileSize($files[$i]->size)."</span>
                                 </div>
                             </li>
                         ";
