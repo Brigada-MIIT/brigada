@@ -47,7 +47,7 @@
                 if(!res.text)
                     location.replace("/");
                 else
-                location.replace(res.text);
+                    location.replace(res.text);
             } else if (res.result == 4) {
                 Swal.fire({
                     icon: 'error',
