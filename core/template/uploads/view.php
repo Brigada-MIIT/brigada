@@ -20,7 +20,7 @@
                         echo "
                             <li class='list-group-item'>
                                 <div class='d-flex justify-content-between align-items-center'>
-                                    <a href='/uploads/files/download/".$files[$i]->id."' target='_blank' class='btn btn-link' style='text-overflow: ellipsis; overflow: hidden;'>
+                                    <a href='/uploads/files/download/".$files[$i]->id."' target='_blank' class='btn btn-link' style='text-overflow: ellipsis; overflow: hidden;' title='".$files[$i]->name." (".formatFileSize($files[$i]->size).")'>
                                         <img src='/assets/img/files/".fileIconName(substr($files[$i]->name,strripos($files[$i]->name,'.')+1)).".png' width='16' height='16' class='mr-1'>
                                         ".$files[$i]->name."
                                     </a>
