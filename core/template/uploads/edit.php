@@ -46,7 +46,7 @@
             <div class="in">
                 <div class="btn-group">
                     <button type="submit" class="submit" onclick="save();">Сохранить</button>
-                    <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить загрузку</button>' ?>
+                    <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button type="submit" class="submit" onclick="submit_delete();">Удалить загрузку</button>' ?>
                 </div>
             </div>
         </div>
