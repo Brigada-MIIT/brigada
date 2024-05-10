@@ -427,6 +427,8 @@ function logout() {
     $db->query("DELETE FROM `users_session` WHERE `id` = '$id' AND `usid` = '$usid'");
     setcookie("id", $id, time()-1, "/");
     setcookie("usid", $solt, time()-1, "/");
+    if(!empty($_COOKIE['last']))
+        setcookie("last", trim($_COOKIE['last']), time()-1, "/");
     Location("/");
 }
 
