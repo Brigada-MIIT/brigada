@@ -14,17 +14,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/app/users', 'users');
     $r->addRoute('GET', '/app/users/edit/{id:\d+}', 'users_edit');
     $r->addRoute('GET', '/app/settings', 'settings');
-    $r->addRoute('GET', '/profile/password', 'profile_password');
-    $r->addRoute('GET', '/profile/avatar', 'profile_avatar');
+    $r->addRoute('GET', '/profile/{id:\d+}', 'profile');
+    $r->addRoute('GET', '/profile/uploads', 'profile_uploads');
+    /*$r->addRoute('GET', '/profile/password', 'profile_password');
+    $r->addRoute('GET', '/profile/avatar', 'profile_avatar');*/
     $r->addRoute(['GET', 'POST'], '/uploads/create', 'uploads_create');
     $r->addRoute('GET', '/uploads/files/{id:\d+}', 'uploads_files');
     $r->addRoute('GET', '/uploads/files/download/{id:\d+}', 'uploads_files_download');
     $r->addRoute('GET', '/uploads/view/{id:\d+}', 'uploads_view');
     $r->addRoute('GET', '/uploads/edit/{id:\d+}', 'uploads_edit');
     //*** API ***\\
-    $r->addRoute(['GET', 'POST'], '/api/main/get_uploads', 'api_main_get_uploads');
+    $r->addRoute('POST', '/api/main/get_uploads', 'api_main_get_uploads');
     $r->addRoute('POST', '/api/login', 'api_login');
-    $r->addRoute('GET', '/api/login/get', 'api_login');
     $r->addRoute('POST', '/api/register', 'api_register');
     $r->addRoute('POST', '/email/resend/{token}', 'api_email_resend');
     $r->addRoute('GET', '/email/verify/{token}', 'api_email_verify');
