@@ -20,7 +20,6 @@ function auth() {
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/auth/login.php';
     include '../core/template/default.php';
-    //include '../core/template/auth/login_old.php';
 }
 
 function register() {
@@ -31,7 +30,6 @@ function register() {
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/auth/register.php';
     include '../core/template/default.php';
-    //include '../core/template/auth/register.php';
 }
 
 function users() {
@@ -65,6 +63,24 @@ function settings() {
     include '../core/template/default.php';
 }
 
+function profile() {
+    global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        Location("/app/auth");
+    $db = $system->db();
+    $content = '../core/template/profile/main.php';
+    include '../core/template/default.php';
+}
+
+function profile_uploads() {
+    global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        Location("/app/auth");
+    $db = $system->db();
+    $content = '../core/template/profile/uploads.php';
+    include '../core/template/default.php';
+}
+
 function profile_password() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CHANGE_PASSWORD"))
@@ -91,7 +107,6 @@ function uploads_create() {
     $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/uploads/create.php';
     include '../core/template/default.php';
-    //include '../core/template/uploads/create.php';
 }
 
 function uploads_files($args) {
@@ -112,12 +127,9 @@ function uploads_files($args) {
         exit("Загрузка файлов запрещена");
     $content = '../core/template/uploads/files.php';
     include '../core/template/default.php';
-    //include '../core/template/uploads/files.php';
 }
 
 function uploads_files_download($args) {
-    /*error_reporting(-1);
-    ini_set('display_errors', 'On');*/
     global $system, $system_user_id, $_user;
     if (!$system->auth())
         $system->printError(103);
@@ -182,21 +194,6 @@ function uploads_view($args) {
     $result_author = $query_author->fetch_assoc();
     $query_category = $system->db()->query('SELECT * FROM `categories` WHERE `id` = "'.$result['category'].'"');
     $result_category = $query_category->fetch_assoc();
-    //print_r($result);
-    /*echo "Имя загрузки: " . $result['name'];
-    echo "<br>Описание загрузки: " . $result['description'];
-    echo "<br>Автор загрузки: " . (empty($result_author['lastname']) ? "Пользователь удалён" : $result_author['lastname']);
-    setlocale(LC_ALL, 'rus_RUS');
-    echo "<br>Дата создания: " . strftime("%a, %d/%m/%Y", $result['created']);
-    if($result['updated']) echo "<br>Дата изменения: " . strftime("%a, %d/%m/%Y", $result['updated']);
-    if(!$check) echo "<br>Статус: " . ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыт");
-    echo "<br>Категория: " . $result_category['name'];
-    echo "<br><br><b>ФАЙЛЫ:</b><br>";
-    $files = json_decode($result['files']);
-    $count = (!empty($files) ? count($files) : 0);
-    for($i = 0; $i < count($files); $i++) {
-        echo "<br><a href='/uploads/files/download/".$files[$i]->id."' target='_blank'>".$files[$i]->name."</a>";
-    }*/
     $content = '../core/template/uploads/view.php';
     include '../core/template/default.php';
 }
@@ -392,17 +389,6 @@ function api_email_resend($args) {
     $token = $args['token'];
     $link = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc()['link_to_admin'];
     $verification = $system->send_email_verification($token);
-    /* switch($verification) {
-        case 1:
-            echo "Письмо успешно переотправлено. Если письмо не было доставлено, попробуйте через 5 минут или обратитесь к <a href='".$link."'>администратору</a>.<br><b>Не забудьте проверить папку спама!<b>";
-            break;
-        case 2:
-            echo "Прежде чем попробовать снова, подождите 5 минут. Если после нескольких попыток переотправки письмо так и не приходит, обратитесь к <a href='".$link."'>администратору</a>. <br><b>Не забудьте проверить папку спама!<b>";
-            break;
-        default:
-            echo "Произошла ошибка при отправке письма. Обратитесь к <a href='".$link."'>администратору</a>.";
-            break;
-    } */
     res($verification);
 }
 
@@ -522,11 +508,9 @@ function api_users_permissions() {
     for($i = 0; $i < sizeof($data); $i++) {
         if($data[$i][0] == "id") continue;
         if($data[$i][1] && $system->haveUserPermission($_user['id'], $data[$i][0])) {
-            //echo '<b>True</b> ' . $data[$i][0] . "<br>";
             $db->query("UPDATE `permissions` SET ".$data[$i][0]." = 1 WHERE `userid` = $user_id");
         }
         else if(!$data[$i][1] && $system->haveUserPermission($_user['id'], $data[$i][0])) {
-            //echo 'False ' . $data[$i][0] . "<br>";
             $db->query("UPDATE `permissions` SET ".$data[$i][0]." = 0 WHERE `userid` = $user_id");
         }
     }
@@ -546,7 +530,7 @@ function api_settings_update() {
 
 function api_user_changepassword() {
     global $system, $system_user_id, $_user;
-    if (!$system->auth()) //(!$system->haveUserPermission($system_user_id, "CHANGE_PASSWORD"))
+    if (!$system->auth())
         Location("/");
     if(empty($_REQUEST['password'])) { echo 123; return; };
 
