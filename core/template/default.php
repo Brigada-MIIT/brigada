@@ -52,7 +52,7 @@
                                 '. $_user['surname'] .'
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: auto; right: 0">
-                                <a class="dropdown-item" href="/profile">Профиль</a>
+                                <a class="dropdown-item" href="/profile/'.$system_user_id.'">Профиль</a>
                                 <a class="dropdown-item" href="/profile/uploads">Мои загрузки</a>';
                             if($system->haveUserPermission($system_user_id, "CREATE_UPLOADS") && $system->userinfo($system_user_id)['ban_upload'] == 0) echo '
                                 <a class="dropdown-item" href="/uploads/create">Создать загрузку</a>';

@@ -63,10 +63,10 @@ function settings() {
     include '../core/template/default.php';
 }
 
-function profile() {
+function profile($args) {
     global $system, $system_user_id, $_user;
-    if (!$system->auth())
-        Location("/app/auth");
+    if($system->auth() && $_user['ban'] != 0)
+        $system->printError(100);
     $db = $system->db();
     $content = '../core/template/profile/main.php';
     include '../core/template/default.php';
