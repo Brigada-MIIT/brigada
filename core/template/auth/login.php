@@ -44,8 +44,10 @@
                     footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Забыли пароль?</a>'
                 });
             } else if (res.result == 1) {
-                $(".res").html('');
-                location.replace("/");
+                if(!res.text)
+                    location.replace("/");
+                else
+                location.replace(res.text);
             } else if (res.result == 4) {
                 Swal.fire({
                     icon: 'error',

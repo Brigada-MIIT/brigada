@@ -74,8 +74,10 @@ function profile($args) {
 
 function profile_uploads() {
     global $system, $system_user_id, $_user;
-    if (!$system->auth())
+    if (!$system->auth()) {
+        setcookie("last", "/profile/uploads", time()-1, "/");
         Location("/app/auth");
+    }
     $db = $system->db();
     $content = '../core/template/profile/uploads.php';
     include '../core/template/default.php';
@@ -331,7 +333,10 @@ function api_login() {
         setcookie("usid", $solt, time()+(60*60*24*7), "/");
     }
 
-    res(1);
+    if(empty($_COOKIE['last']))
+        res(1);
+    else
+        res(1, trim($_COOKIE['last']));
 }
 
 function api_register() {
