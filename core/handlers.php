@@ -562,7 +562,7 @@ function api_profile_get_uploads_self() {
     if(!$query) die("MySQL error count query");
     $count = $query->fetch_assoc()['count'];
 
-    $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
+    $query = $db->query("SELECT `id`, `name`, `created`, `status` FROM `uploads`
     WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
     AND `author` = $system_user_id
     ORDER BY `$order` $orderDir 
@@ -575,7 +575,6 @@ function api_profile_get_uploads_self() {
             $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
             $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
-            $row['status'] = intval($row['status']);
             $row['status'] = ($row['status'] != -1 ? (($row['status'] == 1) ? "Опубликовано" : "Не опубликовано") : "Скрыто администратором");
             $data[] = $row;
         }
