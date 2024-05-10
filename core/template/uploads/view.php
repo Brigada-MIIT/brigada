@@ -8,7 +8,7 @@
             <p class="card-text"><b>Описание:</b> <?php echo $result['description'] ?></p>
             <p class="card-text"><b>Автор:</b> <?php echo (empty($result_author['lastname']) ? "Пользователь удалён" : "<a target='_blank' href='/profile/".$result_author['id']."'>".($result_author['surname'])." ".$result_author['lastname'])."</a>" ?></p>
             <p class="card-text"><b>Дата:</b> <?php echo unixDateToString(intval($result['created'])) ?></p>
-            <p class="card-text"><b>Статус:</b> <?php echo ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликован" : "Не опубликован") : "Скрыто администратором") ?></p>
+            <p class="card-text"><b>Статус:</b> <?php echo ($result['status'] != -1 ? (($result['status'] == 1) ? "Опубликовано" : "Не опубликовано") : "Скрыто администратором") ?></p>
             <p class="card-text"><b>Категория:</b> <?php echo $result_category['name']; ?></p>
             <hr>
             <h5 class="card-title"><b>Файлы:</b></h5>

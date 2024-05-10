@@ -517,6 +517,78 @@ function api_users_permissions() {
     res(1, "Права успешно обновлены!");
 }
 
+function api_profile_get_uploads() {
+
+}
+
+function api_profile_get_uploads_self() {
+    global $system, $system_user_id, $_user;
+    if(!$system->auth())
+        res(0);
+    if($_user['ban'] != 0)
+        $system->printError(100);
+    $db = $system->db();
+
+    header('Content-Type: text/html; charset=utf-8');
+    setlocale(LC_ALL, "ru_RU");
+    
+    $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
+    if($limit > 100) die("limit should be < 100");
+    $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
+    $offset = ($page - 1) * $limit; // Смещение
+    $searchTerm = isset($_REQUEST['search']) ? $_REQUEST['search'] : ''; // Термин поиска
+    $orderBy = isset($_REQUEST['order']) ? intval($_REQUEST['order']) : 0; // Поле для сортировки
+    $orderDir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 'DESC'; // Направление сортировки
+
+    switch($orderBy) {
+        case 0:
+            $order = "id";
+            break;
+        case 1:
+            $order = "name";
+            break;
+        case 2:
+            $order = "created";
+            break;
+        case 3:
+            $order = "status";
+            break;
+        default:
+            $order = "id";
+            break;
+    }
+
+    $query = $db->query("SELECT COUNT(*) as count FROM `uploads` WHERE `author` = $system_user_id");
+    if(!$query) die("MySQL error count query");
+    $count = $query->fetch_assoc()['count'];
+
+    $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
+    WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
+    AND `author` = $system_user_id
+    ORDER BY `$order` $orderDir 
+    LIMIT $limit OFFSET $offset");
+    if(!$query) die("MySQL error query");
+
+    $data = array();
+    if ($query->num_rows > 0) {
+        while($row = $query->fetch_assoc()) {
+            $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
+            $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
+            $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
+            $row['status'] = ($row['status'] != -1 ? (($row['status'] == 1) ? "Опубликовано" : "Не опубликовано") : "Скрыто администратором");
+            $data[] = $row;
+        }
+    }
+
+    $response = array(
+        "count" => intval($count),
+        "filtred_count" => ($searchTerm == '') ? intval($count) : $query->num_rows,
+        "data" => $data
+    );
+
+    echo json_encode($response);
+}
+
 function api_settings_update() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS"))
