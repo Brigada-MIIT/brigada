@@ -3,6 +3,8 @@
       <div class="card-body">
         <img src="/assets/img/avatar.jpg" class="img-fluid rounded-circle my-3" alt="Avatar"><h2 class="card-title">Фамилия Имя Отчество</h2>
         <p><strong>Роль:</strong> Администратор</p>
+        <hr>
+        <h3>Последние загрузки</h3>
         <table id="downloadsTable" class="table table-striped table-bordered" style="width:100%">
           <thead>
             <tr>
