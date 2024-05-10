@@ -6,6 +6,10 @@ function main() {
         Location("/app/auth");*/    
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
+    if(!empty($_COOKIE['last'])) {
+        $location = trim($_COOKIE['last']);
+        setcookie("last", $location, time()-1, "/");
+    }
     $title = "Бригада | Главная";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/main.php';
