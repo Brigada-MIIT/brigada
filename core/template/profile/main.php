@@ -7,11 +7,13 @@
                 <div class="card-body">
                     <h5 class="card-title">Имя пользователя (ФИО)</h5>
                     <p class="card-text">Роль пользователя</p>
-                    <img src="avatar.jpg" class="img-fluid rounded-circle" alt="Avatar">
+                    <img src="/assets/img/avatar.jpg" class="img-fluid rounded-circle" alt="Avatar">
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
             <h2>Загрузки пользователя</h2>
             <hr>
             <table id="uploadsTable" class="table table-striped table-bordered" style="width:100%">
@@ -36,7 +38,7 @@
                         <td>02.01.2022</td>
                         <td>Не опубликован</td>
                     </tr>
-            <!-- Добавьте больше строк, если нужно -->
+        <!-- Добавьте больше строк, если нужно -->
                 </tbody>
             </table>
         </div>
