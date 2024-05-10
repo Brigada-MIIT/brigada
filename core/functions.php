@@ -100,6 +100,12 @@ class System {
     }
     function printError($error) {
         include __DIR__ . "/template/errors/" . $error . '.php';
+        if($error == 403) {
+            if(!empty($_COOKIE['last'])) {
+                $location = trim($_COOKIE['last']);
+                setcookie("last", $location, time()-1, "/");
+            }
+        }
         die();
     }
     function enabled_2fa($id) {
@@ -173,7 +179,10 @@ function res($code, $text = false) {
         exit(json_encode(["result" => $code]));
 }
 
-function Location($location) {
+function Location($location = "/", $last = false) {
+    if($last) {
+        setcookie("last", $last, time()+(60*60*24*7), "/");
+    }
     header('Location: ' . $location);
     exit();
 }
