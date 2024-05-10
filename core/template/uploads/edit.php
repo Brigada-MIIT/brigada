@@ -44,7 +44,7 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <div class="btn-group d-flex flex-wrap justify-content-between">
+                <div class="btn-group d-flex flex-wrap">
                     <br><br><br><button type="submit" class="submit mr-4 mb-2" onclick="save();">Сохранить</button>
                     <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button type="submit" class="submit mb-2" onclick="submit_delete();">Удалить загрузку</button>' ?>
                 </div>
