@@ -20,7 +20,6 @@
             "serverSide": true,
             "ajax": function(data, callback, settings) {
                 console.log(data);
-                console.log(settings);
                 $.ajax({
                     url: "/api/profile/get_uploads/self",
                     method: "POST",
