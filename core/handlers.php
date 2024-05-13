@@ -299,10 +299,10 @@ function api_main_get_uploads() {
             }
             
             $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
-            if($row['status'] == 0) {
+            if(!empty($row['status']) && $row['status'] == 0) {
                 $row['name'] = "<del>" . $row['name'] . "</del>";
             }
-            else if($row['status'] == -1) {
+            else if(!empty($row['status']) && $row['status'] == -1) {
                 $row['name'] = "<del style='text-decoration-color: red'>" . $row['name'] . "</del>";
             }
             $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
