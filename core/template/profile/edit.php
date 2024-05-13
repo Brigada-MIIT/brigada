@@ -81,7 +81,7 @@
                     setTimeout(reload, 5575);
                 }
                 else if (data.result == 0) {
-                    Swal.fire({
+                    Toast.fire({
                         title: "Ошибка!",
                         text: res.text,
                         icon: "error"
