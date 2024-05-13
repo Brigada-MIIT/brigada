@@ -14,9 +14,9 @@
             </div>
         </div>
     </div>
-    <div class="col-12">
+    <div class="col-12" style="margin-top: 5%;">
         <div class="in">
-            <div class="btn-group d-flex flex-wrap">
+            <div class="btn-group d-flex flex-wrap align-items-center">
                 <button class="submit mr-4 mb-2">Удалить аватар</button>
             </div>
         </div>
