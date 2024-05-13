@@ -38,6 +38,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/profile/get_uploads/{id:\d+}', 'api_profile_get_uploads');
     $r->addRoute('POST', '/api/profile/get_uploads/self', 'api_profile_get_uploads_self');
     $r->addRoute('POST', '/api/profile/avatar', 'api_profile_avatar');
+    $r->addRoute('POST', '/api/profile/avatar/delete', 'api_profile_avatar_delete'); // для личного удаления
+    $r->addRoute('POST', '/api/profile/avatar/delete/{id:\d+}', 'api_profile_avatar_delete'); // для удаления через админ-панель
     $r->addRoute('POST', '/api/uploads/create', 'api_uploads_create');
     $r->addRoute('POST', '/api/uploads/edit/{id:\d+}', 'api_uploads_edit');
     $r->addRoute('POST', '/api/uploads/delete/{id:\d+}', 'api_uploads_delete');

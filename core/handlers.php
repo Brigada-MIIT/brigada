@@ -807,6 +807,29 @@ function api_profile_avatar() {
     Location("/profile/".$system_user_id);
 }
 
+function api_profile_avatar_delete($args) {
+    global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        res(0);
+    $id = 0;
+    if(empty($args['id']))
+        $id = $system_user_id;
+    else {
+        if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
+            res(0);
+        $id = $args['id'];
+    }
+    $files = glob('user-avatars/' . $id . '/*');
+    $query = $system->db()->query("UPDATE `users` SET `avatar` = '/assets/img/avatar.jpg' WHERE `users`.`id` = $id");
+    if(!$query)
+        res(0, "mysql error");
+    foreach($files as $file){
+        if(is_file($file)) {
+            unlink($file);
+        }
+    }
+}
+
 function api_profile_edit() {
     global $system, $system_user_id, $_user;
     if(!$system->auth())
