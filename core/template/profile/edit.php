@@ -35,6 +35,7 @@
             <div class="in">
                 <div class="btn-group d-flex flex-wrap">
                     <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
+                    <a href="/profile/edit/avatar"><button id="submit" type="submit" class="submit mr-4 mb-2">Сменить аватар</button></a>
                     <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="password();">Сменить пароль</button>
                 </div>
             </div>
