@@ -59,12 +59,12 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="display: flex; align-items: center;">
+            <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row">
+                <div class="d-flex align-items-center">
                     <img src="<?php echo $user['avatar'] ?>" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
                     <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
                 </div>
-                <div>
+                <div class="mt-3 mt-sm-0">
                     <?php if($user['id'] == $system_user_id || $system->haveUserPermission($system_user_id, "MANAGE_USERS")) echo "
                     <a href='".(($user['id'] == $system_user_id) ? "/profile/edit" : "/app/users/".$user['id']."/edit")."' class='btn btn-primary'>Редактировать профиль</a>" ?>
                 </div>
