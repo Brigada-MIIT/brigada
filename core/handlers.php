@@ -270,17 +270,25 @@ function api_main_get_uploads() {
             break;
     }
 
-    $query = $db->query("SELECT COUNT(*) as count FROM `uploads` WHERE `status` = 1");
+    if(!$system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS"))
+        $query = $db->query("SELECT COUNT(*) as count FROM `uploads` WHERE `status` = 1");
+    else
+        $query = $db->query("SELECT COUNT(*) as count FROM `uploads`");
     if(!$query) die("MySQL error count query");
     $count = $query->fetch_assoc()['count'];
 
-    $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
-    WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
-    AND `status` = 1
-    ORDER BY `$order` $orderDir 
-    LIMIT $limit OFFSET $offset");
+    if(!$system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS"))
+        $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
+        WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
+        AND `status` = 1
+        ORDER BY `$order` $orderDir 
+        LIMIT $limit OFFSET $offset");
+    else
+        $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
+        WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
+        ORDER BY `$order` $orderDir 
+        LIMIT $limit OFFSET $offset");
     if(!$query) die("MySQL error query");
-
     $data = array();
     if ($query->num_rows > 0) {
         while($row = $query->fetch_assoc()) {
@@ -291,6 +299,12 @@ function api_main_get_uploads() {
             }
             
             $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
+            if($row['status'] == 0) {
+                $row['name'] = "<del>" . $row['name'] . "</del>";
+            }
+            else if($row['status'] == -1) {
+                $row['name'] = "<del style='text-decoration-color: red'>" . $row['name'] . "</del>";
+            }
             $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['author'] = $username;
