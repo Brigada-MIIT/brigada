@@ -624,8 +624,8 @@ function api_profile_get_uploads($args) {
     else
         $query = $db->query("SELECT `id`, `name`, `created`, `author`, `status` FROM `uploads`
         WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
-        ORDER BY `$order` $orderDir 
         AND `author` = $id
+        ORDER BY `$order` $orderDir 
         LIMIT $limit OFFSET $offset");
     if(!$query) die("MySQL error query");
     $data = array();
