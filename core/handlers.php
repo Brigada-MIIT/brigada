@@ -252,6 +252,8 @@ function api_main_get_uploads() {
     $orderBy = isset($_REQUEST['order']) ? intval($_REQUEST['order']) : 0; // Поле для сортировки
     $orderDir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 'DESC'; // Направление сортировки
 
+    $admin_check = $system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS");
+
     switch($orderBy) {
         case 0:
             $order = "id";
@@ -265,12 +267,16 @@ function api_main_get_uploads() {
         case 3:
             $order = "author";
             break;
+        case 4:
+            if($admin_check)
+                $order = "status";
+            else
+                $order = "id";
+            break;
         default:
             $order = "id";
             break;
     }
-
-    $admin_check = $system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS");
 
     if(!$admin_check)
         $query = $db->query("SELECT COUNT(*) as count FROM `uploads` WHERE `status` = 1");
