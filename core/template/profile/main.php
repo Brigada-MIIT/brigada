@@ -65,7 +65,8 @@
                     <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary">Редактировать профиль</a>
+                    <?php if($user['id'] == $system_user_id || $system->haveUserPermission($system_user_id, "MANAGE_USERS")) echo "
+                    <a href='".(($user['id'] == $system_user_id) ? "/profile/edit" : "/app/users/".$user['id']."/edit")."' class='btn btn-primary'>Редактировать профиль</a>" ?>
                 </div>
             </div>
             <hr>
