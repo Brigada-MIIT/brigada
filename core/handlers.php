@@ -778,6 +778,13 @@ function api_profile_avatar() {
     if(mkdir('user-avatars/' . $system_user_id . '/', 0777));
     $dir = 'user-avatars/' . $system_user_id . '/' . $filename;
 
+    $files = glob('user-avatars/' . $system_user_id . '/*');
+    foreach($files as $file){
+        if(is_file($file)) {
+            unlink($file);
+        }
+    }
+
     if (!empty($exif['Orientation'])) {
         switch ($exif['Orientation']) {
             case 3:
