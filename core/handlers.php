@@ -749,6 +749,7 @@ function api_profile_edit() {
     global $system, $system_user_id, $_user;
     if(!$system->auth())
         res(0);
+    $db = $system->db();
 
     $patr_check = 0;
     $bio_check = 0;
