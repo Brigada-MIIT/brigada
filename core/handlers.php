@@ -316,7 +316,8 @@ function api_main_get_uploads() {
             $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['author'] = $username;
-            $row['status'] = ($row['status'] != -1 ? (($row['status'] == 1) ? "Опубликовано" : "Не опубликовано") : "Скрыто администратором");
+            if($admin_check)
+                $row['status'] = ($row['status'] != -1 ? (($row['status'] == 1) ? "Опубликовано" : "Не опубликовано") : "Скрыто администратором");
             $data[] = $row;
         }
     }
@@ -560,8 +561,97 @@ function api_users_permissions() {
     res(1, "Права успешно обновлены!");
 }
 
-function api_profile_get_uploads() {
+function api_profile_get_uploads($args) {
+    global $system, $system_user_id, $_user;
+    if($system->auth() && $_user['ban'] != 0)
+        $system->printError(100);
+    if(!$system->auth())
+        res(0);
+    $db = $system->db();
+    $user = $system->userinfo($args['id']);
+    if(!$user) 
+        res(0, "User not found");
 
+    header('Content-Type: text/html; charset=utf-8');
+    setlocale(LC_ALL, "ru_RU");
+    
+    $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
+    if($limit > 100) die("limit should be < 100");
+    $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
+    $offset = ($page - 1) * $limit; // Смещение
+    $searchTerm = isset($_REQUEST['search']) ? $_REQUEST['search'] : ''; // Термин поиска
+    $orderBy = isset($_REQUEST['order']) ? intval($_REQUEST['order']) : 0; // Поле для сортировки
+    $orderDir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 'DESC'; // Направление сортировки
+
+    $admin_check = $system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS");
+
+    switch($orderBy) {
+        case 0:
+            $order = "id";
+            break;
+        case 1:
+            $order = "name";
+            break;
+        case 2:
+            $order = "created";
+            break;
+        case 3:
+            if($admin_check)
+                $order = "status";
+            else
+                $order = "id";
+            break;
+        default:
+            $order = "id";
+            break;
+    }
+
+    if(!$admin_check)
+        $query = $db->query("SELECT COUNT(*) as count FROM `uploads` WHERE `status` = 1 AND `author` = $id");
+    else
+        $query = $db->query("SELECT COUNT(*) as count FROM `uploads` WHERE `author` = $id");
+    if(!$query) die("MySQL error count query");
+    $count = $query->fetch_assoc()['count'];
+
+    if(!$admin_check)
+        $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
+        WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
+        AND `status` = 1
+        AND `author` = $id
+        ORDER BY `$order` $orderDir 
+        LIMIT $limit OFFSET $offset");
+    else
+        $query = $db->query("SELECT `id`, `name`, `created`, `author`, `status` FROM `uploads`
+        WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
+        ORDER BY `$order` $orderDir 
+        AND `author` = $id
+        LIMIT $limit OFFSET $offset");
+    if(!$query) die("MySQL error query");
+    $data = array();
+    if ($query->num_rows > 0) {
+        while($row = $query->fetch_assoc()) {
+            $row['name'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".$row['name']."</a>";
+            if($admin_check && $row['status'] == 0) {
+                $row['name'] = "<del>" . $row['name'] . "</del>";
+            }
+            else if($admin_check && $row['status'] == -1) {
+                $row['name'] = "<del style='text-decoration-color: red'>" . $row['name'] . "</del>";
+            }
+            $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
+            $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
+            if($admin_check)
+                $row['status'] = ($row['status'] != -1 ? (($row['status'] == 1) ? "Опубликовано" : "Не опубликовано") : "Скрыто администратором");
+            $data[] = $row;
+        }
+    }
+
+    $response = array(
+        "count" => intval($count),
+        "filtred_count" => ($searchTerm == '') ? intval($count) : $query->num_rows,
+        "data" => $data
+    );
+
+    echo json_encode($response);
 }
 
 function api_profile_get_uploads_self() {
