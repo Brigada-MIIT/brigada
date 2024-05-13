@@ -59,9 +59,14 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <div style="display: flex;align-items: center;">
-                <img src="<?php echo $user['avatar'] ?>" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
-                <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <img src="<?php echo $user['avatar'] ?>" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
+                    <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-primary">Редактировать профиль</a>
+                </div>
             </div>
             <hr>
             <h3>Информация о пользователе:</h3>
@@ -71,19 +76,19 @@
             <hr>
             <h3>Последние загрузки:</h3>
             <table id="fileTable" class="table table-striped table-bordered" style="background-color: #fff">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Имя загрузки</th>
-                    <th scope="col">Дата загрузки</th>
-                    <?php if($system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")) echo "
-                    <th scope='col'>Статус</th>" ?>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Имя загрузки</th>
+                        <th scope="col">Дата загрузки</th>
+                        <?php if($system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")) echo "
+                        <th scope='col'>Статус</th>" ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
