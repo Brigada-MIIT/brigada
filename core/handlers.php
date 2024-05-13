@@ -194,6 +194,9 @@ function uploads_view($args) {
         if($check)
             $system->printError(403);
     }
+    if($result['files'] == "[]" && $result['author'] == $system_user_id) {
+        Location("/uploads/files/".$args['id']);
+    }
     $query_author = $system->db()->query('SELECT * FROM `users` WHERE `id` = "'.$result["author"].'"');
     $result_author = $query_author->fetch_assoc();
     $query_category = $system->db()->query('SELECT * FROM `categories` WHERE `id` = "'.$result['category'].'"');
