@@ -284,7 +284,7 @@ function api_main_get_uploads() {
         ORDER BY `$order` $orderDir 
         LIMIT $limit OFFSET $offset");
     else
-        $query = $db->query("SELECT `id`, `name`, `created`, `author` FROM `uploads`
+        $query = $db->query("SELECT `id`, `name`, `created`, `author`, `status` FROM `uploads`
         WHERE (`name` LIKE '%$searchTerm%' OR `description` LIKE '%$searchTerm%')
         ORDER BY `$order` $orderDir 
         LIMIT $limit OFFSET $offset");
@@ -308,6 +308,7 @@ function api_main_get_uploads() {
             $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['author'] = $username;
+            unset($row['status']);
             $data[] = $row;
         }
     }
