@@ -2,12 +2,12 @@
     <div class="card">
       <div class="card-body">
         <div style="display: flex;align-items: center;">
-            <img src="/assets/img/avatar.jpg" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
+            <img src="<?php echo $user['avatar'] ?>" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
             <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
         </div>
         <hr>
         <h3>Информация о пользователе:</h3>
-        <p><strong>Роль:</strong> Администратор</p>
+        <p><strong>Роль:</strong> <?php echo $system->getNameRole($user['user_type']) ?></p>
         <p><strong>О себе:</strong> Не курю</p>
         <hr>
         <h3>Последние загрузки:</h3>
