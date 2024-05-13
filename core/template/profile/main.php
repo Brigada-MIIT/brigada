@@ -59,8 +59,8 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center;">
                     <img src="<?php echo $user['avatar'] ?>" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
                     <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
                 </div>
@@ -92,3 +92,4 @@
         </div>
     </div>
 </div>
+
