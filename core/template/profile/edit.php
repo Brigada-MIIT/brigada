@@ -50,13 +50,6 @@
             dataType: 'json',
             success: function(data){
                 console.log(data);
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: true,
-                    timer: 5500,
-                    timerProgressBar: true
-                });
                 if (data.result == 1) {
                     Swal.fire({
                         title: "Успешно!",
@@ -81,10 +74,11 @@
                     setTimeout(reload, 5575);
                 }
                 else if (data.result == 0) {
-                    Toast.fire({
+                    Swal.fire({
                         title: "Ошибка!",
                         text: data.text,
-                        icon: "error"
+                        icon: "error",
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
                     });
                 }
                 else {

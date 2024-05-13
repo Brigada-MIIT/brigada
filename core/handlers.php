@@ -93,6 +93,7 @@ function profile_edit() {
         Location("/app/auth", "/profile/edit");
     if($_user['ban'] != 0)
         $system->printError(100);
+    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/profile/edit.php';
     include '../core/template/default.php';
 }
