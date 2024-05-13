@@ -773,6 +773,7 @@ function api_profile_avatar() {
     $image = imagecreatefromjpeg($_FILES['avatar']['tmp_name']);
     $permitted_char = '0123456789ABCDEFHKLMNOPRSTUYabcdefhklmnoprstuy-_';
     $filename = substr(str_shuffle($permitted_char), 0, 11);
+    $exif = exif_read_data($_FILES['avatar']['tmp_name']);
 
     if(mkdir('user-avatars/' . $system_user_id . '/', 0777));
     $dir = 'user-avatars/' . $system_user_id . '/' . $filename;
