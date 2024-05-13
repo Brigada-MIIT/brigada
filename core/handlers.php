@@ -531,8 +531,8 @@ function api_users_edit() {
     
     $patr_check = 0;
 
-    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Укажите фамилию");
-    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Укажите имя");
+    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Укажите в поле фамилию");
+    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Укажите в поле имя");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : ($patr_check = 1);
 
     if (strlen($lastname) > 25 || strlen($surname) > 25 || strlen($patronymic) > 30)
@@ -756,8 +756,8 @@ function api_profile_edit() {
     $patr_check = 0;
     $bio_check = 0;
 
-    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Укажите фамилию");
-    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Укажите имя");
+    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Укажите в поле вашу фамилию");
+    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Укажите в поле ваше имя");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : ($patr_check = 1);
     $biography = !empty($_POST['biography']) ? $_POST['biography'] : ($bio_check = 1);
 
