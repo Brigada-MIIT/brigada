@@ -61,7 +61,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row">
                 <div class="d-flex align-items-center">
-                    <img src="<?php echo $user['avatar'] ?>" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
+                    <img src="<?php echo $user['avatar'] ?>" class="img-fluid my-3" alt="Avatar" width="96" style="border: 0.1875em solid #0F1C3F;border-radius: 35%;box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);height: 6.8em;">
                     <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
                 </div>
                 <div class="mt-3 mt-sm-0">
