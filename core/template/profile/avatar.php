@@ -7,13 +7,17 @@
                     <br><input type="file" name="avatar"><br><br>
                     <div class="col-12" style="margin-top: 5%;">
                         <div class="in">
-                            <div class="btn-group d-flex flex-wrap">
-                                <button id="submit" type="submit" class="submit mr-4 mb-2">Сохранить</button>
-                                <button id="submit" class="submit mr-4 mb-2">Удалить аватар</button>
-                            </div>
+                            <button id="submit" type="submit" class="submit mr-4 mb-2">Сохранить</button>
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="in">
+            <div class="btn-group d-flex flex-wrap">
+                <button id="delete" class="submit mr-4 mb-2">Удалить аватар</button>
             </div>
         </div>
     </div>
