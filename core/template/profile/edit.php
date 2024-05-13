@@ -1,37 +1,35 @@
 <div class="container">
     <p class="page-title">Редактирование профиля</p>
     <div class="form">
-        <div class="row">
-            <div class="col-12">
-                <div class="in">
-                    <label for="email">Email:</label><br>
-                    <input id="email" type="text" disabled placeholder="Email" value="<?php echo $_user['email'] ?>">
-                </div>
+        <div class="col-12">
+            <div class="in">
+                <label for="email">Email:</label><br>
+                <input id="email" type="text" disabled placeholder="Email" value="<?php echo $_user['email'] ?>">
             </div>
-            <div class="col-12">
-                <div class="in">
-                    <label for="lastname">Фамилия</label><br>
-                    <input id="lastname" type="text" placeholder="Фамилия" value="<?php echo $_user['lastname'] ?>">
-                </div>
+        </div>
+        <div class="col-12">
+            <div class="in">
+                <label for="lastname">Фамилия</label><br>
+                <input id="lastname" type="text" placeholder="Фамилия" value="<?php echo $_user['lastname'] ?>">
             </div>
-            <div class="col-12">
-                <div class="in">
-                    <label for="surname">Имя</label><br>
-                    <input id="surname" type="text" placeholder="Имя" value="<?php echo $_user['surname'] ?>">
-                </div>
+        </div>
+        <div class="col-12">
+            <div class="in">
+                <label for="surname">Имя</label><br>
+                <input id="surname" type="text" placeholder="Имя" value="<?php echo $_user['surname'] ?>">
             </div>
-            <div class="col-12">
-                <div class="in">
-                    <label for="patronymic">Отчество</label><br>
-                    <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $_user['patronymic'] ?>">
-                </div>
+        </div>
+        <div class="col-12">
+            <div class="in">
+                <label for="patronymic">Отчество</label><br>
+                <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $_user['patronymic'] ?>">
             </div>
-            <div class="col-12" style="margin-top: 5%;"><br><br>
-                <div class="in">
-                    <div class="btn-group d-flex flex-wrap">
-                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
-                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="password();">Сменить пароль</button>
-                    </div>
+        </div>
+        <div class="col-12" style="margin-top: 5%;"><br><br>
+            <div class="in">
+                <div class="btn-group d-flex flex-wrap">
+                    <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
+                    <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="password();">Сменить пароль</button>
                 </div>
             </div>
         </div>
