@@ -767,7 +767,7 @@ function api_profile_avatar() {
             return;
         }
     }
-    else Location("/profile/avatar");
+    else Location("/profile/edit/avatar");
     $db = $system->db();
     $db->set_charset("utf8");
 
