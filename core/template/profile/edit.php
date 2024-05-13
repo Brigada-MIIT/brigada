@@ -26,9 +26,13 @@
                     <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $_user['patronymic'] ?>">
                 </div>
             </div>
-            <div class="col-12"><br><br>
-                <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
-                <button id="submit" type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
+            <div class="col-12" style="margin-top: 5%;"><br><br>
+                <div class="in">
+                    <div class="btn-group d-flex flex-wrap">
+                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
+                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="password();">Сменить пароль</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
