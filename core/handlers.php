@@ -777,12 +777,26 @@ function api_profile_avatar() {
     if(mkdir('user-avatars/' . $system_user_id . '/', 0777));
     $dir = 'user-avatars/' . $system_user_id . '/' . $filename;
 
-    imagejpeg($image, $dir . '.jpg');
+    if (!empty($exif['Orientation'])) {
+        switch ($exif['Orientation']) {
+            case 3:
+                $image = imagerotate($image, 180, 0);
+                break;
+            case 6:
+                $image = imagerotate($image, -90, 0);
+                break;
+            case 8:
+                $image = imagerotate($image, 90, 0);
+                break;
+        }
+        imagejpeg($image, $dir . '.jpg', 90);
+    }
+    else imagejpeg($image, $dir . '.jpg');
     $db->query("UPDATE `users` SET `avatar` = '/$dir.jpg' WHERE `id` = '$system_user_id'");
     imagedestroy($tmp);
     //res(1, "Аватарка изменена.");
     echo "Аватарка успешно изменена.<br><a href='/profile/edit/'>ВЕРНУТЬСЯ НАЗАД</a>";
-    Location("/");
+    Location("/profile/".$system_user_id);
 }
 
 function api_profile_edit() {
