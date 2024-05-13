@@ -819,6 +819,8 @@ function api_profile_avatar_delete($args) {
         if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
             res(0);
         $id = $args['id'];
+        if(!$system->userinfo($id))
+            res(0, "User not found");
     }
     $files = glob('user-avatars/' . $id . '/*');
     $query = $system->db()->query("UPDATE `users` SET `avatar` = '/assets/img/avatar.jpg' WHERE `users`.`id` = $id");
