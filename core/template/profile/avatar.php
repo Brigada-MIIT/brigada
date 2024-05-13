@@ -5,7 +5,14 @@
             <div class="in">
                 <form method="POST" action="/api/profile/avatar" enctype="multipart/form-data">
                     <br><input type="file" name="avatar"><br><br>
-                    <br><br><button type="submit" class="submit">Сохранить</button>
+                    <div class="col-12" style="margin-top: 5%;">
+                        <div class="in">
+                            <div class="btn-group d-flex flex-wrap">
+                                <button id="submit" type="submit" class="submit mr-4 mb-2">Сохранить</button>
+                                <button id="submit" class="submit mr-4 mb-2">Удалить аватар</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
