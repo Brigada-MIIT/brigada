@@ -17,8 +17,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/profile/{id:\d+}', 'profile');
     $r->addRoute('GET', '/profile/edit', 'profile_edit');
     $r->addRoute('GET', '/profile/uploads', 'profile_uploads');
-    /*$r->addRoute('GET', '/profile/password', 'profile_password');
-    $r->addRoute('GET', '/profile/avatar', 'profile_avatar');*/
+    $r->addRoute('GET', '/profile/avatar', 'profile_avatar');
     $r->addRoute(['GET', 'POST'], '/uploads/create', 'uploads_create');
     $r->addRoute('GET', '/uploads/files/{id:\d+}', 'uploads_files');
     $r->addRoute('GET', '/uploads/files/download/{id:\d+}', 'uploads_files_download');
@@ -38,6 +37,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/profile/edit', 'api_profile_edit');
     $r->addRoute('POST', '/api/profile/get_uploads/{id:\d+}', 'api_profile_get_uploads');
     $r->addRoute('POST', '/api/profile/get_uploads/self', 'api_profile_get_uploads_self');
+    $r->addRoute('POST', '/api/profile/avatar', 'api_profile_avatar');
     $r->addRoute('POST', '/api/uploads/create', 'api_uploads_create');
     $r->addRoute('POST', '/api/uploads/edit/{id:\d+}', 'api_uploads_edit');
     $r->addRoute('POST', '/api/uploads/delete/{id:\d+}', 'api_uploads_delete');

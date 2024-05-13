@@ -77,7 +77,7 @@ function profile($args) {
     global $system, $system_user_id, $_user;
     if(!$system->auth())
         Location("/app/auth", "/profile/".$args['id']);
-    if($system->auth() && $_user['ban'] != 0)
+    if($_user['ban'] != 0)
         $system->printError(100);
     $db = $system->db();
     $user = $system->userinfo($args['id']);
@@ -102,24 +102,28 @@ function profile_uploads() {
     global $system, $system_user_id, $_user;
     if (!$system->auth())
         Location("/app/auth", "/profile/uploads");
+    if ($_user['ban'] != 0)
+        $system->printError(100);
     $db = $system->db();
     $content = '../core/template/profile/uploads.php';
     include '../core/template/default.php';
 }
 
-function profile_password() {
+/*function profile_password() {
     global $system, $system_user_id, $_user;
     if (!$system->haveUserPermission($system_user_id, "CHANGE_PASSWORD"))
         $system->printError(403);
     $content = '../core/template/edituser.php';
     include '../core/template/default.php';
-}
+}*/
 
 function profile_avatar() {
     global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "CHANGE_AVATAR"))
-        $system->printError(403);
-    $content = '../core/template/setavatar.php';
+    if (!$system->auth())
+        Location("/app/auth", "/profile/avatar");
+    if ($_user['ban'] != 0)
+        $system->printError(100);
+    $content = '../core/template/profile/avatar.php';
     include '../core/template/default.php';
 }
 
@@ -586,10 +590,10 @@ function api_users_permissions() {
 
 function api_profile_get_uploads($args) {
     global $system, $system_user_id, $_user;
-    if($system->auth() && $_user['ban'] != 0)
-        $system->printError(100);
     if(!$system->auth())
         res(0);
+    if ($_user['ban'] != 0)
+        $system->printError(100);
     $id = $args['id'];
     $db = $system->db();
     $user = $system->userinfo($id);
@@ -746,12 +750,48 @@ function api_profile_get_uploads_self() {
     echo json_encode($response);
 }
 
+function api_profile_avatar() {
+    global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        res(0);
+    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+    if($_FILES['avatar']['tmp_name']) {
+        if($_FILES['avatar']['type'] != 'image/jpeg') {
+            //res(0, "Неверный тип изображения.");
+            echo "Неверный тип изображения.<br><a href='/profile/edit/'>ВЕРНУТЬСЯ НАЗАД</a>";
+            return;
+        }
+        if($_FILES['avatar']['size'] >= $settings['max_size_avatar'] * MB) {
+            //res(0, "Вес не должен превышать 2 МБ.");
+            echo "Вес не должен превышать ". $settings['max_size_avatar'] ." МБ.<br><a href='/profile/edit/'>ВЕРНУТЬСЯ НАЗАД</a>";
+            return;
+        }
+    }
+    $db = $system->db();
+    $db->set_charset("utf8");
+
+    $image = imagecreatefromjpeg($_FILES['avatar']['tmp_name']);
+    $permitted_char = '0123456789ABCDEFHKLMNOPRSTUYabcdefhklmnoprstuy-_';
+    $filename = substr(str_shuffle($permitted_char), 0, 11);
+
+    if(mkdir('user-avatars/' . $system_user_id . '/', 0777));
+    $dir = 'user-avatars/' . $system_user_id . '/' . $filename;
+
+    imagejpeg($image, $dir . '.jpg');
+    $db->query("UPDATE `users` SET `avatar` = '/$dir.jpg' WHERE `id` = '$system_user_id'");
+    imagedestroy($tmp);
+    //res(1, "Аватарка изменена.");
+    echo "Аватарка успешно изменена.<br><a href='/profile/edit/'>ВЕРНУТЬСЯ НАЗАД</a>";
+    Location("/");
+}
+
 function api_profile_edit() {
     global $system, $system_user_id, $_user;
     if(!$system->auth())
         res(0);
+    if ($_user['ban'] != 0)
+        $system->printError(100);
     $db = $system->db();
-    $id = $_user['id'];
 
     $patr_check = 0;
     $bio_check = 0;
@@ -766,7 +806,7 @@ function api_profile_edit() {
     if (countWhiteSpaces($lastname) >= 2 || countWhiteSpaces($surname) >= 2 || countWhiteSpaces($patronymic) >= 1)
         res(0, "В полях ФИО слишком много пробелов");
 
-    $query = $db->query("UPDATE `users` SET `lastname` = '$lastname', `surname` = '$surname', `patronymic` = ".(($patr_check) ? "NULL" : "'$patronymic'").", `biography` = ".(($bio_check) ? "NULL" : "'$biography'")." WHERE `id` = '$id'");
+    $query = $db->query("UPDATE `users` SET `lastname` = '$lastname', `surname` = '$surname', `patronymic` = ".(($patr_check) ? "NULL" : "'$patronymic'").", `biography` = ".(($bio_check) ? "NULL" : "'$biography'")." WHERE `id` = '$system_user_id'");
     if(!$query) res(0, "mysql error");
     res(1);
 }
@@ -799,42 +839,6 @@ function api_user_changepassword() {
     setcookie("id", $id, time()-1, "/");
     setcookie("usid", $solt, time()-1, "/");
     res(1, "Пароль успешно изменен! Переавторизируйтесь на сайте, текущая сессия закрыта.");
-}
-
-function api_user_setavatar() {
-    global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "CHANGE_AVATAR"))
-        Location("/");
-    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
-    $user_id = $_user['id'];
-    if($_FILES['avatar']['tmp_name']) {
-        if($_FILES['avatar']['type'] != 'image/jpeg') {
-            //res(0, "Неверный тип изображения.");
-            echo "Неверный тип изображения.";
-            return;
-        }
-        if($_FILES['avatar']['size'] >= $settings['max_size_avatar'] * MB) {
-            //res(0, "Вес не должен превышать 2 МБ.");
-            echo "Вес не должен превышать ". $settings['max_size_avatar'] ." МБ.";
-            return;
-        }
-    }
-    $db = $system->db();
-    $db->set_charset("utf8");
-
-    $image = imagecreatefromjpeg($_FILES['avatar']['tmp_name']);
-    $permitted_char = '0123456789ABCDEFHKLMNOPRSTUYabcdefhklmnoprstuy-_';
-    $filename = substr(str_shuffle($permitted_char), 0, 11);
-
-    if(mkdir('user-avatars/' . $user_id . '/', 0777));
-    $dir = 'user-avatars/' . $user_id . '/' . $filename;
-
-    imagejpeg($image, $dir . '.jpg');
-    $db->query("UPDATE `users` SET `avatar` = '/$dir.jpg' WHERE `id` = '$user_id'");
-    imagedestroy($tmp);
-    //res(1, "Аватарка изменена.");
-    echo "Аватарка изменена.";
-    Location("/");
 }
 
 function download_moderation_tool() {
