@@ -829,6 +829,7 @@ function api_profile_avatar_delete($args) {
             unlink($file);
         }
     }
+    res(1);
 }
 
 function api_profile_edit() {

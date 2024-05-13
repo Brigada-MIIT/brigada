@@ -271,32 +271,33 @@
             url: '/api/users/delete',
             data: 'id=<?php echo $args['id'] ?>',
             success: async function(data) {
-            var res = $.parseJSON(data);
-            console.log(res);
-            if (res.result == 1) {
-                Swal.fire({
-                    title: "Успешно!",
-                    text: res.text,
-                    icon: "success"
-                }).then((result) => {
-                    location.replace("/app/users");
-                });
+                var res = $.parseJSON(data);
+                console.log(res);
+                if (res.result == 1) {
+                    Swal.fire({
+                        title: "Успешно!",
+                        text: res.text,
+                        icon: "success"
+                    }).then((result) => {
+                        location.replace("/app/users");
+                    });
+                }
+                else if (res.result == 0) {
+                    Swal.fire({
+                        title: "Ошибка!",
+                        text: res.text,
+                        icon: "error"
+                    });
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                }
             }
-            else if (res.result == 0) {
-                Swal.fire({
-                    title: "Ошибка!",
-                    text: res.text,
-                    icon: "error"
-                });
-            }
-            else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Произошла неизвестная ошибка!',
-                    text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
-                });
-            }
-        }});
+        });
     }
 </script>

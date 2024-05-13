@@ -115,25 +115,26 @@
             type: 'POST',
             url: '/api/uploads/delete/<?php echo $args['id'] ?>',
             success: async function(data) {
-            var res = $.parseJSON(data);
-            console.log(res);
-            if (res.result == 1) {
-                Swal.fire({
-                    title: "Успешно!",
-                    text: "Ваша загрузка была удалена",
-                    icon: "success"
-                }).then((result) => {
-                    location.replace("/");
-                });
+                var res = $.parseJSON(data);
+                console.log(res);
+                if (res.result == 1) {
+                    Swal.fire({
+                        title: "Успешно!",
+                        text: "Ваша загрузка была удалена",
+                        icon: "success"
+                    }).then((result) => {
+                        location.replace("/");
+                    });
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                }
             }
-            else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Произошла неизвестная ошибка!',
-                    text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
-                });
-            }
-        }});
+        });
     }
 </script>
