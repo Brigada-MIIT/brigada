@@ -19,6 +19,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": function(data, callback, settings) {
+                console.log(data);
                 $.ajax({
                     url: "/api/main/get_uploads",
                     method: "POST",
