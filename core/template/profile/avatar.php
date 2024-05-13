@@ -22,7 +22,7 @@
     function submit_delete() {
         Swal.fire({
             title: "Вы уверены?",
-            text: "После удаленияа аватара его восстановление будет невозможно",
+            text: "После удаления аватара его восстановление будет невозможно",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#28a745",
