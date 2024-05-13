@@ -17,7 +17,7 @@
     <div class="col-12">
         <div class="in">
             <div class="btn-group d-flex flex-wrap">
-                <buttonclass="submit mr-4 mb-2">Удалить аватар</button>
+                <button class="submit mr-4 mb-2">Удалить аватар</button>
             </div>
         </div>
     </div>
