@@ -765,9 +765,7 @@ function api_profile_edit() {
     if (countWhiteSpaces($lastname) >= 2 || countWhiteSpaces($surname) >= 2 || countWhiteSpaces($patronymic) >= 1)
         res(0, "В полях ФИО слишком много пробелов");
 
-    $q = "UPDATE `users` SET `lastname` = '$lastname', `surname` = '$surname', `patronymic` = ".(($patr_check) ? "NULL" : "'$patronymic'").", `biography` = ".(($bio_check) ? "NULL" : "'$biography'")." WHERE `id` = '$id'";
-    res(0, $q);
-    $query = $db->query($q);
+    $query = $db->query("UPDATE `users` SET `lastname` = '$lastname', `surname` = '$surname', `patronymic` = ".(($patr_check) ? "NULL" : "'$patronymic'").", `biography` = ".(($bio_check) ? "NULL" : "'$biography'")." WHERE `id` = '$id'");
     if(!$query) res(0, "mysql error");
 }
 
