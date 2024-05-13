@@ -87,6 +87,16 @@ function profile($args) {
     include '../core/template/default.php';
 }
 
+function profile_edit() {
+    global $system, $system_user_id, $_user;
+    if(!$system->auth())
+        Location("/app/auth", "/profile/edit");
+    if($_user['ban'] != 0)
+        $system->printError(100);
+    $content = '../core/template/profile/edit.php';
+    include '../core/template/default.php';
+}
+
 function profile_uploads() {
     global $system, $system_user_id, $_user;
     if (!$system->auth())
@@ -733,6 +743,10 @@ function api_profile_get_uploads_self() {
     );
 
     echo json_encode($response);
+}
+
+function api_profile_edit() {
+
 }
 
 function api_settings_update() {

@@ -19,11 +19,6 @@ class System {
         $id = trim($_COOKIE['id']);
         $usid = trim($_COOKIE['usid']);
         $db = $this->db();
-        /*$solt = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        if ($usid !== $solt){
-            return false;
-        }
-        $query = $db->query("SELECT * FROM `users_session` WHERE `id` = '$id' AND `usid` = '$solt'");*/
         $query = $db->query("SELECT * FROM `users_session` WHERE `id` = '$id' AND `usid` = '$usid'");
         $query2 = $db->query("SELECT * FROM `users` WHERE `id` = '$id'");
         $result = $query->fetch_assoc();
