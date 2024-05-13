@@ -108,6 +108,8 @@ function profile_avatar() {
 
 function uploads_create() {
     global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        Location("/app/auth", "/uploads/create");
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
     if ($_user['ban_upload'] != 0)
@@ -120,6 +122,8 @@ function uploads_create() {
 
 function uploads_files($args) {
     global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        Location("/app/auth", "/uploads/files/".$args['id']);
     if (!$system->haveUserPermission($system_user_id, "CREATE_UPLOADS"))
         $system->printError(403);
     if ($_user['ban_upload'] != 0)
@@ -141,7 +145,7 @@ function uploads_files($args) {
 function uploads_files_download($args) {
     global $system, $system_user_id, $_user;
     if (!$system->auth())
-        $system->printError(103);
+        Location("/app/auth", "/uploads/files/download/".$args['id']);
     if (!$system->haveUserPermission($system_user_id, "VIEW_UPLOADS"))
         $system->printError(403);
     $db = $system->db();
@@ -212,6 +216,8 @@ function uploads_view($args) {
 
 function uploads_edit($args) {
     global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        Location("/app/auth", "/uploads/edit/".$args['id']);
     if (!$system->haveUserPermission($system_user_id, "EDIT_UPLOADS"))
         $system->printError(403);
     if ($_user['ban_upload'] != 0)
