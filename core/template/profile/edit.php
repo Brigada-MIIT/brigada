@@ -25,7 +25,13 @@
                 <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $_user['patronymic'] ?>">
             </div>
         </div>
-        <div class="col-12" style="margin-top: 5%;"><br><br>
+        <div class="col-12">
+            <div class="in">
+                <label for="biography">О себе</label><br>
+                <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 75%; display: block;"><?php echo $_user['biography'] ?></textarea>
+            </div>
+        </div>
+        <div class="col-12" style="margin-top: 5%;"><br>
             <div class="in">
                 <div class="btn-group d-flex flex-wrap">
                     <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
