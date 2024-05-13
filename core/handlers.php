@@ -767,6 +767,7 @@ function api_profile_edit() {
 
     $query = $db->query("UPDATE `users` SET `lastname` = '$lastname', `surname` = '$surname', `patronymic` = ".(($patr_check) ? "NULL" : "'$patronymic'").", `biography` = ".(($bio_check) ? "NULL" : "'$biography'")." WHERE `id` = '$id'");
     if(!$query) res(0, "mysql error");
+    res(1);
 }
 
 function api_settings_update() {
