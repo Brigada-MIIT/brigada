@@ -72,6 +72,11 @@ function profile($args) {
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     $db = $system->db();
+    $user = $system->userinfo($args['id']);
+    if(empty($user))
+        Location("/");
+    if(!$system->auth())
+        Location("/app/auth", "/profile/".$args['id']);
     $content = '../core/template/profile/main.php';
     include '../core/template/default.php';
 }

@@ -3,7 +3,7 @@
       <div class="card-body">
         <div style="display: flex;align-items: center;">
             <img src="/assets/img/avatar.jpg" class="img-fluid rounded-circle my-3" alt="Avatar" width="96" style="border: 2px solid black;">
-            <h2 class="card-title" style="margin-left: 20px;">Фамилия Имя Отчество</h2>
+            <h2 class="card-title" style="margin-left: 20px;"><?php echo $user["lastname"] ?> <?php echo $user["surname"] ?><?php if(!empty($user["patronymic"])) echo " " . $user["patronymic"] ?></h2>
         </div>
         <hr>
         <h3>Информация о пользователе:</h3>

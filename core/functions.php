@@ -253,10 +253,15 @@ function fileIconName($name) {
         case 'doc':
             return "word";
             break;
+        // txt
+        // xls
+        // xslx
+        // ppt
+        // pptx
         case 'pdf':
             return "pdf";
             break;
-        // 'txt', 'xls', 'xlsx', 'ppt', 'pptx', / 'zip'
+        // zip
         default:
             return "file";
             break;
