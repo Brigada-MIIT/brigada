@@ -49,7 +49,7 @@ function users() {
 function users_edit($args) {
     global $system, $system_user_id, $_user;
     if(!$system->auth())
-        Location("/app/auth", "/app/users/edit/".$args['id']);
+        Location("/app/auth", "/app/users/".$args['id']."/edit");
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         $system->printError(403);
     $user_id = !empty(intval($args['id'])) ? intval($args['id']) : Location("/users");

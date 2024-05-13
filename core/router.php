@@ -12,7 +12,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/app/auth', 'auth');
     $r->addRoute('GET', '/app/register', 'register');
     $r->addRoute('GET', '/app/users', 'users');
-    $r->addRoute('GET', '/app/users/edit/{id:\d+}', 'users_edit');
+    $r->addRoute('GET', '/app/users/{id:\d+}/edit', 'users_edit');
     $r->addRoute('GET', '/app/settings', 'settings');
     $r->addRoute('GET', '/profile/{id:\d+}', 'profile');
     $r->addRoute('GET', '/profile/uploads', 'profile_uploads');
