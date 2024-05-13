@@ -22,7 +22,7 @@
                 console.log(data);
                 console.log(settings);
                 $.ajax({
-                    url: "/api/profile/get_uploads/".$args['id'],
+                    url: "/api/profile/get_uploads/<?php echo $args['id'] ?>",
                     method: "POST",
                     data: {
                         "limit": data.length,
