@@ -746,7 +746,25 @@ function api_profile_get_uploads_self() {
 }
 
 function api_profile_edit() {
+    global $system, $system_user_id, $_user;
+    if(!$system->auth())
+        res(0);
 
+    $patr_check = 0;
+    $bio_check = 0;
+
+    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Укажите фамилию");
+    $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Укажите имя");
+    $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : ($patr_check = 1);
+    $biography = !empty($_POST['biography']) ? $_POST['biography'] : ($bio_check = 1);
+
+    if (strlen($lastname) > 25 || strlen($surname) > 25 || strlen($patronymic) > 30 || strlen($biography) > 500)
+        res(0, "В полях ФИО и биографии слишком много символов");
+    if (countWhiteSpaces($lastname) >= 2 || countWhiteSpaces($surname) >= 2 || countWhiteSpaces($patronymic) >= 1)
+        res(0, "В полях ФИО слишком много пробелов");
+
+    $query = $db->query("UPDATE `users` SET `lastname` = '$lastname', `surname` = '$surname', `patronymic` = ".($patr_check) ? "NULL" : "'$patronymic'".", `biography` = ".($bio_check) ? "NULL" : "'$biography'"." WHERE `id` = '$user_id'");
+    if(!$query) res(0, "mysql error");
 }
 
 function api_settings_update() {

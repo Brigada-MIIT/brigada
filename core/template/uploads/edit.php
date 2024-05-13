@@ -64,32 +64,33 @@
             url: '/api/uploads/edit/<?php echo $args['id'] ?>',
             data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value+'&status='+document.getElementById('status').value,
             success: async function(data) {
-            var res = $.parseJSON(data);
-            console.log(res);
-            if (res.result == 1) {
-                Swal.fire({
-                    title: "Успешно!",
-                    text: "Ваша загрузка была изменена",
-                    icon: "success"
-                }).then((result) => {
-                    location.replace("/uploads/view/"+res.text);
-                });
+                var res = $.parseJSON(data);
+                console.log(res);
+                if (res.result == 1) {
+                    Swal.fire({
+                        title: "Успешно!",
+                        text: "Ваша загрузка была изменена",
+                        icon: "success"
+                    }).then((result) => {
+                        location.replace("/uploads/view/"+res.text);
+                    });
+                }
+                else if (res.result == 2) {
+                    Swal.fire({
+                        title: "Ошибка!",
+                        text: "Вы не можете сохранить пока не загрузите файлы",
+                        icon: "error"
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                }
             }
-            else if (res.result == 2) {
-                Swal.fire({
-                    title: "Ошибка!",
-                    text: "Вы не можете сохранить пока не загрузите файлы",
-                    icon: "error"
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Произошла неизвестная ошибка!',
-                    text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
-                });
-            }
-        }});
+        });
     }
 
     function submit_delete() {

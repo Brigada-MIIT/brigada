@@ -31,7 +31,7 @@
                 <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 75%; display: block;"><?php echo $_user['biography'] ?></textarea>
             </div>
         </div>
-        <div class="col-12" style="margin-top: 5%;"><br>
+        <div class="col-12" style="margin-top: 5%;">
             <div class="in">
                 <div class="btn-group d-flex flex-wrap">
                     <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
@@ -46,7 +46,7 @@
         $.ajax({
             type: 'post',
             url: "/api/profile/edit",
-            data: 'lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&ban_upload='+(($('#ban_upload').is(":checked")) ? '1' : '0')+'&ban='+(($('#ban').is(":checked")) ? '1' : '0')+'&email_verifed='+(($('#email_verifed').is(":checked")) ? '1' : '0'),
+            data: 'lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&biography='+$("#biography").val(),
             dataType: 'json',
             success: function(data){
                 console.log(data);
@@ -58,9 +58,10 @@
                     timerProgressBar: true
                 });
                 if (data.result == 1) {
-                    Toast.fire({
-                        icon: 'success',
-                        title: data.text,
+                    Swal.fire({
+                        title: "Успешно!",
+                        text: "Ваш профиль был изменён",
+                        icon: "success"
                     }).then((result) => {
                         if (result.isConfirmed) {
                            return location.reload(); 
@@ -68,13 +69,10 @@
                     });
 
                     document.getElementById('submit').onclick = "";
-                    document.getElementById('role').disabled = true;
                     document.getElementById('lastname').disabled = true;
                     document.getElementById('surname').disabled = true;
                     document.getElementById('patronymic').disabled = true;
-                    document.getElementById('email_verifed').disabled = true;
-                    document.getElementById('ban_upload').disabled = true;
-                    document.getElementById('ban').disabled = true;
+                    document.getElementById('biography').disabled = true;
 
                     function reload() {
                         return location.reload(); 
@@ -82,16 +80,19 @@
 
                     setTimeout(reload, 5575);
                 }
-                else if(data.result == 4) {
-                    Toast.fire({
-                        icon: 'info',
-                        title: data.text
+                else if (data.result == 0) {
+                    Swal.fire({
+                        title: "Ошибка!",
+                        text: res.text,
+                        icon: "error"
                     });
                 }
                 else {
-                    Toast.fire({
+                    Swal.fire({
                         icon: 'error',
-                        title: data.text
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
                     });
                 }
             }
