@@ -47,9 +47,9 @@
                 { "data": 'id' },
                 { "data": 'name' },
                 { "data": 'created' },
+                { "data": 'author' },
                 <?php if($system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")) echo "
                 { 'data': 'status' }," ?>
-                { "data": 'author' },
             ],
             "paging": true,
             "lengthMenu": [ 10, 25, 50 ], // Опции выбора количества строк на странице
@@ -71,9 +71,9 @@
                 <th scope="col">ID</th>
                 <th scope="col">Имя загрузки</th>
                 <th scope="col">Дата загрузки</th>
+                <th scope="col">Имя пользователя</th>
                 <?php if($system->haveUserPermission($system_user_id, "VIEW_HIDDEN_UPLOADS")) echo "
                 <th scope='col'>Статус</th>" ?>
-                <th scope="col">Имя пользователя</th>
             </tr>
         </thead>
         <tbody>
