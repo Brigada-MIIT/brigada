@@ -70,12 +70,12 @@
                 </div>
             </div>
             <hr>
-            <h3>Информация о пользователе:</h3>
+            <h3>Информация о пользователе</h3>
             <p><strong>Роль:</strong> <?php echo $system->getNameRole($user['user_type']) ?></p>
             <?php if(!empty($user['biography'])) echo "
             <p><strong>О себе:</strong> ". $user['biography'] ."</p>" ?>
             <hr>
-            <h3>Последние загрузки:</h3>
+            <h3>Последние загрузки</h3>
             <table id="fileTable" class="table table-striped table-bordered" style="background-color: #fff">
                 <thead>
                     <tr>
