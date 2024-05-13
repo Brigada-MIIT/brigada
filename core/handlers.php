@@ -310,7 +310,7 @@ function api_main_get_uploads() {
             $row['created'] = "<a style='color: inherit' target='_blank' href='/uploads/view/".$row['id']."'>".unixDateToString(intval($row['created']))."</a>";
             $row['id'] = "<a target='_blank' href='/uploads/view/".$row['id']."'>".$row['id']."</a>";
             $row['author'] = $username;
-            unset($row['status']);
+            $row['status'] = ($row['status'] != -1 ? (($row['status'] == 1) ? "Опубликовано" : "Не опубликовано") : "Скрыто администратором");
             $data[] = $row;
         }
     }
