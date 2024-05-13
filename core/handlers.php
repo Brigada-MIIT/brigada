@@ -38,6 +38,8 @@ function register() {
 
 function users() {
     global $system, $system_user_id, $_user;
+    if(!$system->auth())
+        Location("/app/auth", "/app/users");
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         $system->printError(403);
     $content = '../core/template/users/users.php';
@@ -46,6 +48,8 @@ function users() {
 
 function users_edit($args) {
     global $system, $system_user_id, $_user;
+    if(!$system->auth())
+        Location("/app/auth", "/app/users/edit/".$args['id']);
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         $system->printError(403);
     $user_id = !empty(intval($args['id'])) ? intval($args['id']) : Location("/users");
@@ -60,6 +64,8 @@ function users_edit($args) {
 
 function settings() {
     global $system, $system_user_id, $_user;
+    if(!$system->auth())
+        Location("/app/auth", "/app/settings");
     if(!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS"))
         $system->printError(403);
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
@@ -69,14 +75,14 @@ function settings() {
 
 function profile($args) {
     global $system, $system_user_id, $_user;
+    if(!$system->auth())
+        Location("/app/auth", "/profile/".$args['id']);
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     $db = $system->db();
     $user = $system->userinfo($args['id']);
     if(empty($user))
-        Location("/");
-    if(!$system->auth())
-        Location("/app/auth", "/profile/".$args['id']);
+        $system->printError(404);
     $content = '../core/template/profile/main.php';
     include '../core/template/default.php';
 }
