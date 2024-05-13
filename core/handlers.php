@@ -567,8 +567,9 @@ function api_profile_get_uploads($args) {
         $system->printError(100);
     if(!$system->auth())
         res(0);
+    $id = $args['id'];
     $db = $system->db();
-    $user = $system->userinfo($args['id']);
+    $user = $system->userinfo($id);
     if(!$user) 
         res(0, "User not found");
 
