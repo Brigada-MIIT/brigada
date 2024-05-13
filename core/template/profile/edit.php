@@ -83,7 +83,7 @@
                 else if (data.result == 0) {
                     Toast.fire({
                         title: "Ошибка!",
-                        text: res.text,
+                        text: data.text,
                         icon: "error"
                     });
                 }
