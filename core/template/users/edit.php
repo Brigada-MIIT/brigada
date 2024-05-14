@@ -54,7 +54,7 @@
 <div class="container">
     <p class="page-title">Редактирование <a href="/profile/<?php echo $user['id'] ?>">пользователя</a> (ID: <?php echo $user['id'] ?>)</p>
     <div class="form">
-        <div>
+        <div style="float:left; width: 50%">
             <div class="col-12">
                 <div class="in">
                     <label for="email">Email:</label><br>
@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div style="float:right; width: 50%">
             <div class="in">
                 <p style="font-size: larger;font-weight: bold;">Отдельные права пользователя</p>
                 <div id="perms" class="itable-box" style="overflow-x: scroll;">
