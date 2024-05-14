@@ -44,7 +44,7 @@
 <div class="container">
     <p class="page-title">Редактирование <a href="/profile/<?php echo $user['id'] ?>">пользователя</a> (ID: <?php echo $user['id'] ?>)</p>
     <div class="form">
-        <div class="row">
+        <div class="d-flex flex-wrap">
             <div class="col-md-6">
                 <div class="col-12">
                     <div class="in">
