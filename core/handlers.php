@@ -959,6 +959,11 @@ function api_uploads_edit($args) {
         res(0);
     if($result['files'] == "[]")
         res(2);
+
+    if(strlen($name) > 100)
+        res(3, "Название должно содержать не более 100 символов");
+    if(strlen($description) > 1000)
+        res(3, "Описание должно содержать не более 1000 символов");
     
     $status = $_POST['status']; // проверка на статус (0, 1, -1)
     if($status == 0 || $status == 1 || $status == -1) {
