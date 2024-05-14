@@ -499,6 +499,7 @@ function api_users_get_users() {
     header('Content-Type: text/html; charset=utf-8');
     setlocale(LC_ALL, "ru_RU");
     
+    $db = $system->db();
     $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
     if($limit > 100) die("limit should be < 100");
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
