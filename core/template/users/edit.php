@@ -183,8 +183,8 @@
         </div>
         <hr>
         <div class="info-box">
-            <p>Дата регистрации: <?php echo $user['registration_date'] ?></p>
-            <p>Статус 2FA: <?php echo $user['2fa_status'] ? 'Включено' : 'Отключено' ?></p>
+            <p>Дата регистрации: 1 января 1970 ?></p>
+            <p>Статус 2FA: Включено ?></p>
         </div>
         <div class="btn-group">
             <a href="#" class="submit">Удалить кэш</a>
