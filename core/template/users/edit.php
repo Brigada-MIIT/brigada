@@ -122,7 +122,7 @@
         </div>
         <div style="float:right; width: 50%">
             <div class="in">
-                <h3 style="font-size: larger;font-weight: bold;">Дополнительная информация</h3>
+                <h4 style="font-weight: bold;">Дополнительная информация</h4>
                 <div>
                     <div class="card border-primary mb-3 info">
                         <div class="card-header">Информация о пользователе</div>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <hr>
-                <p style="font-size: larger;font-weight: bold;">Отдельные права пользователя</p>
+                <h4 style="font-weight: bold;">Отдельные права пользователя</h4>
                 <div id="perms" class="itable-box" style="overflow-x: scroll;">
                     <table style="max-width: 50%;">
                         <thead>
