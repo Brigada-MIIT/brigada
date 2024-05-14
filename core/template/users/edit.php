@@ -68,7 +68,7 @@
             <div class="col-12">
                 <div class="in">
                     <label for="biography">О себе</label><br>
-                    <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 100%; display: block;"><?php echo $_user['biography'] ?></textarea>
+                    <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 100%; display: block;"><?php echo $user['biography'] ?></textarea>
                 </div>
             </div>
             <div class="col-12">
