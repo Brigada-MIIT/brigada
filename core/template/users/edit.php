@@ -391,7 +391,7 @@
     function submit_delete_2FA() {
         Swal.fire({
             title: "Вы уверены?",
-            text: "Вы хотите удалить 2FA авторизацию у пользователя?",
+            text: "Вы хотите удалить двухфакторную авторизацию у пользователя?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#28a745",
