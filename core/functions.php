@@ -215,7 +215,7 @@ class System {
     function send_email_change_password($_user) {
         if(!empty($_user['password_send_timestamp'])) {
             if((time() - intval($_user['password_send_timestamp'])) > 300) {
-                return 2; // если не прошло 5 минут с момента последней отправки
+                return intval($_user['password_send_timestamp']); // если не прошло 5 минут с момента последней отправки
             }
         }
         $db = $this->db();
