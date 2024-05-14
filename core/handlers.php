@@ -42,7 +42,7 @@ function users() {
         Location("/app/auth", "/app/users");
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         $system->printError(403);
-    $content = '../core/template/users/users.php';
+    $content = '../core/template/users/main.php';
     include '../core/template/default.php';
 }
 
@@ -489,6 +489,69 @@ function logout() {
     if(!empty($_COOKIE['last']))
         setcookie("last", trim($_COOKIE['last']), time()-1, "/");
     Location("/");
+}
+
+function api_users_get_users() {
+    global $system, $system_user_id, $_user;
+    if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
+        res(0, "Ошибка доступа");
+
+    header('Content-Type: text/html; charset=utf-8');
+    setlocale(LC_ALL, "ru_RU");
+    
+    $limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : 10; // Количество записей на странице
+    if($limit > 100) die("limit should be < 100");
+    $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Номер страницы
+    $offset = ($page - 1) * $limit; // Смещение
+    $searchTerm = isset($_REQUEST['search']) ? $_REQUEST['search'] : ''; // Термин поиска
+    $orderBy = isset($_REQUEST['order']) ? intval($_REQUEST['order']) : 0; // Поле для сортировки
+    $orderDir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 'DESC'; // Направление сортировки
+
+    switch($orderBy) {
+        case 0:
+            $order = "id";
+            break;
+        case 1:
+            $order = "email";
+            break;
+        case 2:
+            $order = "registred";
+            break;
+        case 3:
+            $order = "user_type";
+            break;
+        default:
+            $order = "id";
+            break;
+    }
+
+    $query = $db->query("SELECT COUNT(*) as count FROM `users`");
+    if(!$query) die("MySQL error count query");
+    $count = $query->fetch_assoc()['count'];
+
+    $query = $db->query("SELECT `id`, `email`, `registred`, `user_type` FROM `users`
+    WHERE (`email` LIKE '%$searchTerm%' OR `biography` LIKE '%$searchTerm%' OR `lastname` LIKE '%$searchTerm%' OR `surname` LIKE '%$searchTerm%' OR `patronymic` LIKE '%$searchTerm%')
+    ORDER BY `$order` $orderDir 
+    LIMIT $limit OFFSET $offset");
+    if(!$query) die("MySQL error query");
+    $data = array();
+    if ($query->num_rows > 0) {
+        while($row = $query->fetch_assoc()) {
+            $row['email'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."'/edit>".$row['email']."</a>";
+            $row['registred'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."'/edit>".unixDateToString(intval($row['registred']))."</a>";
+            $row['id'] = "<a target='_blank' href='/app/users/".$row['id']."/edit'>".$row['id']."</a>";
+            $row['user_type'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."'/edit>".$system->getNameRole($row['user_type'])."</a>";
+            $data[] = $row;
+        }
+    }
+
+    $response = array(
+        "count" => intval($count),
+        "filtred_count" => ($searchTerm == '') ? intval($count) : $query->num_rows,
+        "data" => $data
+    );
+
+    echo json_encode($response);
 }
 
 function api_users_edit() {
