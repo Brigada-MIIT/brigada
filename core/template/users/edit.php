@@ -12,17 +12,6 @@
     .form > div textarea {
         height: 100px;
     }
-    .btn-group {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .info-box {
-        background-color: #f8f9fa;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        margin-top: 20px;
-    }
     table {
         max-width: 50%;
         border: 1px solid #ccc;
@@ -174,14 +163,15 @@
                 </div>
                 <br><button id="submit" type="submit" class="submit" onclick="updatePermissions();">Сохранить права</button>
                 <hr>
+                <h3>Дополнительная информация</h3>
                 <div>
                     <div class="info-box">
                         <p>Дата регистрации: 1 января 1970</p>
                         <p>Статус 2FA: Включено ?></p>
                     </div>
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-primary">Удалить кэш</a>
-                        <a href="#" class="btn btn-primary">Удалить спам</a>
+                    <div class="btn-group d-flex flex-wrap">
+                        <a href="#" class="btn btn-primary mr-4 mb-2">Удалить кэш</a>
+                        <a href="#" class="btn btn-primary mr-4 mb-2">Удалить спам</a>
                     </div>
                 </div>
             </div>
