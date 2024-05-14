@@ -129,9 +129,9 @@
                         </div>
                     </div>
                     <div class="d-flex flex-wrap">
-                        <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить аватар</button>
-                        <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить 2FA</button>
-                        <button class="btn btn-danger mr-4 mb-2" onclick="submit_delete();">Удалить пользователя</button>
+                        <button class="btn btn-primary mb-2" style="margin-right: auto" onclick="">Удалить аватар</button>
+                        <button class="btn btn-primary mb-2" style="margin-right: auto" onclick="">Удалить 2FA</button>
+                        <button class="btn btn-danger  mb-2" onclick="submit_delete();">Удалить пользователя</button>
                     </div>
                 </div>
                 <hr>
