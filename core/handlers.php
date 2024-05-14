@@ -555,6 +555,22 @@ function api_users_get_users() {
     echo json_encode($response);
 }
 
+function api_users_2fa_delete($args) {
+    global $system, $system_user_id, $_user;
+    if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
+        res(0, "Ошибка доступа");
+
+    $id = $args['id'];
+    $user = $system->userinfo($id);
+    if(!$user)
+        res(0, "User not found");
+
+    $query = $system->db()->query("UPDATE `users` SET `2fa_secret` = NULL WHERE `users`.`id` = $id");
+    if(!$query) 
+        res(0, "mysql error");
+    res(1);
+}
+
 function api_users_edit() {
     global $system, $system_user_id, $_user;
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
