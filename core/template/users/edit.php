@@ -417,7 +417,9 @@
                         title: "Успешно!",
                         text: "Двухфакторная авторизация была успешно удалена у пользователя",
                         icon: "success"
-                    })
+                    })then((result) => {
+                        location.reload();
+                    });
                 }
                 else {
                     Swal.fire({
