@@ -122,6 +122,19 @@
         </div>
         <div style="float:right; width: 50%">
             <div class="in">
+                <h3>Дополнительная информация</h3>
+                <div>
+                    <div class="card border-primary mb-3 info">
+                        <div class="card-header">Информация о пользователе</div>
+                        <p><b>Дата регистрации:</b> 1 января 2000</p>
+                        <p><b>Статус 2FA:</b> Выключено</p>
+                    </div>
+                    <div class="btn-group d-flex flex-wrap">
+                        <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить аватар</button>
+                        <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить 2FA</button>
+                    </div>
+                </div>
+                <hr>
                 <p style="font-size: larger;font-weight: bold;">Отдельные права пользователя</p>
                 <div id="perms" class="itable-box" style="overflow-x: scroll;">
                     <table style="max-width: 50%;">
@@ -168,20 +181,7 @@
                         </tbody>
                     </table>
                 </div>
-                <br><button id="submit" type="submit" class="submit" onclick="updatePermissions();">Сохранить права</button>
-                <hr>
-                <h3>Дополнительная информация</h3>
-                <div>
-                    <div class="card border-primary mb-3 info">
-                        <div class="card-header">Информация о пользователе</div>
-                        <p><b>Дата регистрации:</b> 1 января 2000</p>
-                        <p><b>Статус 2FA:</b> Выключено</p>
-                    </div>
-                    <div class="btn-group d-flex flex-wrap">
-                        <a href="#" class="btn btn-primary mr-4 mb-2">Удалить кэш</a>
-                        <a href="#" class="btn btn-primary mr-4 mb-2">Удалить спам</a>
-                    </div>
-                </div>
+                <br><button id="submit" type="submit" class="bnt btn-primary" onclick="updatePermissions();">Сохранить права</button>
             </div>
         </div>
         <p class="result"></p>
