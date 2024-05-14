@@ -1,27 +1,27 @@
+<style>
+    table {
+        max-width: 50%;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+    }
+    thead {
+        border: 1px solid #ccc;
+    }
+    th, td {
+        border-left: 1px solid #ccc;
+        white-space: nowrap;
+        padding: 5px;
+    }
+    td:nth-last-child(-n+2) {
+        text-align: right;
+    }
+    /*@media screen and (max-width: 729px) {
+        .table-box {
+            overflow-x: scroll;
+        }
+    }*/
+</style>
 <div class="container">
-    <style>
-        table {
-            max-width: 50%;
-            border: 1px solid #ccc;
-            border-collapse: collapse;
-        }
-        thead {
-            border: 1px solid #ccc;
-        }
-        th, td {
-            border-left: 1px solid #ccc;
-            white-space: nowrap;
-            padding: 5px;
-        }
-        td:nth-last-child(-n+2) {
-            text-align: right;
-        }
-        /*@media screen and (max-width: 729px) {
-            .table-box {
-                overflow-x: scroll;
-            }
-        }*/
-    </style>
     <p class="page-title">Редактирование пользователя (ID: <?php echo $user['id'] ?>)</p>
     <div class="form" style="width: 100%;">
         <div style="float:left; width: 50%">
@@ -47,6 +47,12 @@
                 <div class="in">
                     <label for="patronymic">Отчество</label><br>
                     <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $user['patronymic'] ?>">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="biography">О себе</label><br>
+                    <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 100%; display: block;"><?php echo $_user['biography'] ?></textarea>
                 </div>
             </div>
             <div class="col-12">
@@ -83,7 +89,7 @@
                     <input id="ban" type="checkbox"<?php if($user['ban'] != 0) echo ' checked'; ?>>
                 </div>
             </div>
-            <div class="col-12"><br><br>
+            <div class="col-12" style="margin-bottom: 20px;"><br><br>
                 <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
                 <button id="submit" type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
             </div>
@@ -193,7 +199,7 @@
         $.ajax({
             type: 'post',
             url: "/api/users/edit",
-            data: 'id=<?php echo $user['id']?>&role='+$("#role").val()+'&lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&ban_upload='+(($('#ban_upload').is(":checked")) ? '1' : '0')+'&ban='+(($('#ban').is(":checked")) ? '1' : '0')+'&email_verifed='+(($('#email_verifed').is(":checked")) ? '1' : '0'),
+            data: 'id=<?php echo $user['id']?>&role='+$("#role").val()+'&lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&biography='+$("#biography").val()+'&ban_upload='+(($('#ban_upload').is(":checked")) ? '1' : '0')+'&ban='+(($('#ban').is(":checked")) ? '1' : '0')+'&email_verifed='+(($('#email_verifed').is(":checked")) ? '1' : '0'),
             dataType: 'json',
             success: function(data){
                 console.log(data);

@@ -441,9 +441,9 @@ function api_register() {
     $emailSendHash = $db->real_escape_string(RandomString(20));
     $time = $db->real_escape_string(time());
     if(!empty($patronymic))
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', '$patronymic', '$time')");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`, `biography`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', '$patronymic', '$time', NULL)");
     else
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', NULL, '$time')");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`, `biography`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', NULL, '$time', NULL)");
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
     if ($query->num_rows !== 1)
         res(7);
@@ -598,21 +598,20 @@ function api_users_edit() {
     }
     
     $patr_check = 0;
+    $bio_check = 0;
 
     $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : res(0, "Укажите в поле фамилию");
     $surname = !empty($_POST['surname']) ? $_POST['surname'] : res(0, "Укажите в поле имя");
     $patronymic = !empty($_POST['patronymic']) ? $_POST['patronymic'] : ($patr_check = 1);
+    $biography = !empty($_POST['biography']) ? $_POST['biography'] : ($bio_check = 1);
 
-    if (strlen($lastname) > 25 || strlen($surname) > 25 || strlen($patronymic) > 30)
-        res(0, "В полях ФИО слишком много символов");
+    if (strlen($lastname) > 25 || strlen($surname) > 25 || strlen($patronymic) > 30 || strlen($biography) > 500)
+        res(0, "В полях ФИО и биографии слишком много символов");
     if (countWhiteSpaces($lastname) >= 2 || countWhiteSpaces($surname) >= 2 || countWhiteSpaces($patronymic) >= 1)
         res(0, "В полях ФИО слишком много пробелов");
 
-    if(!$patr_check)
-        $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = '$patronymic' WHERE `id` = '$user_id'");
-    else
-        $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = NULL WHERE `id` = '$user_id'");
-    
+    $query = $db->query("UPDATE `users` SET `user_type` = '$role', `ban` = '$ban', `ban_upload` = '$ban_upload', `email_verifed` = '$email_verifed', `lastname` = '$lastname', `surname` = '$surname', `patronymic` = ".(($patr_check) ? "NULL" : "'$patronymic'").", `biography` = ".(($bio_check) ? "NULL" : "'$biography'").", WHERE `id` = '$user_id'");
+
     if(!$query) res(0, "mysql error");
     res(1, "Данные пользователя успешно обновлены");
 }
