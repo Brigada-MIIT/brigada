@@ -81,6 +81,13 @@
                         text: "Вы не можете сохранить пока не загрузите файлы",
                         icon: "error"
                     });
+                } else if (res.result == 3) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ошибка!',
+                        text: res.text,
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -124,14 +131,6 @@
                         icon: "success"
                     }).then((result) => {
                         location.replace("/");
-                    });
-                }
-                else if (res.result == 3) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Ошибка!',
-                        text: res.text,
-                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
                     });
                 }
                 else {
