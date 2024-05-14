@@ -36,7 +36,7 @@ function register() {
     include '../core/template/default.php';
 }
 
-function change_password($args) {
+function password_change($args) {
     global $system, $system_user_id, $_user;
     $token = $args['token'];
     if(empty($token))
