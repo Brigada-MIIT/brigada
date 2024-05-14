@@ -45,8 +45,8 @@
         <div class="col-12" style="margin-top: 5%;">
             <div class="in">
                 <div class="btn-group d-flex flex-wrap">
-                    <button type="submit" class="submit mr-4 mb-2" onclick="save();">Сохранить</button>
-                    <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button type="submit" class="submit mb-2" onclick="submit_delete();">Удалить загрузку</button>' ?>
+                    <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="save();">Сохранить</button>
+                    <?php if($result['author'] == $system_user_id || $system->haveUserPermission($system_user_id, "DELETE_ALL_UPLOADS")) echo '<button id="submit" type="submit" class="submit mb-2" onclick="submit_delete();">Удалить загрузку</button>' ?>
                 </div>
             </div>
         </div>
@@ -74,6 +74,12 @@
                     }).then((result) => {
                         location.replace("/uploads/view/"+res.text);
                     });
+
+                    document.getElementById('submit').onclick = "";
+                    document.getElementById('name').disabled = true;
+                    document.getElementById('description').disabled = true;
+                    document.getElementById('category').disabled = true;
+                    document.getElementById('status').disabled = true;
                 }
                 else if (res.result == 2) {
                     Swal.fire({

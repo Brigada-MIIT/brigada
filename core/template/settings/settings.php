@@ -63,6 +63,13 @@
                         }
                     });
 
+                    document.getElementById('submit').onclick = "";
+                    document.getElementById('max_size_avatar').disabled = true;
+                    document.getElementById('max_size_file').disabled = true;
+                    document.getElementById('link_to_admin').disabled = true;
+                    document.getElementById('count_char_uploads_name').disabled = true;
+                    document.getElementById('count_char_uploads_description').disabled = true;
+
                     function reload() {
                         return location.replace("/app/settings");
                     }
