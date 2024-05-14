@@ -122,7 +122,7 @@
         </div>
         <div style="float:right; width: 50%">
             <div class="in">
-                <h3>Дополнительная информация</h3>
+                <h3 style="font-size: larger;font-weight: bold;">Дополнительная информация</h3>
                 <div>
                     <div class="card border-primary mb-3 info">
                         <div class="card-header">Информация о пользователе</div>
@@ -181,7 +181,7 @@
                         </tbody>
                     </table>
                 </div>
-                <br><button id="submit" type="submit" class="bnt btn-primary" onclick="updatePermissions();">Сохранить права</button>
+                <br><button id="submit" type="submit" class="btn btn-primary" onclick="updatePermissions();">Сохранить права</button>
             </div>
         </div>
         <p class="result"></p>
