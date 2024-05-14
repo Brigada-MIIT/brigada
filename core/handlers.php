@@ -867,7 +867,9 @@ function api_settings_update() {
     $max_size_avatar = intval($_POST['max_size_avatar']) > 0 ? intval($_POST['max_size_avatar']) : res(0, 'Укажите целое положительное число (max_size_avatar)');
     $link_to_admin = empty($_POST['link_to_admin']) ? res(0, "Укажите ссылку на администратора") : $_POST['link_to_admin'];
     $max_size_file = intval($_POST['max_size_file']) > 0 ? intval($_POST['max_size_file']) : res(0, 'Укажите целое положительное число (max_size_file)');
-    $system->db()->query("UPDATE `settings` SET `max_size_avatar` = '$max_size_avatar', `link_to_admin` = '$link_to_admin', `max_size_file` = '$max_size_file' WHERE 1");
+    $count_char_uploads_name = intval($_POST['count_char_uploads_name']) > 0 ? intval($_POST['count_char_uploads_name']) : res(0, 'Укажите целое положительное число (count_char_uploads_name)');
+    $count_char_uploads_description = intval($_POST['count_char_uploads_description']) > 0 ? intval($_POST['count_char_uploads_description']) : res(0, 'Укажите целое положительное число (count_char_uploads_description)');
+    $system->db()->query("UPDATE `settings` SET `max_size_avatar` = '$max_size_avatar', `link_to_admin` = '$link_to_admin', `max_size_file` = '$max_size_file', `count_char_uploads_name` = '$count_char_uploads_name', `count_char_uploads_description` = '$count_char_uploads_description' WHERE 1");
     res(1, "Настройки успешно обновлены");
 }
 
@@ -924,10 +926,11 @@ function api_uploads_create() {
     $result = $query->fetch_assoc();
     if($result['status'] == 0) res(0, 'category is hidden');
 
-    if(strlen($_POST['name']) > 100)
-        res(2, "Название должно содержать не более 100 символов");
-    if(strlen($_POST['description']) > 1000)
-        res(2, "Описание должно содержать не более 1000 символов");
+    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+    if(strlen($_POST['name']) > $settings['count_char_uploads_name'])
+        res(2, "Название должно содержать не более ".$settings['count_char_uploads_name']." символов");
+    if(strlen($_POST['description']) > $settings['count_char_uploads_description'])
+        res(2, "Описание должно содержать не более ".$settings['count_char_uploads_description']." символов");
 
     $timestamp = time();
     $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `uploaded`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '[]', '$timestamp', '0', '0')");
