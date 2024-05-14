@@ -124,14 +124,17 @@
             <div class="in">
                 <h4 style="font-weight: bold;">Дополнительная информация</h4>
                 <div>
-                    <div class="card border-primary mb-3 info">
+                    <div class="card border-dark mb-3 info">
                         <div class="card-header">Информация о пользователе</div>
-                        <p><b>Дата регистрации:</b> 1 января 2000</p>
-                        <p><b>Статус 2FA:</b> Выключено</p>
+                        <div>
+                            <p><b>Дата регистрации:</b> 1 января 2000</p>
+                            <p><b>Статус 2FA:</b> Выключено</p>
+                        </div>
                     </div>
-                    <div class="btn-group d-flex flex-wrap">
+                    <div class="d-flex flex-wrap">
                         <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить аватар</button>
                         <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить 2FA</button>
+                        <button class="btn btn-danger mr-4 mb-2" onclick="">Удалить пользователя</button>
                     </div>
                 </div>
                 <hr>
