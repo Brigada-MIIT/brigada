@@ -225,6 +225,7 @@
                     document.getElementById('lastname').disabled = true;
                     document.getElementById('surname').disabled = true;
                     document.getElementById('patronymic').disabled = true;
+                    document.getElementById('biography').disabled = true;
                     document.getElementById('email_verifed').disabled = true;
                     document.getElementById('ban_upload').disabled = true;
                     document.getElementById('ban').disabled = true;
