@@ -538,10 +538,10 @@ function api_users_get_users() {
     $data = array();
     if ($query->num_rows > 0) {
         while($row = $query->fetch_assoc()) {
-            $row['email'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."'/edit>".$row['email']."</a>";
-            $row['registred'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."'/edit>".unixDateToString(intval($row['registred']))."</a>";
+            $row['email'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."/edit'>".$row['email']."</a>";
+            $row['registred'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."/edit'>".unixDateToString(intval($row['registred']))."</a>";
             $row['id'] = "<a target='_blank' href='/app/users/".$row['id']."/edit'>".$row['id']."</a>";
-            $row['user_type'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."'/edit>".$system->getNameRole($row['user_type'])."</a>";
+            $row['user_type'] = "<a style='color: inherit' target='_blank' href='/app/users".$row['id']."/edit'>".$system->getNameRole($row['user_type'])."</a>";
             $data[] = $row;
         }
     }
