@@ -144,13 +144,13 @@
                     <label for="queue" style="">Загружаемые файлы:</label><br>
 		            <div id="queue"></div>
                     <input id="file_upload" name="file_upload" type="file" multiple="true">
-                    <a class="uploadifive-button" style="color: #FFFFFF;text-decoration: none;position: relative;width: 100px;height: 30px;padding-top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')">Загрузить</a>
+                    <a id="uploadifive-button_id" class="uploadifive-button" style="color: #FFFFFF;text-decoration: none;position: relative;width: 100px;height: 30px;padding-top: 8px;" href="javascript:setForm();$('#file_upload').uploadifive('upload')">Загрузить</a>
                 </div>
             </div>
         </form>
         <div class="col-12">
             <div class="in">
-                <br><br><br><button type="submit" class="submit" onclick="submit();">Сохранить</button>
+                <br><br><br><button id="submit" type="submit" class="submit" onclick="submit();">Сохранить</button>
             </div>
         </div>
     </div>
@@ -194,6 +194,13 @@
                 }).then((result) => {
                     location.replace("/uploads/view/"+res.text);
                 });
+
+                document.getElementById('submit').onclick = "";
+                document.getElementById('name').disabled = true;
+                document.getElementById('description').disabled = true;
+                document.getElementById('category').disabled = true;
+                document.getElementById('status').disabled = true;
+                document.getElementById('uploadifive-button_id').href = "";
             }
             else if (res.result == 2) {
                 Swal.fire({
