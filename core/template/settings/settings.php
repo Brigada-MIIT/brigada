@@ -33,7 +33,7 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <br><button type="submit" class="submit" onclick="save();">Сохранить</button>
+                <br><button id="submit" type="submit" class="submit" onclick="save();">Сохранить</button>
             </div>
         </div>
     </div>
