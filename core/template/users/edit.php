@@ -22,7 +22,7 @@
     }*/
 </style>
 <div class="container">
-    <p class="page-title">Редактирование пользователя (ID: <?php echo $user['id'] ?>)</p>
+    <p class="page-title">Редактирование <a href="/profile/<?php echo $user['id'] ?>">пользователя</a> (ID: <?php echo $user['id'] ?>)</p>
     <div class="form" style="width: 100%;">
         <div style="float:left; width: 50%">
             <div class="col-12">
