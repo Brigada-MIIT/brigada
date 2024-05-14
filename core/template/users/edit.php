@@ -417,7 +417,7 @@
                         title: "Успешно!",
                         text: "Двухфакторная авторизация у пользователя была успешно удалена",
                         icon: "success"
-                    })then((result) => {
+                    }).then((result) => {
                         location.reload();
                     });
                 }
