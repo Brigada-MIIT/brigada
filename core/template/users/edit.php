@@ -165,13 +165,13 @@
                 <hr>
                 <h3>Дополнительная информация</h3>
                 <div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Информация о пользователе</h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Дата регистрации: 1 января 2000</li>
-                                <li class="list-group-item">Статус 2FA: Выключено</li>
-                            </ul>
+                    <div class="card border-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Информация о пользователе</div>
+                        <div class="card-body text-primary">
+                            <h5 class="card-title">Дата регистрации</h5>
+                            <p class="card-text">1 января 2000</p>
+                            <h5 class="card-title">Статус 2FA</h5>
+                            <p class="card-text">Включено</p>
                         </div>
                     </div>
                     <div class="btn-group d-flex flex-wrap">
