@@ -36,6 +36,22 @@ function register() {
     include '../core/template/default.php';
 }
 
+function change_password($args) {
+    global $system, $system_user_id, $_user;
+    $token = $args['token'];
+    if(empty($token))
+        Location("/");
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `users` WHERE `password_token` = '$token'");
+    if(!$query)
+        die("mysql error");
+    if($query->num_rows == 0)
+        Location("/");
+    $result = $query->fetch_assoc();
+    $content = '../core/template/profile/password.php';
+    include '../core/template/default.php';
+}
+
 function users() {
     global $system, $system_user_id, $_user;
     if(!$system->auth())
@@ -484,7 +500,35 @@ function logout() {
 }
 
 function api_password_change($args) {
+    global $system, $system_user_id, $_user;
+    $token = $args['token'];
+    $password = $_REQUEST['password'];
+    $password_repeat = $_REQUEST['password_repeat'];
+    if(empty($token) || empty($password) || empty($password_repeat))
+        res(0);
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `users` WHERE `password_token` = '$token'");
+    if(!$query)
+        res(0, "mysql error");
+    if($query->num_rows == 0)
+        res(2);
+    $result = $query->fetch_assoc();
+    $user_id = $result['id'];
+    if($password != $password_repeat)
+        res(3);
 
+    $time = time();
+    $passwordHash = $db->real_escape_string(password_hash($password, PASSWORD_DEFAULT));;
+
+    $query = $db->query("UPDATE `users` SET `password` = '$passwordHash', `password_token` = NULL, `password_change_timestamp` = '$time' WHERE `users`.`id` = '$user_id'");
+    if(!$query)
+        res(0, "mysql change error");
+
+    $query = $db->query("DELETE FROM `users_session` WHERE `id` = '$user_id'");
+    if(!$query)
+        res(0, "mysql clear sessions error");
+
+    res(1);
 }
 
 function api_users_get_users() {

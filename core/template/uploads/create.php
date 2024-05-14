@@ -61,32 +61,33 @@
             url: '/api/uploads/create',
             data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value,
             success: async function(data) {
-            var res = $.parseJSON(data);
-            console.log(res);
-            if (res.result == 1) {
-                document.getElementById('submit').onclick = "";
-                document.getElementById('name').disabled = true;
-                document.getElementById('description').disabled = true;
-                document.getElementById('category').disabled = true;
-                location.replace("/uploads/files/"+res.text);
-            } else if (res.result == 2) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Ошибка!',
-                    text: res.text,
-                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
-                });
-                action = true;
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Произошла неизвестная ошибка!',
-                    text: 'Обратитесь к администратору.',
-                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
-                });
-                action = true;
+                var res = $.parseJSON(data);
+                console.log(res);
+                if (res.result == 1) {
+                    document.getElementById('submit').onclick = "";
+                    document.getElementById('name').disabled = true;
+                    document.getElementById('description').disabled = true;
+                    document.getElementById('category').disabled = true;
+                    location.replace("/uploads/files/"+res.text);
+                } else if (res.result == 2) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ошибка!',
+                        text: res.text,
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                    action = true;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                    action = true;
+                }
             }
-        }});
+        });
     }
 </script>   
       

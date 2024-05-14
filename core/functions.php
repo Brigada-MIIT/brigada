@@ -214,9 +214,8 @@ class System {
     }
     function send_email_change_password($_user) {
         if(!empty($_user['password_send_timestamp'])) {
-            if((time() - intval($_user['password_send_timestamp'])) < 300) {
+            if((time() - intval($_user['password_send_timestamp'])) < 300)
                 return 2; // если не прошло 5 минут с момента последней отправки
-            }
         }
         $db = $this->db();
         $user_id = $_user['id'];
@@ -277,7 +276,7 @@ class System {
                         <p>Здравствуйте, '. $_user["surname"] . '! Для вашего аккаунта было запрошено изменение пароля.</p>
                         <p>Чтобы изменить пароль, пожалуйста, нажмите на кнопку ниже:</p>
                         <p><a class="btn" href="https://brigada-miit.ru/password/change/' . $password_token . '">Изменить пароль</a></p>
-                        <p><b>ВНИМАНИЕ! Если вы не запрашивали смену пароля на нашем сервисе, пожалуйста, проигнорируйте это письмо и НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ ПОДТВЕРЖДЕНИЯ!</b></p>
+                        <p><b>ВНИМАНИЕ! Если вы не запрашивали смену пароля на нашем сервисе, пожалуйста, проигнорируйте это письмо и НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ ИЗМЕНЕНИЯ ПАРОЛЯ!</b></p>
                         <p>С уважением, администрация файлообменника «Бригада» <a href="https://brigada-miit.ru">brigada-miit.ru</a></p>
                     </div>
                 </div>
