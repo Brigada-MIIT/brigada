@@ -53,11 +53,7 @@
             return Toast.fire({
                 icon: 'error',
                 title: 'Заполните, пожалуйста, все поля'
-            });/*.then((result) => {
-                    if (result.isConfirmed) {
-                        return location.replace("/promocodes"); 
-                    }
-                });*/
+            });
         if (!action) return;
         action = false;
         $.ajax({
@@ -69,6 +65,14 @@
             console.log(res);
             if (res.result == 1) {
                 location.replace("/uploads/files/"+res.text);
+            } else if (res.result == 2) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ошибка!',
+                    text: res.text,
+                    footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                });
+                action = true;
             } else {
                 Swal.fire({
                     icon: 'error',
