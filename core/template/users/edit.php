@@ -1,30 +1,60 @@
 <style>
-    table {
-        max-width: 50%;
+    .container {
+        padding: 20px;
+    }
+    .form {
+        display: flex;
+        justify-content: space-between;
+    }
+    .form > div {
+        width: 48%;
+    }
+    .form > div input[type="text"],
+    .form > div input[type="email"],
+    .form > div input[type="password"],
+    .form > div textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
         border: 1px solid #ccc;
-        border-collapse: collapse;
+        border-radius: 5px;
+        box-sizing: border-box;
     }
-    thead {
+    .form > div textarea {
+        height: 100px;
+    }
+    .in {
+        margin-bottom: 20px;
+    }
+    .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .submit {
+        padding: 10px 20px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .result {
+        margin-top: 20px;
+    }
+    .info-box {
+        background-color: #f8f9fa;
         border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 20px;
     }
-    th, td {
-        border-left: 1px solid #ccc;
-        white-space: nowrap;
-        padding: 5px;
-    }
-    td:nth-last-child(-n+2) {
-        text-align: right;
-    }
-    /*@media screen and (max-width: 729px) {
-        .table-box {
-            overflow-x: scroll;
-        }
-    }*/
 </style>
 <div class="container">
     <p class="page-title">Редактирование <a href="/profile/<?php echo $user['id'] ?>">пользователя</a> (ID: <?php echo $user['id'] ?>)</p>
     <div class="form">
-        <div style="float:left; width: 50%">
+        <div>
             <div class="col-12">
                 <div class="in">
                     <label for="email">Email:</label><br>
@@ -100,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div style="float:right; width: 50%;">
+        <div>
             <div class="in">
                 <p style="font-size: larger;font-weight: bold;">Отдельные права пользователя</p>
                 <div id="perms" class="itable-box" style="overflow-x: scroll;">
@@ -150,6 +180,15 @@
                 </div>
                 <br><button id="submit" type="submit" class="submit" onclick="updatePermissions();">Сохранить права</button>
             </div>
+        </div>
+        <hr>
+        <div class="info-box">
+            <p>Дата регистрации: <?php echo $user['registration_date'] ?></p>
+            <p>Статус 2FA: <?php echo $user['2fa_status'] ? 'Включено' : 'Отключено' ?></p>
+        </div>
+        <div class="btn-group">
+            <a href="#" class="submit">Удалить кэш</a>
+            <a href="#" class="submit">Удалить спам</a>
         </div>
         <p class="result"></p>
     </div>
