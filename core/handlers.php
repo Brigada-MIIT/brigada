@@ -433,9 +433,9 @@ function api_register() {
     $emailSendHash = $db->real_escape_string(RandomString(20));
     $time = $db->real_escape_string(time());
     if(!empty($patronymic))
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`, `biography`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', '$patronymic', '$time', NULL)");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `password_token`, `password_send_timestamp`, `password_change_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`, `biography`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, NULL, NULL, NULL, '$lastname', '$surname', '$patronymic', '$time', NULL)");
     else
-        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`, `biography`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, '$lastname', '$surname', NULL, '$time', NULL)");
+        $query = $db->query("INSERT INTO `users` (`id`, `email`, `password`, `avatar`, `user_type`, `ban`, `ban_upload`, `email_verifed`, `email_token`, `email_send_token`, `email_send_timestamp`, `password_token`, `password_send_timestamp`, `password_change_timestamp`, `2fa_secret`, `lastname`, `surname`, `patronymic`, `registred`, `biography`) VALUES (NULL, '$email', '$passwordHash', '/assets/img/avatar.jpg', 1, 0, 0, 0, '$emailVerifyHash', '$emailSendHash', NULL, NULL, NULL, NULL, NULL, '$lastname', '$surname', NULL, '$time', NULL)");
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
     if ($query->num_rows !== 1)
         res(7);
@@ -484,7 +484,7 @@ function logout() {
 }
 
 function api_password_change($args) {
-    
+
 }
 
 function api_users_get_users() {
