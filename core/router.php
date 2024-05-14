@@ -30,6 +30,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/email/resend/{token}', 'api_email_resend');
     $r->addRoute('GET', '/email/verify/{token}', 'api_email_verify');
     $r->addRoute('GET', '/logout', 'logout');
+    $r->addRoute('POST', '/api/users/get_users', 'api_users_get_users');
     $r->addRoute('POST', '/api/users/edit', 'api_users_edit');
     $r->addRoute('POST', '/api/users/delete', 'api_users_delete');
     $r->addRoute('POST', '/api/users/permissions', 'api_users_permissions');
