@@ -23,7 +23,7 @@
 </style>
 <div class="container">
     <p class="page-title">Редактирование <a href="/profile/<?php echo $user['id'] ?>">пользователя</a> (ID: <?php echo $user['id'] ?>)</p>
-    <div class="row" style="width: 100%;"><div class="form">
+    <div class="form">
         <div style="float:left; width: 50%">
             <div class="col-12">
                 <div class="in">
@@ -144,7 +144,7 @@
                 </div>
                 <br><button id="submit" type="submit" class="submit" onclick="updatePermissions();">Сохранить права</button>
             </div>
-        </div></div>
+        </div>
         <p class="result"></p>
     </div>
 </div>
