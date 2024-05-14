@@ -129,8 +129,8 @@
                         </div>
                     </div>
                     <div class="d-flex flex-wrap">
-                        <button class="btn btn-primary mb-2" style="margin-right: auto" onclick="">Удалить аватар</button>
-                        <button class="btn btn-primary mb-2" style="margin-right: auto" onclick="">Удалить 2FA</button>
+                        <button class="btn btn-primary mb-2" style="margin-right: auto" onclick="submit_delete_avatar();">Удалить аватар</button>
+                        <button class="btn btn-primary mb-2" style="margin-right: auto" onclick="submit_delete_2FA();">Удалить 2FA</button>
                         <button class="btn btn-danger  mb-2" onclick="submit_delete();">Удалить пользователя</button>
                     </div>
                 </div>
@@ -332,6 +332,92 @@
                         text: res.text,
                         icon: "error"
                     });
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                }
+            }
+        });
+    }
+
+    function submit_delete_avatar() {
+        Swal.fire({
+            title: "Вы уверены?",
+            text: "После удаления аватара его восстановление будет невозможно",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Да, удалить!",
+            cancelButtonText: "Отменить",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                delete_avatar();
+            }
+        });
+    }
+
+    function delete_avatar() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/profile/avatar/delete/<?php echo $user['id'] ?>',
+            success: async function(data) {
+                var res = $.parseJSON(data);
+                console.log(res);
+                if (res.result == 1) {
+                    Swal.fire({
+                        title: "Успешно!",
+                        text: "Аватар пользователя был успешно удалён",
+                        icon: "success"
+                    })
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                }
+            }
+        });
+    }
+
+    function submit_delete_2FA() {
+        Swal.fire({
+            title: "Вы уверены?",
+            text: "Вы хотите удалить 2FA авторизацию у пользователя?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Да, удалить!",
+            cancelButtonText: "Отменить",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                delete_2FA();
+            }
+        });
+    }
+
+    function delete_2FA() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/users/2fa_delete/<?php echo $user['id'] ?>',
+            success: async function(data) {
+                var res = $.parseJSON(data);
+                console.log(res);
+                if (res.result == 1) {
+                    Swal.fire({
+                        title: "Успешно!",
+                        text: "Двухфакторная авторизация была успешно удалена у пользователя",
+                        icon: "success"
+                    })
                 }
                 else {
                     Swal.fire({
