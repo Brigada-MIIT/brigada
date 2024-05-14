@@ -51,12 +51,6 @@
             </div>
             <div class="col-12">
                 <div class="in">
-                    <label for="biography">О себе</label><br>
-                    <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 100%; display: block;"><?php echo $_user['biography'] ?></textarea>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="in">
                 <!--  <input id="role" type="number" placeholder="Права" <?php echo $_user['user_type'] < 3 ? 'style="display:none;"' : ''?> value="<?php echo $user['user_type']?>"> -->
                 <?php if ($_user['user_type'] > 1): ?>
                 <label for="role">Роль:</label><br> 
@@ -69,6 +63,12 @@
                         <?php endfor; ?> 
                     </select> 
                     <?php endif; ?>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="biography">О себе</label><br>
+                    <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 100%; display: block;"><?php echo $_user['biography'] ?></textarea>
                 </div>
             </div>
             <div class="col-12">
