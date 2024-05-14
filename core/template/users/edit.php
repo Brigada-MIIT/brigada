@@ -167,8 +167,8 @@
                 <div>
                     <div class="card border-primary mb-3">
                         <div class="card-header">Информация о пользователе</div>
-                            <p><b>Дата регистрации:</b> 1 января 2000</p>
-                            <p><b>Статус 2FA:</b> Выключено</p>
+                        <p><b>Дата регистрации:</b> 1 января 2000</p>
+                        <p><b>Статус 2FA:</b> Выключено</p>
                     </div>
                     <div class="btn-group d-flex flex-wrap">
                         <a href="#" class="btn btn-primary mr-4 mb-2">Удалить кэш</a>
