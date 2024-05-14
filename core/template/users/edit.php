@@ -28,11 +28,11 @@
     td:nth-last-child(-n+2) {
         text-align: right;
     }
-    p {
+    .info p {
         padding-left: 20px;
         padding-top: 5px;
     }
-    p:nth-last-child(-n+2) {
+    .info p:nth-last-child(-n+2) {
         padding-bottom: 5px;
     }
     /*@media screen and (max-width: 729px) {
@@ -172,7 +172,7 @@
                 <hr>
                 <h3>Дополнительная информация</h3>
                 <div>
-                    <div class="card border-primary mb-3">
+                    <div class="card border-primary mb-3 info">
                         <div class="card-header">Информация о пользователе</div>
                         <p><b>Дата регистрации:</b> 1 января 2000</p>
                         <p><b>Статус 2FA:</b> Выключено</p>
