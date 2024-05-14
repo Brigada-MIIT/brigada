@@ -125,7 +125,10 @@
                         <div class="card-header">Информация о пользователе</div>
                         <div>
                             <p><b>Дата регистрации:</b> <?php echo unixDateToString(intval($user['registred'])) ?></p>
+                            <p><b>Подтверждение Email:</b> <?php echo ( ($user['email_verifed'] == 1) ? "Да" : "Нет" ) ?></p>
                             <p><b>Статус 2FA:</b> <?php echo ( !empty($user['2fa_secret']) ? "Включено" : "Выключено" ) ?></p>
+                            <?php echo ( !empty($user['ban']) ? "<p><b>Блокировка: <b> Да (<a href='/profile/'".$user['ban'].">кем выдана?</a>)</p>" : "" ) ?>
+                            <?php echo ( !empty($user['ban_upload']) ? "<p><b>Блокировка загрузки файлов: <b> Да (<a href='/profile/'".$user['ban_upload'].">кем выдана?</a>)</p>" : "" ) ?>
                         </div>
                     </div>
                     <div class="d-flex flex-wrap">
