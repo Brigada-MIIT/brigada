@@ -32,7 +32,7 @@
         padding-left: 20px;
         padding-top: 5px;
     }
-    .info p:nth-last-child(-n+2) {
+    .info p:last-child {
         padding-bottom: 5px;
     }
     /*@media screen and (max-width: 729px) {
