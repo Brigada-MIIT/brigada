@@ -23,6 +23,27 @@
         padding: 10px;
         margin-top: 20px;
     }
+    table {
+        max-width: 50%;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+    }
+    thead {
+        border: 1px solid #ccc;
+    }
+    th, td {
+        border-left: 1px solid #ccc;
+        white-space: nowrap;
+        padding: 5px;
+    }
+    td:nth-last-child(-n+2) {
+        text-align: right;
+    }
+    /*@media screen and (max-width: 729px) {
+        .table-box {
+            overflow-x: scroll;
+        }
+    }*/
 </style>
 <div class="container">
     <p class="page-title">Редактирование <a href="/profile/<?php echo $user['id'] ?>">пользователя</a> (ID: <?php echo $user['id'] ?>)</p>
