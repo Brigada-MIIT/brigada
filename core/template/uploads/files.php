@@ -92,7 +92,7 @@
 </style>
 <div class="container">  
     <p class="page-title">Загрузка файлов</p>
-    <h3><b>Ограничения:</b><br>Количество фалов: 10<br>Вес файла: <?php echo $settings['max_size_file'] ?><br>Типы поддерживаемых файлов: jpg, jpeg, gif, png, docx, doc, txt, xls, xlsx, ppt, pptx, zip, pdf</h3>
+    <h3><strong>Ограничения</strong></h3><h4>Количество фалов: 10<br>Вес файла: <?php echo $settings['max_size_file'] ?><br>Типы поддерживаемых файлов: jpg, jpeg, gif, png, docx, doc, txt, xls, xlsx, ppt, pptx, zip, pdf</h4>
     <div class="form">
         <form>
             <div class="col-12">
