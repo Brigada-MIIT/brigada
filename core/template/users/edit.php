@@ -165,9 +165,14 @@
                 <hr>
                 <h3>Дополнительная информация</h3>
                 <div>
-                    <div class="info-box">
-                        <p>Дата регистрации: 1 января 1970</p>
-                        <p>Статус 2FA: Включено ?></p>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Информация о пользователе</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Дата регистрации: 1 января 2000</li>
+                                <li class="list-group-item">Статус 2FA: Выключено</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="btn-group d-flex flex-wrap">
                         <a href="#" class="btn btn-primary mr-4 mb-2">Удалить кэш</a>
