@@ -89,9 +89,13 @@
                     <input id="ban" type="checkbox"<?php if($user['ban'] != 0) echo ' checked'; ?>>
                 </div>
             </div>
-            <div class="col-12" style="margin-bottom: 20px;"><br><br>
-                <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
-                <button id="submit" type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
+            <div class="col-12" style="margin-bottom: 20px;">
+                <div class="in">
+                    <div class="btn-group d-flex flex-wrap">
+                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
+                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div style="float:right; width: 50%;">
