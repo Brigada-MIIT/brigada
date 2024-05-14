@@ -9,39 +9,12 @@
     .form > div {
         width: 48%;
     }
-    .form > div input[type="text"],
-    .form > div input[type="email"],
-    .form > div input[type="password"],
-    .form > div textarea {
-        width: calc(100% - 20px);
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-    }
     .form > div textarea {
         height: 100px;
-    }
-    .in {
-        margin-bottom: 20px;
     }
     .btn-group {
         display: flex;
         flex-wrap: wrap;
-    }
-    .submit {
-        padding: 10px 20px;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .result {
-        margin-top: 20px;
     }
     .info-box {
         background-color: #f8f9fa;
