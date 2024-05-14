@@ -924,6 +924,11 @@ function api_uploads_create() {
     $result = $query->fetch_assoc();
     if($result['status'] == 0) res(0, 'category is hidden');
 
+    if(strlen($_POST['name']) > 100)
+        res(0, "Название должно содержать не более 100 символов");
+    if(strlen($_POST['description']) > 1000)
+        res(0, "Название должно содержать не более 1000 символов");
+
     $timestamp = time();
     $query = $db->query("INSERT INTO `uploads` (`id`, `author`, `name`, `description`, `category`, `status`, `files`, `created`, `uploaded`, `updated`) VALUES (NULL, '$system_user_id', '".$_POST['name']."', '".$_POST['description']."', '$category', '$status', '[]', '$timestamp', '0', '0')");
     if(!$query) res(0, 'MySQL error');
