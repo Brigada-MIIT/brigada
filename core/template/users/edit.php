@@ -23,122 +23,120 @@
         }*/
     </style>
     <p class="page-title">Редактирование пользователя (ID: <?php echo $user['id'] ?>)</p>
-    <div class="form">
-        <div class="row" style="width: 100%;">
-            <div style="float:left; width: 50%">
-                <div class="col-12">
-                    <div class="in">
-                        <label for="email">Email:</label><br>
-                        <input id="email" type="text" disabled placeholder="Email" value="<?php echo $user['email'] ?>">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="in">
-                        <label for="lastname">Фамилия</label><br>
-                        <input id="lastname" type="text" placeholder="Фамилия" value="<?php echo $user['lastname'] ?>">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="in">
-                        <label for="surname">Имя</label><br>
-                        <input id="surname" type="text" placeholder="Имя" value="<?php echo $user['surname'] ?>">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="in">
-                        <label for="patronymic">Отчество</label><br>
-                        <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $user['patronymic'] ?>">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="in">
-                    <!--  <input id="role" type="number" placeholder="Права" <?php echo $_user['user_type'] < 3 ? 'style="display:none;"' : ''?> value="<?php echo $user['user_type']?>"> -->
-                    <?php if ($_user['user_type'] > 1): ?>
-                    <label for="role">Роль:</label><br> 
-                    <select id="role">
-                        <option value="<?php echo $user['user_type']; ?>"><?php echo $system->getNameRole($user['user_type']); ?></option> 
-                        <option>===========</option> 
-                            <?php for ($type = 1; $type < $_user['user_type']; $type++): ?>
-                                <?php if($type == $user['user_type']) continue; ?>
-                                <option value="<?php echo $type; ?>"><?php echo $system->getNameRole($type); ?></option> 
-                            <?php endfor; ?> 
-                        </select> 
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="in">
-                        <label for="email_verifed">Email-адрес подтверждён?</label><br>
-                        <input id="email_verifed" type="checkbox"<?php if($user['email_verifed'] != 0) echo ' checked disabled'; ?>>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="in">
-                        <label for="ban_upload">Блокировка на загрузку файлов</label><br>
-                        <input id="ban_upload" type="checkbox"<?php if($user['ban_upload'] != 0) echo ' checked'; ?>>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="in">
-                        <label for="ban">Ограничение доступа к сайту</label><br>
-                        <input id="ban" type="checkbox"<?php if($user['ban'] != 0) echo ' checked'; ?>>
-                    </div>
-                </div>
-                <div class="col-12"><br><br>
-                    <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
-                    <button id="submit" type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
+    <div class="form" style="width: 100%;">
+        <div style="float:left; width: 50%">
+            <div class="col-12">
+                <div class="in">
+                    <label for="email">Email:</label><br>
+                    <input id="email" type="text" disabled placeholder="Email" value="<?php echo $user['email'] ?>">
                 </div>
             </div>
-            <div style="float:right; width: 50%;">
+            <div class="col-12">
                 <div class="in">
-                    <p style="font-size: larger;font-weight: bold;">Отдельные права пользователя</p>
-                    <div id="perms" class="itable-box" style="overflow-x: scroll;">
-                        <table style="max-width: 50%;">
-                            <thead>
-                                <tr>
-                                    <?php
-                                        $fields = array(); 
-                                        $db = $system->db();
-                                        $query = $db->query("SHOW COLUMNS FROM `permissions`");
-                                        if ($query->num_rows > 0) {
-                                            while ($row = $query->fetch_assoc()) {
-                                                if($row['Field'] == "userid" || $row['Field'] == "id") {
-                                                    continue;
-                                                }
-                                                if(!$system->haveUserPermission($system->userinfo()['id'], $row['Field'])) {
-                                                    continue;
-                                                }
-                                                echo '<th>' . $row['Field'] . '</th>';
-                                                $fields[] = $row['Field'];
-                                            }
-                                        }
-                                    ?>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <label for="lastname">Фамилия</label><br>
+                    <input id="lastname" type="text" placeholder="Фамилия" value="<?php echo $user['lastname'] ?>">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="surname">Имя</label><br>
+                    <input id="surname" type="text" placeholder="Имя" value="<?php echo $user['surname'] ?>">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="patronymic">Отчество</label><br>
+                    <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $user['patronymic'] ?>">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                <!--  <input id="role" type="number" placeholder="Права" <?php echo $_user['user_type'] < 3 ? 'style="display:none;"' : ''?> value="<?php echo $user['user_type']?>"> -->
+                <?php if ($_user['user_type'] > 1): ?>
+                <label for="role">Роль:</label><br> 
+                <select id="role">
+                    <option value="<?php echo $user['user_type']; ?>"><?php echo $system->getNameRole($user['user_type']); ?></option> 
+                    <option>===========</option> 
+                        <?php for ($type = 1; $type < $_user['user_type']; $type++): ?>
+                            <?php if($type == $user['user_type']) continue; ?>
+                            <option value="<?php echo $type; ?>"><?php echo $system->getNameRole($type); ?></option> 
+                        <?php endfor; ?> 
+                    </select> 
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="email_verifed">Email-адрес подтверждён?</label><br>
+                    <input id="email_verifed" type="checkbox"<?php if($user['email_verifed'] != 0) echo ' checked disabled'; ?>>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="ban_upload">Блокировка на загрузку файлов</label><br>
+                    <input id="ban_upload" type="checkbox"<?php if($user['ban_upload'] != 0) echo ' checked'; ?>>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="in">
+                    <label for="ban">Ограничение доступа к сайту</label><br>
+                    <input id="ban" type="checkbox"<?php if($user['ban'] != 0) echo ' checked'; ?>>
+                </div>
+            </div>
+            <div class="col-12"><br><br>
+                <button id="submit" type="submit" class="submit" onclick="edit();">Сохранить</button>
+                <button id="submit" type="submit" class="submit" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
+            </div>
+        </div>
+        <div style="float:right; width: 50%;">
+            <div class="in">
+                <p style="font-size: larger;font-weight: bold;">Отдельные права пользователя</p>
+                <div id="perms" class="itable-box" style="overflow-x: scroll;">
+                    <table style="max-width: 50%;">
+                        <thead>
                             <tr>
                                 <?php
-                                    $query_p = $db->query("SELECT * FROM `permissions` WHERE `userid`=".$user['id'].";");
-                                    $result = $query_p->fetch_assoc();
-                                    //print_r($result);
-
-                                    if($result) {
-                                        foreach ($fields as $field) {
-                                            if($result[$field])
-                                                echo '<td><input id="'.$field.'" style="width: 100%;height: 25px;box-shadow: none;" type="checkbox" checked></td>';
-                                            else if($system->haveGroupPermissions($system->userinfo($user['id'])['user_type'], $field))
-                                                echo '<td><input id="'.$field.'" style="width: 100%;height: 25px;box-shadow: none;" type="checkbox" checked disabled></td>';
-                                            else
-                                                echo '<td><input id="'.$field.'" style="width: 100%;height: 25px;box-shadow: none;" type="checkbox"></td>';
+                                    $fields = array(); 
+                                    $db = $system->db();
+                                    $query = $db->query("SHOW COLUMNS FROM `permissions`");
+                                    if ($query->num_rows > 0) {
+                                        while ($row = $query->fetch_assoc()) {
+                                            if($row['Field'] == "userid" || $row['Field'] == "id") {
+                                                continue;
+                                            }
+                                            if(!$system->haveUserPermission($system->userinfo()['id'], $row['Field'])) {
+                                                continue;
+                                            }
+                                            echo '<th>' . $row['Field'] . '</th>';
+                                            $fields[] = $row['Field'];
                                         }
                                     }
                                 ?>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br><button id="submit" type="submit" class="submit" onclick="updatePermissions();">Сохранить права</button>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <?php
+                                $query_p = $db->query("SELECT * FROM `permissions` WHERE `userid`=".$user['id'].";");
+                                $result = $query_p->fetch_assoc();
+                                //print_r($result);
+
+                                if($result) {
+                                    foreach ($fields as $field) {
+                                        if($result[$field])
+                                            echo '<td><input id="'.$field.'" style="width: 100%;height: 25px;box-shadow: none;" type="checkbox" checked></td>';
+                                        else if($system->haveGroupPermissions($system->userinfo($user['id'])['user_type'], $field))
+                                            echo '<td><input id="'.$field.'" style="width: 100%;height: 25px;box-shadow: none;" type="checkbox" checked disabled></td>';
+                                        else
+                                            echo '<td><input id="'.$field.'" style="width: 100%;height: 25px;box-shadow: none;" type="checkbox"></td>';
+                                    }
+                                }
+                            ?>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <br><button id="submit" type="submit" class="submit" onclick="updatePermissions();">Сохранить права</button>
             </div>
         </div>
         <p class="result"></p>
