@@ -32,6 +32,9 @@
         padding-left: 20px;
         padding-top: 5px;
     }
+    p:nth-last-child(-n+2) {
+        padding-bottom: 5px;
+    }
     /*@media screen and (max-width: 729px) {
         .table-box {
             overflow-x: scroll;
