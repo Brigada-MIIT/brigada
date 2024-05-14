@@ -109,14 +109,6 @@ function profile_uploads() {
     include '../core/template/default.php';
 }
 
-/*function profile_password() {
-    global $system, $system_user_id, $_user;
-    if (!$system->haveUserPermission($system_user_id, "CHANGE_PASSWORD"))
-        $system->printError(403);
-    $content = '../core/template/edituser.php';
-    include '../core/template/default.php';
-}*/
-
 function profile_avatar() {
     global $system, $system_user_id, $_user;
     if (!$system->auth())

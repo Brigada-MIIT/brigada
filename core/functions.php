@@ -254,6 +254,7 @@ class System {
         if(!$mail->send()) return 0;
         $query = $db->query("UPDATE `users` SET `password_send_timestamp` = '$time', `password_token` = '$password_token' WHERE `users`.`id` = '$user_id'");
         if(!$query) return -1;
+        return 1;
     }
 }
 
