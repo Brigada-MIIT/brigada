@@ -913,6 +913,13 @@ function api_profile_avatar_delete($args) {
     res(1);
 }
 
+function api_profile_change_password() {
+    global $system, $system_user_id, $_user;
+    if (!$system->auth())
+        res(0);
+    res($system->send_email_change_password($_user));
+}
+
 function api_profile_edit() {
     global $system, $system_user_id, $_user;
     if(!$system->auth())

@@ -36,7 +36,7 @@
                 <div class="btn-group d-flex flex-wrap">
                     <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
                     <a href="/profile/edit/avatar"><button id="submit" type="submit" class="submit mr-4 mb-2">Сменить аватар</button></a>
-                    <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="password();">Сменить пароль</button>
+                    <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="submit_change_password();">Сменить пароль</button>
                 </div>
             </div>
         </div>
@@ -81,6 +81,57 @@
                         icon: "error",
                         footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
                     });
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Произошла неизвестная ошибка!',
+                        text: 'Обратитесь к администратору.',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                }
+            }
+        });
+    }
+
+    function submit_change_password() {
+        Swal.fire({
+            title: "Вы хотите сменить пароль?",
+            text: "На вашу электронную почту будет выслана ссылка для смены пароля",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Да, хочу сменить!",
+            cancelButtonText: "Отменить",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                change_password();
+            }
+        });
+    }
+
+    function change_password() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/profile/change_password',
+            success: async function(data) {
+                var res = $.parseJSON(data);
+                console.log(res);
+                if (res.result == 1) {
+                    Swal.fire({
+                        title: "Успешно!",
+                        text: "На вашу электронную почту была выслана инструкция по смене пароля",
+                        icon: "success"
+                    })
+                }
+                else if (res.result == 2) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ошибка!',
+                        text: 'Вы слишком часто пытаетесь сменить пароль',
+                        footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    })
                 }
                 else {
                     Swal.fire({

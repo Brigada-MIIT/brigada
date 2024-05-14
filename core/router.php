@@ -28,8 +28,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/login', 'api_login');
     $r->addRoute('POST', '/api/register', 'api_register');
     $r->addRoute('POST', '/email/resend/{token}', 'api_email_resend');
-    $r->addRoute('GET', '/email/verify/{token}', 'api_email_verify');
-    $r->addRoute('GET', '/logout', 'logout');
+    $r->addRoute(['GET', 'POST'], '/email/verify/{token}', 'api_email_verify');
+    $r->addRoute(['GET', 'POST'], '/logout', 'logout');
     $r->addRoute('POST', '/api/users/get_users', 'api_users_get_users');
     $r->addRoute('POST', '/api/users/2fa_delete/{id:\d+}', 'api_users_2fa_delete');
     $r->addRoute('POST', '/api/users/edit', 'api_users_edit');
@@ -41,7 +41,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/api/profile/get_uploads/self', 'api_profile_get_uploads_self');
     $r->addRoute('POST', '/api/profile/avatar', 'api_profile_avatar');
     $r->addRoute('POST', '/api/profile/avatar/delete', 'api_profile_avatar_delete'); // для личного удаления
-    $r->addRoute(['GET', 'POST'], '/api/profile/avatar/delete/{id:\d+}', 'api_profile_avatar_delete'); // для удаления через админ-панель
+    $r->addRoute('POST', '/api/profile/avatar/delete/{id:\d+}', 'api_profile_avatar_delete'); // для удаления через админ-панель
+    $r->addRoute('POST', '/api/profile/change_password', 'api_profile_change_password');
     $r->addRoute('POST', '/api/uploads/create', 'api_uploads_create');
     $r->addRoute('POST', '/api/uploads/edit/{id:\d+}', 'api_uploads_edit');
     $r->addRoute('POST', '/api/uploads/delete/{id:\d+}', 'api_uploads_delete');
