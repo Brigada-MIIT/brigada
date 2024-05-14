@@ -140,11 +140,58 @@ class System {
         $mail->Subject ='Файлообменник «Бригада». Подтверждение регистрации';
         $mail->IsHTML(true);
         $mail->msgHTML('
-            Добро пожаловать, ' . $result["surname"] . '! Мы ради вас приветствовать на нашем файлообменнике!<br>
-            Прежде чем начать пользоваться файлообменником, пожалуйста, подтвердите аккаунт.<br><br>
-            <strong><a href="https://brigada-miit.ru/email/verify/' . $result["email_token"] . '">ПОДТВЕРДИТЬ АККАУНТ</a></strong><br><br>
-            <strong>ВНИМАНИЕ! Если вы не регистрировались на нашем сервисе, пожалуйста, проигнорируйте это письмо и НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ ПОДТВЕРЖДЕНИЯ!</strong><br><br>
-            С уважением, администрация файлообменника «Бригада» <a href="https://brigada-miit.ru">brigada-miit.ru</a>
+            <!DOCTYPE html>
+            <html lang="ru">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        margin: 0;
+                        padding: 0;
+                    }
+            
+                    .container {
+                        max-width: 600px;
+                        padding: 20px;
+                        background-color: #fff;
+                        border-radius: 15px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    }
+            
+                    .btn {
+                        display: inline-block;
+                        background-color: #007bff;
+                        color: #fff;
+                        text-decoration: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                    }
+            
+                    .btn:hover {
+                        background-color: #0056b3;
+                    }
+            
+                    .message {
+                        margin-bottom: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="message">
+                        <p>Добро пожаловать, ' . $result["surname"] . '! Мы ради вас приветствовать на нашем файлообменнике!</p>
+                        <p>Прежде чем начать пользоваться файлообменником, пожалуйста, подтвердите аккаунт нажатием по кнопке:</p>
+                        <p><a class="btn" href="https://brigada-miit.ru/email/verify/' . $result["email_token"] . '">Подтвердить аккаунт</a></p>
+                        <p><b>ВНИМАНИЕ! Если вы не регистрировались на нашем сервисе, пожалуйста, проигнорируйте это письмо и НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ ПОДТВЕРЖДЕНИЯ!</b></p>
+                        <p>С уважением, администрация файлообменника «Бригада» <a href="https://brigada-miit.ru">brigada-miit.ru</a></p>
+                    </div>
+                </div>
+            </body>
+            </html>
         ');
 
         $mail->DKIM_domain = 'brigada-miit.ru';
@@ -182,12 +229,6 @@ class System {
         $mail->CharSet = 'UTF-8';
         $mail->Subject ='Файлообменник «Бригада». Смена пароля';
         $mail->IsHTML(true);
-        /*$mail->msgHTML('
-            Здравствуйте, ' . $_user["surname"] . '! Для вашего аккаунта было запрошено изменение пароля. Чтобы изменить пароль, пожалуйста, нажмите на кнопку ниже:<br><br>
-            <strong><a href="https://brigada-miit.ru/password/change/' . $password_token . '">ИЗМЕНИТЬ ПАРОЛЬ</a></strong><br><br>
-            <strong>ВНИМАНИЕ! Если вы не запрашивали смену пароля на нашем сервисе, пожалуйста, проигнорируйте это письмо и НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ СМЕНЫ ПАРОЛЯ!</strong><br><br>
-            С уважением, администрация файлообменника «Бригада» <a href="https://brigada-miit.ru">brigada-miit.ru</a>
-        ');*/
         $mail->msgHTML('
             <!DOCTYPE html>
             <html lang="ru">
@@ -199,17 +240,15 @@ class System {
                     body {
                         font-family: Arial, sans-serif;
                         line-height: 1.6;
-                        background-color: #f8f9fa;
                         margin: 0;
                         padding: 0;
                     }
             
                     .container {
                         max-width: 600px;
-                        margin: 0 auto;
                         padding: 20px;
                         background-color: #fff;
-                        border-radius: 5px;
+                        border-radius: 15px;
                         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                     }
             
@@ -236,8 +275,8 @@ class System {
                     <div class="message">
                         <p>Здравствуйте, '. $_user["surname"] . '! Для вашего аккаунта было запрошено изменение пароля.</p>
                         <p>Чтобы изменить пароль, пожалуйста, нажмите на кнопку ниже:</p>
-                        <p><a class="btn" href="https://brigada-miit.ru/password/change/' . $password_token . '">ИЗМЕНИТЬ ПАРОЛЬ</a></p>
-                        <p>ВНИМАНИЕ! Если вы не запрашивали смену пароля на нашем сервисе, пожалуйста, проигнорируйте это письмо и НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ ПОДТВЕРЖДЕНИЯ!</p>
+                        <p><a class="btn" href="https://brigada-miit.ru/password/change/' . $password_token . '">Изменить пароль</a></p>
+                        <p><b>ВНИМАНИЕ! Если вы не запрашивали смену пароля на нашем сервисе, пожалуйста, проигнорируйте это письмо и НЕ ПЕРЕХОДИТЕ ПО ССЫЛКЕ ПОДТВЕРЖДЕНИЯ!</b></p>
                         <p>С уважением, администрация файлообменника «Бригада» <a href="https://brigada-miit.ru">brigada-miit.ru</a></p>
                     </div>
                 </div>

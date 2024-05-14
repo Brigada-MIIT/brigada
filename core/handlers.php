@@ -483,6 +483,10 @@ function logout() {
     Location("/");
 }
 
+function api_password_change($args) {
+    
+}
+
 function api_users_get_users() {
     global $system, $system_user_id, $_user;
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
