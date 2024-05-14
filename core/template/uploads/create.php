@@ -32,7 +32,7 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <br><button type="submit" class="submit" onclick="submit();">Создать</button>
+                <br><button id="submit" type="submit" class="submit" onclick="submit();">Создать</button>
             </div>
         </div>
     </div>
@@ -64,6 +64,10 @@
             var res = $.parseJSON(data);
             console.log(res);
             if (res.result == 1) {
+                document.getElementById('submit').onclick = "";
+                document.getElementById('name').disabled = true;
+                document.getElementById('description').disabled = true;
+                document.getElementById('category').disabled = true;
                 location.replace("/uploads/files/"+res.text);
             } else if (res.result == 2) {
                 Swal.fire({
