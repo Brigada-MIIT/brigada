@@ -113,9 +113,6 @@
                 <div class="in">
                     <div class="btn-group d-flex flex-wrap">
                         <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
-                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="">Удалить аватар</button>
-                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="">Удалить 2FA</button>
-                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="submit_delete();">Удалить пользователя</button>
                     </div>
                 </div>
             </div>
@@ -134,7 +131,7 @@
                     <div class="d-flex flex-wrap">
                         <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить аватар</button>
                         <button class="btn btn-primary mr-4 mb-2" onclick="">Удалить 2FA</button>
-                        <button class="btn btn-danger mr-4 mb-2" onclick="">Удалить пользователя</button>
+                        <button class="btn btn-danger mr-4 mb-2" onclick="submit_delete();">Удалить пользователя</button>
                     </div>
                 </div>
                 <hr>
