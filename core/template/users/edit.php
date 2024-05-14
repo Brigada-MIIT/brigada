@@ -155,12 +155,12 @@
                 <hr>
                 <div>
                     <div class="info-box">
-                        <p>Дата регистрации: 1 января 1970 ?></p>
+                        <p>Дата регистрации: 1 января 1970</p>
                         <p>Статус 2FA: Включено ?></p>
                     </div>
                     <div class="btn-group">
-                        <a href="#" class="submit">Удалить кэш</a>
-                        <a href="#" class="submit">Удалить спам</a>
+                        <a href="#" class="btn btn-primary">Удалить кэш</a>
+                        <a href="#" class="btn btn-primary">Удалить спам</a>
                     </div>
                 </div>
             </div>
