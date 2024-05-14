@@ -138,6 +138,12 @@
                     }).then((result) => {
                         location.replace("/");
                     });
+
+                    document.getElementById('submit').onclick = "";
+                    document.getElementById('name').disabled = true;
+                    document.getElementById('description').disabled = true;
+                    document.getElementById('category').disabled = true;
+                    document.getElementById('status').disabled = true;
                 }
                 else {
                     Swal.fire({
