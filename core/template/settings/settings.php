@@ -59,12 +59,12 @@
                         title: data.text,
                     }).then((result) => {
                         if (result.isConfirmed) {
-                           return location.replace("/settings"); 
+                           return location.replace("/app/settings"); 
                         }
                     });
 
                     function reload() {
-                        return location.replace("/settings");
+                        return location.replace("/app/settings");
                     }
 
                     setTimeout(reload, 6075);
