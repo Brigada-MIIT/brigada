@@ -93,7 +93,9 @@
                 <div class="in">
                     <div class="btn-group d-flex flex-wrap">
                         <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="edit();">Сохранить</button>
-                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="submit_delete();" style="margin-left: 20px;">Удалить пользователя</button>
+                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="">Удалить аватар</button>
+                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="">Удалить 2FA</button>
+                        <button id="submit" type="submit" class="submit mr-4 mb-2" onclick="submit_delete();">Удалить пользователя</button>
                     </div>
                 </div>
             </div>
