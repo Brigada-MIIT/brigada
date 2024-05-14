@@ -48,7 +48,7 @@ function password_change($args) {
     if($query->num_rows == 0)
         Location("/");
     $result = $query->fetch_assoc();
-    $content = '../core/template/profile/password.php';
+    $content = '../core/template/password.php';
     include '../core/template/default.php';
 }
 
