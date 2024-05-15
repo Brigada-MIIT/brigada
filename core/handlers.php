@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require '../core/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
