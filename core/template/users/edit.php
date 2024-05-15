@@ -124,8 +124,8 @@
                     <div class="card border-dark mb-3 info">
                         <div class="card-header">Информация о пользователе</div>
                         <div>
-                            <p><b>Дата регистрации:</b> <?php echo unixDateToString(intval($user['registred'])) ?> <?php echo date('H:i', intval($user['registred'])) ?></p>
-                            <?php echo ( !empty($user['password_change_timestamp']) ? "<p><b>Пароль был изменён:</b> ".unixDateToString(intval($user['password_change_timestamp']))." ". date('H:i', intval($user['password_change_timestamp'])) ."</p>" : "" ) ?>
+                            <p><b>Дата регистрации:</b> <?php echo unixDateToString(intval($user['registred'])) ?> <?php echo date('H:i', intval($user['registred'])) ?> (МСК)</p>
+                            <?php echo ( !empty($user['password_change_timestamp']) ? "<p><b>Пароль был изменён:</b> ".unixDateToString(intval($user['password_change_timestamp']))." ". date('H:i', intval($user['password_change_timestamp'])) ." (МСК)</p>" : "" ) ?>
                             <p><b>Подтверждение Email:</b> <?php echo ( ($user['email_verifed'] == 1) ? "Да" : "Нет" ) ?></p>
                             <p><b>Статус 2FA:</b> <?php echo ( !empty($user['2fa_secret']) ? "Включено" : "Выключено" ) ?></p>
                             <?php echo ( !empty($user['ban']) ? "<p><b>Блокировка:</b> Да (<a href='/profile/".$user['ban']."'>кем выдана?</a>)</p>" : "" ) ?>
