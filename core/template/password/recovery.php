@@ -59,7 +59,7 @@
                 } else if (res.result == 2) {
                     Toast.fire({
                         icon: 'error',
-                        title: 'Заполните, пожалуйста, все поля'
+                        title: 'Укажите, пожалуйста, Email-адрес в соответствующем поле'
                     });
                     action = true;
                 } else {
