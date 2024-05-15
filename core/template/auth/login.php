@@ -41,7 +41,7 @@
                     icon: 'error',
                     title: 'Неверный пароль!',
                     text: 'Проверьте правильность введённых данных.',
-                    footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Забыли пароль?</a>'
+                    footer: '<a href="/password/recovery">Забыли пароль?</a>'
                 });
             } else if (res.result == 1) {
                 if(!res.text)
