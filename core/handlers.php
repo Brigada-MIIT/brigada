@@ -1,4 +1,8 @@
 <?php
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 function main() {
     global $system, $system_user_id, $_user;
