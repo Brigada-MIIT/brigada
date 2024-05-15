@@ -504,7 +504,7 @@ function api_password_change($args) {
     $token = $args['token'];
     $password = $_REQUEST['password'];
     $password_repeat = $_REQUEST['password_repeat'];
-    if(empty($token) || empty($password) || empty($password_repeat))
+    if(empty($token))
         res(0);
     $db = $system->db();
     $query = $db->query("SELECT * FROM `users` WHERE `password_token` = '$token'");
@@ -512,10 +512,12 @@ function api_password_change($args) {
         res(0, "mysql error");
     if($query->num_rows == 0)
         res(2);
+    if(empty($password) || empty($password_repeat))
+        res(3);
     $result = $query->fetch_assoc();
     $user_id = $result['id'];
     if($password != $password_repeat)
-        res(3);
+        res(4);
 
     $time = time();
     $passwordHash = $db->real_escape_string(password_hash($password, PASSWORD_DEFAULT));;

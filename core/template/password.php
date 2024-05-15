@@ -32,7 +32,7 @@
     });
 
     function submit() {
-        if(!document.getElementById('name').value || !document.getElementById('description').value)
+        if(!document.getElementById('password').value || !document.getElementById('password_repeat').value)
             return Toast.fire({
                 icon: 'error',
                 title: 'Заполните, пожалуйста, все поля'
@@ -42,7 +42,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/password/change/<?php echo $token ?>',
-            data: 'password='+document.getElementById('password').value+'&password_repeat='+document.getElementById('password_repeat').value,
+            data: 'password='+$("#password").val()+'&password_repeat='+$("#password_repeat").val(),
             success: async function(data) {
                 var res = $.parseJSON(data);
                 console.log(res);
@@ -66,6 +66,18 @@
                         title: 'Ошибка!',
                         text: 'Токен не найден',
                         footer: '<a href="<?php echo $settings['link_to_admin'] ?>">Возникли вопросы?</a>'
+                    });
+                    action = true;
+                } else if (res.result == 3) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Заполните, пожалуйста, все поля'
+                    });
+                    action = true;
+                } else if (res.result == 3) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Пароли не совпадают. Пожалуйста, перепроверьте'
                     });
                     action = true;
                 } else {
