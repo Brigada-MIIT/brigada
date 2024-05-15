@@ -16,6 +16,15 @@ function main() {
     include '../core/template/default.php';
 }
 
+function instruction() {
+    global $system, $system_user_id, $_user;
+    if($system->auth() && $_user['ban'] != 0)
+        $system->printError(100);
+    $title = "Бригада | Инструкция по использованию";
+    //$content = '../core/template/instruction.php';
+    include '../core/template/default.php';
+}
+
 function auth() {
     global $system, $system_user_id, $_user;
     if ($system->auth() && $system->haveUserPermission($system_user_id, "ACCESS"))

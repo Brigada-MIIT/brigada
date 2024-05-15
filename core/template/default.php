@@ -31,7 +31,7 @@
                             <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Категории</a>
+                            <a class="nav-link" href="/instruction">Инструкция</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
