@@ -48,6 +48,7 @@ function password_change($args) {
     if($query->num_rows == 0)
         Location("/");
     $result = $query->fetch_assoc();
+    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/password.php';
     include '../core/template/default.php';
 }
