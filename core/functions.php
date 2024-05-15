@@ -195,7 +195,7 @@ class System {
         ');
 
         $mail->DKIM_domain = 'brigada-miit.ru';
-        $mail->DKIM_private = '../core/vendor/dkim_private.pem';
+        $mail->DKIM_private = 'vendor/dkim_private.pem';
         $mail->DKIM_selector = 'mail';
         $mail->DKIM_identity = $mail->From;
         /*******************/
@@ -285,7 +285,7 @@ class System {
         ');
 
         $mail->DKIM_domain = 'brigada-miit.ru';
-        $mail->DKIM_private = '../core/vendor/dkim_private.pem';
+        $mail->DKIM_private = 'vendor/dkim_private.pem';
         $mail->DKIM_selector = 'mail';
         $mail->DKIM_identity = $mail->From;
         /*******************/
