@@ -36,6 +36,16 @@ function register() {
     include '../core/template/default.php';
 }
 
+function password_recovery() {
+    global $system, $system_user_id, $_user;
+    if ($system->auth())
+        Location("/");
+    $title = "Бригада | Восстановление пароя";
+    $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
+    $content = '../core/template/password/recovery.php';
+    include '../core/template/default.php';
+}
+
 function password_change($args) {
     global $system, $system_user_id, $_user;
     $token = $args['token'];
@@ -49,7 +59,7 @@ function password_change($args) {
         Location("/");
     $result = $query->fetch_assoc();
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
-    $content = '../core/template/password.php';
+    $content = '../core/template/password/change.php';
     include '../core/template/default.php';
 }
 
@@ -500,6 +510,22 @@ function logout() {
     Location("/");
 }
 
+function api_password_recovery() {
+    global $system, $system_user_id, $_user;
+    if ($system->auth())
+        res(0, "Authorized");
+    $email = $_REQUEST['email'];
+    if(empty($email))
+        res(2);
+    $db = $system->db();
+    $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
+    if(!$query)
+        res(0, "mysql error");
+    if($query->num_rows == 1)
+        $system->send_email_change_password($query->fetch_assoc());
+    res(1);
+}
+
 function api_password_change($args) {
     global $system, $system_user_id, $_user;
     $token = $args['token'];
@@ -532,6 +558,76 @@ function api_password_change($args) {
     $query = $db->query("DELETE FROM `users_session` WHERE `id` = '$user_id'");
     if(!$query)
         res(0, "mysql clear sessions error");
+
+    /* Генерация письма */
+    $mail = new PHPMailer;
+    $mail->setFrom('noreply@brigada-miit.ru', 'Файлообменник «Бригада»');
+    $mail->addAddress($result['email'], '');
+    $mail->CharSet = 'UTF-8';
+    $mail->Subject ='Файлообменник «Бригада». Подтверждение регистрации';
+    $mail->IsHTML(true);
+    $mail->msgHTML('
+        <!DOCTYPE html>
+        <html lang="ru">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    line-height: 1.6;
+                    margin: 0;
+                    padding: 0;
+                }
+        
+                .container {
+                    max-width: 600px;
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 15px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+        
+                .btn {
+                    display: inline-block;
+                    background-color: #007bff;
+                    color: #fff;
+                    text-decoration: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                }
+        
+                .btn:hover {
+                    background-color: #0056b3;
+                }
+        
+                .message {
+                    margin-bottom: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="message">
+                    <p>Здравствуйте, ' . $result["surname"] . '!</p>
+                    <p>Вы недавно сменили пароль от вашего аккаунта. Если пароль был изменён не вами, пожалуйста, перейдите по ссылке для смены пароля. Ограничьте доступ к вашей электронной почте посторонним лицам.</p>
+                    <p><a class="btn" href="https://brigada-miit.ru/password/recovery?email=' . $result["email"] . '">Сменить пароль</a></p>
+                    <p>С уважением, администрация файлообменника «Бригада» <a href="https://brigada-miit.ru">brigada-miit.ru</a></p>
+                </div>
+            </div>
+        </body>
+        </html>
+    ');
+
+    $mail->DKIM_domain = 'brigada-miit.ru';
+    $mail->DKIM_private = 'vendor/dkim_private.pem';
+    $mail->DKIM_selector = 'mail';
+    $mail->DKIM_identity = $mail->From;
+    /*******************/
+    
+    if(!$mail->send())
+        res(1, "mail send error");
 
     res(1);
 }

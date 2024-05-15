@@ -11,6 +11,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'main');
     $r->addRoute('GET', '/app/auth', 'auth');
     $r->addRoute('GET', '/app/register', 'register');
+    $r->addRoute('GET', '/password/recovery', 'password_recovery');
     $r->addRoute('GET', '/password/change/{token}', 'password_change');
     $r->addRoute('GET', '/app/users', 'users');
     $r->addRoute('GET', '/app/users/{id:\d+}/edit', 'users_edit');
@@ -31,6 +32,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/email/resend/{token}', 'api_email_resend');
     $r->addRoute(['GET', 'POST'], '/email/verify/{token}', 'api_email_verify');
     $r->addRoute(['GET', 'POST'], '/logout', 'logout');
+    $r->addRoute('POST', '/api/password/recovery', 'api_password_recovery');
     $r->addRoute('POST', '/api/password/change/{token}', 'api_password_change');
     $r->addRoute('POST', '/api/users/get_users', 'api_users_get_users');
     $r->addRoute('POST', '/api/users/2fa_delete/{id:\d+}', 'api_users_2fa_delete');

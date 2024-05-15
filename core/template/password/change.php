@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="col-12">
-        <div class="in">
+            <div class="in">
                 <label for="password_repeat">Повторите пароль</label><br>
                 <input type="password" class="text" id="password_repeat" placeholder="Повторите пароль...">
             </div>
