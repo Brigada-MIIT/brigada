@@ -395,12 +395,12 @@
     function submit_delete_2FA() {
         Swal.fire({
             title: "Вы уверены?",
-            text: "Вы хотите удалить двухфакторную авторизацию у пользователя?",
+            text: "Вы хотите отключить двухфакторную авторизацию у пользователя?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#28a745",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Да, удалить!",
+            confirmButtonText: "Да, отключить!",
             cancelButtonText: "Отменить",
         }).then((result) => {
             if (result.isConfirmed) {
@@ -419,7 +419,7 @@
                 if (res.result == 1) {
                     Swal.fire({
                         title: "Успешно!",
-                        text: "Двухфакторная авторизация у пользователя была успешно удалена",
+                        text: "Двухфакторная авторизация у пользователя была успешно отключена",
                         icon: "success"
                     }).then((result) => {
                         location.reload();
