@@ -577,7 +577,7 @@ function api_password_change($args) {
     $mail->setFrom('noreply@brigada-miit.ru', 'Файлообменник «Бригада»');
     $mail->addAddress($result['email'], '');
     $mail->CharSet = 'UTF-8';
-    $mail->Subject ='Файлообменник «Бригада». Подтверждение регистрации';
+    $mail->Subject ='Файлообменник «Бригада». Ваш пароль был изменён';
     $mail->IsHTML(true);
     $mail->msgHTML('
         <!DOCTYPE html>

@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="in">
                 <label for="email">Email</label><br>
-                <input type="text" class="text" id="email" placeholder="Введите адрес...">
+                <input type="text" class="text" id="email" <?php if(!empty($_REQUEST['email'])) echo "value='".$_REQUEST['email']."'" ?> placeholder="Введите адрес...">
             </div>
         </div>
         <div class="col-12">
