@@ -516,8 +516,10 @@ function api_password_change($args) {
         res(3);
     $result = $query->fetch_assoc();
     $user_id = $result['id'];
-    if($password != $password_repeat)
+    if (mb_strlen($password) < 6)
         res(4);
+    if($password != $password_repeat)
+        res(5);
 
     $time = time();
     $passwordHash = $db->real_escape_string(password_hash($password, PASSWORD_DEFAULT));;

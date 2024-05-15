@@ -74,7 +74,13 @@
                         title: 'Заполните, пожалуйста, все поля'
                     });
                     action = true;
-                } else if (res.result == 3) {
+                } else if (res.result == 4) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Ваш пароль слишком короткий'
+                    });
+                    action = true;
+                } else if (res.result == 5) {
                     Toast.fire({
                         icon: 'error',
                         title: 'Пароли не совпадают. Пожалуйста, перепроверьте'
