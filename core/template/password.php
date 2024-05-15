@@ -42,7 +42,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/password/change/<?php echo $token ?>',
-            data: 'password='+document.getElementById('password').value+'&password_repeat='+document.getElementById('password_repeat').value+,
+            data: 'password='+document.getElementById('password').value+'&password_repeat='+document.getElementById('password_repeat').value,
             success: async function(data) {
                 var res = $.parseJSON(data);
                 console.log(res);
