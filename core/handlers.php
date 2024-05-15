@@ -528,7 +528,7 @@ function api_password_recovery() {
     if ($system->auth())
         res(0, "Authorized");
     $email = $_REQUEST['email'];
-    if(empty($email || !filter_var($email, FILTER_VALIDATE_EMAIL)))
+    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
         res(2);
     $db = $system->db();
     $query = $db->query("SELECT * FROM `users` WHERE `email` = '$email'");
