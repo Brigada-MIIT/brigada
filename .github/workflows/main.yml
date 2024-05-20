@@ -28,13 +28,12 @@ jobs:
 
       - name: Create env file
         run: |
-          touch .env
-          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }} >> .env
-          echo DATABASE_BASENAME=${{ secrets.DATABASE_BASENAME }} >> .env
-          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} >> .env
-          echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} >> .env
-          cat .env
-          sudo cp -u .env ./core/.env
+          touch ./core/.env
+          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }} >> ./core/.env
+          echo DATABASE_BASENAME=${{ secrets.DATABASE_BASENAME }} >> ./core/.env
+          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} >> ./core/.env
+          echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} >> ./core/.env
+          cat ./core/.env
 
       # Deploy
       - run: rsync --archive --compress --progress --delete . ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:${{ env.SERVER_PATH }} --filter=":- .gitignore"
