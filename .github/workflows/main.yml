@@ -4,9 +4,9 @@ on:
   workflow_dispatch
 
 env:
-  SERVER_HOST: ${{ variables.SERVER_HOST }}
-  SERVER_USER: ${{ variables.SERVER_USER }}
-  SERVER_PATH: ${{ variables.SERVER_PATH }}
+  SERVER_HOST: ${{ vars.SERVER_HOST }}
+  SERVER_USER: ${{ vars.SERVER_USER }}
+  SERVER_PATH: ${{ vars.SERVER_PATH }}
 
 jobs:
 
