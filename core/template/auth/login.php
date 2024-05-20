@@ -60,7 +60,7 @@
                     icon: 'warning',
                     input: 'text',
                     title: 'Двухфакторная аутентификация',
-                    inputPlaceholder: 'Укажите ваш 2FA код для авторизации',
+                    inputPlaceholder: 'Укажите ваш 2FA код для авторизации...',
                     inputAttributes: {
                         'aria-label': 'Type your message here'
                     },
