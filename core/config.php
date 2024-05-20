@@ -1,7 +1,7 @@
 <?php
-define('db_host', '${{ env.DATABASE_HOST }}');
-define('db_user', '${{ env.DATABASE_USERNAME }}'); 
-define('db_basename', '${{ env.DATABASE_BASENAME }}');
+define('db_host', $_ENV['DATABASE_HOST']);
+define('db_user', $_ENV['DATABASE_USERNAME']); 
+define('db_basename', $_ENV['DATABASE_BASENAME']);
 define('db_password', 's194GJ!18xMrTaq9^');
 
 define('mysql_port', '3306');
