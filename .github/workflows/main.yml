@@ -4,9 +4,9 @@ on:
   workflow_dispatch
 
 env:
-  SERVER_HOST: 199.83.103.213
-  SERVER_USER: root
-  SERVER_PATH: /var/www/brigada-miit.ru/
+  SERVER_HOST: ${{ variables.SERVER_HOST }}
+  SERVER_USER: ${{ variables.SERVER_USER }}
+  SERVER_PATH: ${{ variables.SERVER_PATH }}
 
 jobs:
 
