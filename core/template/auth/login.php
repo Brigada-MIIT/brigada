@@ -59,7 +59,7 @@
                 const { value: user_code } = await Swal.fire({
                     icon: 'warning',
                     input: 'text',
-                    title: '2FA Code',
+                    title: 'Двухфакторная аутентификация',
                     inputPlaceholder: 'Укажите ваш 2FA код для авторизации',
                     inputAttributes: {
                         'aria-label': 'Type your message here'
