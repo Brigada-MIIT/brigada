@@ -26,5 +26,14 @@ jobs:
       - name: Generate auth hosts
         run: ssh-keyscan -H ${{ env.SERVER_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Create env file
+        run: |
+          touch ./core/.env
+          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }} >> .env
+          echo DATABASE_BASENAME=${{ secrets.DATABASE_BASENAME }} >> .env
+          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} >> .env
+          echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} >> .env
+          cat .env
+
       # Deploy
       - run: rsync --archive --compress --progress --delete . ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:${{ env.SERVER_PATH }} --filter=":- .gitignore"
