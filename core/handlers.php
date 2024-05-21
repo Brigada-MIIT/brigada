@@ -70,6 +70,8 @@ function password_change($args) {
     if($query->num_rows == 0)
         Location("/");
     $result = $query->fetch_assoc();
+    if(time() - intval($result['password_send_timestamp']) > 86400)
+        Location("/");
     $title = "Бригада | Смена пароля";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/password/change.php';
