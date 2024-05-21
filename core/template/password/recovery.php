@@ -39,7 +39,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/password/recovery',
-            data: 'email='+$("#email").val(),
+            data: 'email='+$("#email").val().trim(),
             success: async function(data) {
                 var res = $.parseJSON(data);
                 console.log(res);
