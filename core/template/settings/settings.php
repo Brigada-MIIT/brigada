@@ -43,7 +43,7 @@
         $.ajax({
             type: 'post',
             url: "/api/settings/update",
-            data: '&max_size_avatar='+$("#max_size_avatar").val()+'&link_to_admin='+$("#link_to_admin").val()+'&max_size_file='+$("#max_size_file").val()+'&count_char_uploads_name='+$("#count_char_uploads_name").val()+'&count_char_uploads_description='+$("#count_char_uploads_description").val(),
+            data: '&max_size_avatar='+$("#max_size_avatar").val()+'&link_to_admin='+$("#link_to_admin").val().trim()+'&max_size_file='+$("#max_size_file").val()+'&count_char_uploads_name='+$("#count_char_uploads_name").val()+'&count_char_uploads_description='+$("#count_char_uploads_description").val(),
             dataType: 'json',
             success: function(data){
                 const Toast = Swal.mixin({
