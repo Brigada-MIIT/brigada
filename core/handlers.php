@@ -6,8 +6,6 @@ use PHPMailer\PHPMailer\Exception;
 
 function main() {
     global $system, $system_user_id, $_user;
-    /*if ($system->userinfo()['user_type'] < 1 || !$system->haveUserPermission($system_user_id, "ACCESS"))
-        Location("/app/auth");*/    
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     if(!empty($_COOKIE['last'])) {
@@ -25,7 +23,7 @@ function instruction() {
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     $title = "Бригада | Инструкция по использованию";
-    //$content = '../core/template/instruction.php';
+    $content = '../core/template/instruction.php';
     include '../core/template/default.php';
 }
 
