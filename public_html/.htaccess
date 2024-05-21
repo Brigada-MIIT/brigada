@@ -25,4 +25,4 @@
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-ErrorDocument 403 ./../core/template/errors/403.php
+ErrorDocument 403 /../core/template/errors/403.php
