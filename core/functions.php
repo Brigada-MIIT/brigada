@@ -9,9 +9,11 @@ class System {
     function db() {
         return new mysqli(db_host, db_user, db_password, db_basename);
     }
+    
     function remote_db($host, $user, $password, $basename) {
         return new mysqli($host, $user, $password, $basename);
     }
+
     function auth() {
         if (!isset($_COOKIE['id']) || !isset($_COOKIE['usid'])){
             return false;
@@ -35,6 +37,7 @@ class System {
         else
             return false;
     }
+
     function userinfo($id = false) {
         $db = $this->db();
         if ($id == false) {
@@ -45,6 +48,7 @@ class System {
         $query = $db->query("SELECT * FROM `users` WHERE `id` = '$id'");
         return $query->num_rows == 1 ? $query->fetch_assoc() : false;
     }
+
     function haveGroupPermissions($id, $permission) {
         if(!$id || !$permission) return false;
         $db = $this->db();
@@ -52,6 +56,7 @@ class System {
         $result = $query->fetch_assoc();
         return $result[$permission];
     }
+
     function haveUserGroupPermissions($id, $permission) {
         if(!$id || !$permission) return false;
         $id = $this->userinfo($id)['user_type'];
@@ -60,6 +65,7 @@ class System {
         $result = $query->fetch_assoc();
         return $result[$permission];
     }
+
     function haveUserApartPermission($id, $permission) { // отдельные разрешения
         if(!$id || !$permission) return false;
         $db = $this->db();
@@ -69,6 +75,7 @@ class System {
             return false;
         return $result[$permission];
     }
+
     function haveUserPermission($id, $permission) {
         if(!$this->auth()) return false;
         if(!$id || !$permission) return false;
@@ -79,6 +86,7 @@ class System {
         else
             return 0;
     }
+
     function haveUserPermissionToAuth($id) {
         if(!$id) return false;
         if($this->haveGroupPermissions($this->userinfo($id)['user_type'], "DASHBOARD") || $this->haveUserApartPermission($id, "DASHBOARD"))
@@ -86,6 +94,7 @@ class System {
         else
             return 0;
     }
+
     function getNameRole($id) {
         if(!$id) return false;
         $db = $this->db();
@@ -103,6 +112,7 @@ class System {
         }
         die();
     }
+
     function enabled_2fa($id) {
         if(!$id) return false;
         $db = $this->db();
@@ -111,6 +121,7 @@ class System {
             return false;
         return true;
     }
+
     function auth_2fa($id, $user_code) {
         if(!$id) return false;
         $db = $this->db();
@@ -123,6 +134,7 @@ class System {
             return 1;
         return 0;
     }
+
     function send_email_verification($token) {
         if (!$token) return false;
         $db = $this->db();
@@ -212,6 +224,7 @@ class System {
         }
         else return 2; // если не прошло 5 минут с момента последней отправки
     }
+
     function send_email_change_password($_user) {
         if(!empty($_user['password_send_timestamp'])) {
             if((time() - intval($_user['password_send_timestamp'])) < 300)
@@ -285,7 +298,7 @@ class System {
         ');
 
         $mail->DKIM_domain = 'brigada-miit.ru';
-        $mail->DKIM_private = 'vendor/dkim_private.pem';
+        $mail->DKIM_private = '../core/vendor/dkim_private.pem';
         $mail->DKIM_selector = 'mail';
         $mail->DKIM_identity = $mail->From;
         /*******************/
