@@ -56,7 +56,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/register',
-            data: 'email='+$("#email").val()+'&password='+$("#password-field").val()+'&password_repeat='+$("#password-repeat-field").val()+'&lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val(),
+            data: 'email='+$("#email").val().trim()+'&password='+$("#password-field").val()+'&password_repeat='+$("#password-repeat-field").val()+'&lastname='+$("#lastname").val().trim()+'&surname='+$("#surname").val().trim()+'&patronymic='+$("#patronymic").val().trim(),
             success: async function(data) {
                 var res = $.parseJSON(data);
                 if (res.result == 1) {

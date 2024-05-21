@@ -47,7 +47,7 @@
         $.ajax({
             type: 'post',
             url: "/api/profile/edit",
-            data: 'lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&biography='+$("#biography").val(),
+            data: 'lastname='+$("#lastname").val().trim()+'&surname='+$("#surname").val().trim()+'&patronymic='+$("#patronymic").val().trim()+'&biography='+$("#biography").val().trim(),
             dataType: 'json',
             success: function(data){
                 console.log(data);

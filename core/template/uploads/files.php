@@ -182,7 +182,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/uploads/edit/<?php echo $args['id'] ?>',
-            data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value+'&status='+document.getElementById('status').value,
+            data: 'name='+document.getElementById('name').value.trim()+'&description='+document.getElementById('description').value.trim()+'&category='+document.getElementById('category').value+'&status='+document.getElementById('status').value,
             success: async function(data) {
             var res = $.parseJSON(data);
             console.log(res);

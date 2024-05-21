@@ -59,7 +59,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/uploads/create',
-            data: 'name='+document.getElementById('name').value+'&description='+document.getElementById('description').value+'&category='+document.getElementById('category').value,
+            data: 'name='+document.getElementById('name').value.trim()+'&description='+document.getElementById('description').value.trim()+'&category='+document.getElementById('category').value,
             success: async function(data) {
                 var res = $.parseJSON(data);
                 console.log(res);

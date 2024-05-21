@@ -33,7 +33,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/login',
-            data: 'email='+$("#email").val()+'&password='+$("#password").val()+a_code,
+            data: 'email='+$("#email").val().trim()+'&password='+$("#password").val()+a_code,
             success: async function(data) {
             var res = $.parseJSON(data);
             if (res.result == 0) {
