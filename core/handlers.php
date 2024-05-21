@@ -23,6 +23,7 @@ function instruction() {
     if($system->auth() && $_user['ban'] != 0)
         $system->printError(100);
     $title = "Бригада | Инструкция по использованию";
+    $page = "instruction";
     $content = '../core/template/instruction.php';
     include '../core/template/default.php';
 }
