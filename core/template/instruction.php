@@ -4,8 +4,8 @@
     }
 
     .qr-code {
-        width: 150px;
-        height: 150px;
+        width: 300px;
+        height: 300px;
         margin: 10px auto;
     }
 
