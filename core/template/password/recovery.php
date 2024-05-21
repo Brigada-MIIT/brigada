@@ -6,7 +6,7 @@
     <div class="form">
         <div class="col-12">
             <div class="in">
-                <label for="email">Email</label><br>
+                <label for="email">Email-адрес</label><br>
                 <input type="text" class="text" id="email" <?php if(!empty($_REQUEST['email'])) echo "value='".$_REQUEST['email']."'" ?> placeholder="Введите адрес...">
             </div>
         </div>
