@@ -242,7 +242,7 @@
         $.ajax({
             type: 'post',
             url: "/api/users/edit",
-            data: 'id=<?php echo $user['id']?>&role='+$("#role").val()+'&lastname='+$("#lastname").val()+'&surname='+$("#surname").val()+'&patronymic='+$("#patronymic").val()+'&biography='+$("#biography").val()+'&ban_upload='+(($('#ban_upload').is(":checked")) ? '1' : '0')+'&ban='+(($('#ban').is(":checked")) ? '1' : '0')+'&email_verifed='+(($('#email_verifed').is(":checked")) ? '1' : '0'),
+            data: 'id=<?php echo $user['id']?>&role='+$("#role").val()+'&lastname='+$("#lastname").val().trim()+'&surname='+$("#surname").val().trim()+'&patronymic='+$("#patronymic").val().trim()+'&biography='+$("#biography").val().trim()+'&ban_upload='+(($('#ban_upload').is(":checked")) ? '1' : '0')+'&ban='+(($('#ban').is(":checked")) ? '1' : '0')+'&email_verifed='+(($('#email_verifed').is(":checked")) ? '1' : '0'),
             dataType: 'json',
             success: function(data){
                 console.log(data);
