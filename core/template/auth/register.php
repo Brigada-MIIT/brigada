@@ -99,7 +99,7 @@
                         icon: 'error',
                         title: 'Пользователь уже существует',
                         text: 'Пользователь с указанным Email-адресом уже существует',
-                        footer: '<a href="<?php echo $settings['link_to_admin']; ?>">Забыли пароль?</a>'
+                        footer: '<a href="/password/recovery">Забыли пароль?</a>'
                     });
                 } else if (res.result == 7) {
                     Swal.fire({
