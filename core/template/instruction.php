@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-body">
                     <a href="https://www.construct.net/en/free-online-games/oeh-ea-64589/play"><h2 class="card-title"><strong>Уровень 1</strong></h2></a>
-                    <p class="card-text">В этом уроке Вы узнаете, как авторизоваться на нашем сайте</p>
+                    <p class="card-text">В этом уроке Вы узнаете, как авторизоваться в свой аккаунт на нашем сайте</p>
                     <div>
                         <a target="_blank" href="https://www.construct.net/en/free-online-games/oeh-ea-64589/play"><img src="/assets/img/qr-code-level-1.png" class="qr-code" alt="Уровень 1"></a>
                     </div>
