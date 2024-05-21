@@ -26,10 +26,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item <?php (empty($page)) ? "active" : "" ?>">
+                        <li class="nav-item<?php echo (empty($page)) ? " active" : "" ?>">
                             <a class="nav-link" href="/">Главная</a>
                         </li>
-                        <li class="nav-item <?php (!empty($page)) ? ($page == "instruction" ? "active" : "") : "" ?>">
+                        <li class="nav-item<?php echo (!empty($page)) ? ($page == "instruction" ? " active" : "") : "" ?>">
                             <a class="nav-link" href="/instruction">Инструкция</a>
                         </li>
                     </ul>
