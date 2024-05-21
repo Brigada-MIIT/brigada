@@ -24,5 +24,3 @@
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
-
-ErrorDocument 403 /../core/template/errors/403.html
