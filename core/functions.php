@@ -9,7 +9,7 @@ class System {
     function db() {
         return new mysqli(db_host, db_user, db_password, db_basename);
     }
-    
+
     function remote_db($host, $user, $password, $basename) {
         return new mysqli($host, $user, $password, $basename);
     }
@@ -207,7 +207,7 @@ class System {
         ');
 
         $mail->DKIM_domain = 'brigada-miit.ru';
-        $mail->DKIM_private = 'vendor/dkim_private.pem';
+        $mail->DKIM_private = '../core/vendor/dkim_private.pem';
         $mail->DKIM_selector = 'mail';
         $mail->DKIM_identity = $mail->From;
         /*******************/
