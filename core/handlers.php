@@ -70,6 +70,7 @@ function password_change($args) {
     if($query->num_rows == 0)
         Location("/");
     $result = $query->fetch_assoc();
+    $title = "Бригада | Смена пароля";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/password/change.php';
     include '../core/template/default.php';
@@ -81,6 +82,7 @@ function users() {
         Location("/app/auth", "/app/users");
     if(!$system->haveUserPermission($system_user_id, "MANAGE_USERS"))
         $system->printError(403);
+    $title = "Бригада | Пользователи";
     $content = '../core/template/users/main.php';
     include '../core/template/default.php';
 }
@@ -96,6 +98,7 @@ function users_edit($args) {
         Location("/app/users");
     if ($user['user_type'] >= $system->userinfo()['user_type'])
         Location("/app/users");
+    $title = "Бригада | Управление пользователем";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/users/edit.php';
     include '../core/template/default.php';
@@ -107,6 +110,7 @@ function settings() {
         Location("/app/auth", "/app/settings");
     if(!$system->haveUserPermission($system_user_id, "MANAGE_SETTINGS"))
         $system->printError(403);
+    $title = "Бригада | Настройки";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/settings/settings.php';
     include '../core/template/default.php';
@@ -122,6 +126,7 @@ function profile($args) {
     $user = $system->userinfo($args['id']);
     if(empty($user))
         $system->printError(404);
+    $title = "Бригада | Профиль";
     $content = '../core/template/profile/main.php';
     include '../core/template/default.php';
 }
@@ -132,6 +137,7 @@ function profile_edit() {
         Location("/app/auth", "/profile/edit");
     if($_user['ban'] != 0)
         $system->printError(100);
+    $title = "Бригада | Редактирование профиля";
     $settings = $system->db()->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/profile/edit.php';
     include '../core/template/default.php';
@@ -143,6 +149,7 @@ function profile_uploads() {
         Location("/app/auth", "/profile/uploads");
     if ($_user['ban'] != 0)
         $system->printError(100);
+    $title = "Бригада | Мои загрузки";
     $db = $system->db();
     $content = '../core/template/profile/uploads.php';
     include '../core/template/default.php';
@@ -154,6 +161,7 @@ function profile_avatar() {
         Location("/app/auth", "/profile/avatar");
     if ($_user['ban'] != 0)
         $system->printError(100);
+    $title = "Бригада | Редактирование профиля";
     $content = '../core/template/profile/avatar.php';
     include '../core/template/default.php';
 }
@@ -166,6 +174,7 @@ function uploads_create() {
         $system->printError(403);
     if ($_user['ban_upload'] != 0)
         $system->printError(101);
+    $title = "Бригада | Создание загрузки";
     $db = $system->db();
     $settings = $db->query("SELECT * FROM `settings` LIMIT 1")->fetch_assoc();
     $content = '../core/template/uploads/create.php';
@@ -190,6 +199,7 @@ function uploads_files($args) {
         $system->printError(403);
     if($result['files'] != "[]")
         exit("Загрузка файлов запрещена");
+    $title = "Бригада | Загрузка файлов";
     $content = '../core/template/uploads/files.php';
     include '../core/template/default.php';
 }
@@ -262,6 +272,7 @@ function uploads_view($args) {
     $result_author = $query_author->fetch_assoc();
     $query_category = $system->db()->query('SELECT * FROM `categories` WHERE `id` = "'.$result['category'].'"');
     $result_category = $query_category->fetch_assoc();
+    $title = "Бригада | Загрузка «".$result['name']."»";
     $content = '../core/template/uploads/view.php';
     include '../core/template/default.php';
 }
@@ -287,6 +298,7 @@ function uploads_edit($args) {
         if(!$system->haveUserPermission($system_user_id, "EDIT_ALL_UPLOADS"))
             $system->printError(403);
     }
+    $title = "Бригада | Редактирование загрузки";
     $content = '../core/template/uploads/edit.php';
     include '../core/template/default.php';
 }
