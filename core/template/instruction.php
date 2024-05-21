@@ -23,56 +23,48 @@
 </style>
 
 <div class="container mt-5">
-    <p class="page-title">Туториалы</p>
-
+    <p class="page-title">Обучабщие материалы</p>
     <div class="row">
-        <!-- Tutorial 1 -->
         <div class="col-md-6 tutorial-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Туториал 1</h2>
+                    <a href="https://www.construct.net/en/free-online-games/oeh-ea-64589/play"><b><h2 class="card-title">Уровень 1</h2></b></a>
                     <p class="card-text">Описание туториала 1. Этот туториал поможет вам узнать больше о ...</p>
                     <div>
-                        <img src="/assets/img/qr-code-level-1.png" class="qr-code" alt="QR Code 1">
+                        <a href="https://www.construct.net/en/free-online-games/oeh-ea-64589/play"><img src="/assets/img/qr-code-level-1.png" class="qr-code" alt="Уровень 1"></a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Tutorial 2 -->
         <div class="col-md-6 tutorial-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Туториал 2</h2>
+                    <a href="https://www.construct.net/en/free-online-games/oeh-ea-64593/play"><b><h2 class="card-title">Уровень 2</h2></b></a>
                     <p class="card-text">Описание туториала 2. Этот туториал поможет вам узнать больше о ...</p>
                     <div>
-                        <img src="/assets/img/qr-code-level-2.png" class="qr-code" alt="QR Code 2">
+                        <a href="https://www.construct.net/en/free-online-games/oeh-ea-64593/play"><img src="/assets/img/qr-code-level-2.png" class="qr-code" alt="Уровень 2"></a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Tutorial 3 -->
         <div class="col-md-6 tutorial-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Туториал 3</h2>
+                    <a href="https://www.construct.net/en/free-online-games/oeh-ea-64594/play"><b><h2 class="card-title">Уровень 3</h2></b></a>
                     <p class="card-text">Описание туториала 3. Этот туториал поможет вам узнать больше о ...</p>
                     <div>
-                        <img src="/assets/img/qr-code-level-3.png" class="qr-code" alt="QR Code 3">
+                        <a href="https://www.construct.net/en/free-online-games/oeh-ea-64594/play"><img src="/assets/img/qr-code-level-3.png" class="qr-code" alt="Уровень 3"></a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Tutorial 4 -->
         <div class="col-md-6 tutorial-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Туториал 4</h2>
+                    <a href="https://www.construct.net/en/free-online-games/oeh-ea-64595/play"><b><h2 class="card-title">Уровень 4</h2></b></a>
                     <p class="card-text">Описание туториала 4. Этот туториал поможет вам узнать больше о ...</p>
                     <div>
-                        <img src="/assets/img/qr-code-level-4.png" class="qr-code" alt="QR Code 4">
+                        <a href="https://www.construct.net/en/free-online-games/oeh-ea-64595/play"><img src="/assets/img/qr-code-level-4.png" class="qr-code" alt="Уровень 4"></a>
                     </div>
                 </div>
             </div>
