@@ -9,25 +9,25 @@
         </div>
         <div class="col-12">
             <div class="in">
-                <label for="lastname">Фамилия</label><br>
+                <label for="lastname">Фамилия:</label><br>
                 <input id="lastname" type="text" placeholder="Фамилия" value="<?php echo $_user['lastname'] ?>">
             </div>
         </div>
         <div class="col-12">
             <div class="in">
-                <label for="surname">Имя</label><br>
+                <label for="surname">Имя:</label><br>
                 <input id="surname" type="text" placeholder="Имя" value="<?php echo $_user['surname'] ?>">
             </div>
         </div>
         <div class="col-12">
             <div class="in">
-                <label for="patronymic">Отчество</label><br>
+                <label for="patronymic">Отчество:</label><br>
                 <input id="patronymic" type="text" placeholder="Отчество" value="<?php echo $_user['patronymic'] ?>">
             </div>
         </div>
         <div class="col-12">
             <div class="in">
-                <label for="biography">О себе</label><br>
+                <label for="biography">О себе:</label><br>
                 <textarea id="biography" placeholder="Введите информацию о себе..." style="width: 75%; display: block;"><?php echo $_user['biography'] ?></textarea>
             </div>
         </div>
